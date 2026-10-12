@@ -1,5 +1,6 @@
 import Image from "next/image";
 import clsx from "clsx";
+import { asset } from "@/lib/asset";
 
 export function BrowserFrame({
   src,
@@ -30,7 +31,7 @@ export function BrowserFrame({
         <span className="truncate rounded-md bg-ink/60 px-3 py-1 font-mono text-[11px] text-bone-dim">{host}</span>
       </div>
       <div className="relative aspect-[16/10]">
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} loading={eager || priority ? "eager" : "lazy"} className="object-cover object-top" />
+        <Image src={asset(src)} alt={alt} fill sizes={sizes} priority={priority} loading={eager || priority ? "eager" : "lazy"} className="object-cover object-top" />
       </div>
     </div>
   );
@@ -40,7 +41,7 @@ export function PhoneFrame({ src, alt, className, eager }: { src: string; alt: s
   return (
     <div className={clsx("rounded-[34px] border border-bone/15 bg-ink p-2 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)]", className)}>
       <div className="relative aspect-[390/844] overflow-hidden rounded-[26px]">
-        <Image src={src} alt={alt} fill sizes="(min-width: 1024px) 14vw, 40vw" loading={eager ? "eager" : "lazy"} className="object-cover object-top" />
+        <Image src={asset(src)} alt={alt} fill sizes="(min-width: 1024px) 14vw, 40vw" loading={eager ? "eager" : "lazy"} className="object-cover object-top" />
       </div>
     </div>
   );

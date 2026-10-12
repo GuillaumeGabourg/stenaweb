@@ -9,6 +9,7 @@ import { TransitionLink } from "./fx/PageTransition";
 import { BrowserFrame, PhoneFrame } from "./Frames";
 import { Arrow, ArrowUpRight } from "./ui";
 import { markReady } from "@/lib/ready";
+import { asset } from "@/lib/asset";
 
 export function CaseStudy({ project: p, next }: { project: Project; next: Project }) {
   const root = useRef<HTMLElement>(null);
@@ -101,7 +102,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
 
       <div className="cs-cover-wrap h-[70svh] md:h-[100svh]">
         <div className="cs-cover relative h-full overflow-hidden">
-          <Image src={`/projects/${p.slug}/desktop.png`} alt={`Page d'accueil de ${p.name}`} fill priority sizes="100vw" className="object-cover object-top" />
+          <Image src={asset(`/projects/${p.slug}/desktop.png`)} alt={`Page d'accueil de ${p.name}`} fill priority sizes="100vw" className="object-cover object-top" />
         </div>
       </div>
 
@@ -123,7 +124,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
             </div>
             <div className="cs-full-view relative h-[62svh] overflow-hidden md:h-[72svh]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/projects/${p.slug}/full.png`} alt={`Le site ${p.name} en entier`} className="cs-full-img absolute left-0 top-0 w-full" onLoad={() => ScrollTrigger.refresh()} />
+              <img src={asset(`/projects/${p.slug}/full.png`)} alt={`Le site ${p.name} en entier`} className="cs-full-img absolute left-0 top-0 w-full" onLoad={() => ScrollTrigger.refresh()} />
             </div>
           </div>
           <p className="mt-4 hidden font-mono text-xs uppercase tracking-wide text-bone-dim md:block">Faites défiler pour parcourir le site</p>
