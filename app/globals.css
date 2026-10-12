@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0a0a0a;
+  --ink-2: #121311;
+  --ink-3: #1b1c19;
+  --bone: #f2f1ea;
+  --bone-dim: #a9a89f;
+  --lime: #c5ff33;
+  --lime-deep: #9bd400;
+  --line: rgb(242 241 234 / 0.12);
+  --wdth: 84;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-bone: var(--bone);
+  --color-bone-dim: var(--bone-dim);
+  --color-lime: var(--lime);
+  --color-lime-deep: var(--lime-deep);
+  --color-line: var(--line);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo);
+  --ease-out-expo: var(--ease-out);
+}
+
+html {
+  background: var(--ink);
+  color-scheme: dark;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Scrollbar themed from the palette */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2b2c28 var(--ink);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: #2b2c28;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+}
+
+/* Display voice: Archivo variable, the width axis breathes with scroll velocity */
+.display {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  font-variation-settings: "wdth" var(--wdth);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  text-underline-offset: 0.25em;
+}
+
+/* Masked line reveal scaffolding (SplitText adds the wrappers) */
+.line-mask {
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Custom cursor only for fine pointers */
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor a,
+  html.has-cursor button {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* SplitText masks clip vertically only, so the breathing width never crops a word */
+.line-mask {
+  overflow: visible !important;
+  clip-path: inset(-0.2em -100vw 0 -100vw);
+}

@@ -1,0 +1,121 @@
+{
+  "title": "Choisis l'univers visuel de stenaweb.fr",
+  "question": "Le tirage propose « Le Stade, samedi soir ». Garde-le, prends une alternative, ou relance. (Fond sombre + accent néon conservés partout, comme tu l'as demandé.)",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Le Stade, samedi soir",
+      "kicker": "THE ROLL",
+      "lineage": "Tableau d'affichage LED et panneaux publicitaires du stade municipal, sous les projecteurs",
+      "thesis": "Le site comme le tableau d'affichage du stade local : là où les commerces du coin affichent leur nom devant toute la ville.",
+      "palette": ["#07090A", "#C5FF33", "#F4F4EE", "#1C2320"],
+      "materials": ["LED dot-matrix", "halo de projecteurs", "pelouse nocturne"],
+      "viewport": "Un tableau d'affichage géant en LED : STENAWEB en dot-matrix lime, chiffres « livré en 15 jours » qui roulent comme un score, bandeau LED défilant avec HK Conseil · Opti Maintenance · PC Assist, bouton « Demander un devis » sur le tableau.",
+      "risk": "Peut sembler trop sportif ou folklo si le dot-matrix n'est pas tenu avec une rigueur premium.",
+      "raised": [
+        {"from": "signals-instruments-night-flight-six-pack", "raise": "Chaque chiffre affiché bouge avec un amorti physique et montre une tendance, jamais un saut sec."},
+        {"from": "pop-culture-shelf-football-kit-crest", "raise": "Chaque étude de cas bascule l'accent aux couleurs du client (maillot domicile/extérieur) pendant que le blason Stenaweb reste fixe."},
+        {"from": "notation-diagram-systems-star-atlas", "raise": "La hiérarchie passe par la taille des points LED, pas par des badges ou des encadrés."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Chantier de nuit",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Panneau de chantier réglementaire, bandes rétroréfléchissantes et gilets haute visibilité",
+      "thesis": "Ton site traité comme un chantier d'artisan : panneau de permis, planning tenu, livraison réceptionnée.",
+      "palette": ["#0B0B0A", "#D7FF1F", "#FF6A13", "#F2F2EC"],
+      "materials": ["bande rétroréfléchissante", "pochoir", "tôle du panneau de chantier"],
+      "viewport": "Un panneau de chantier géant façon permis de construire (Maître d'œuvre : Stenaweb · Délai : 15 jours · Livraison : ...), éclairé par une lampe torche qui suit le curseur ; les bandes réfléchissantes brillent au passage de la lumière.",
+      "risk": "Le noir + lime est ce que beaucoup de sites d'agence font déjà, et « en chantier » peut rappeler un site pas fini."
+    },
+    {
+      "id": "challenger-football-kit",
+      "label": "Mur de maillots",
+      "verdict": "competitive",
+      "lineage": "Maillots de club : blason sur le cœur, numéro au dos, sponsors locaux",
+      "thesis": "Stenaweb est le club, chaque client un maillot floqué à ses couleurs.",
+      "palette": ["#07090A", "#C5FF33", "#D4AF37", "#F4F4EE"],
+      "materials": ["maille polyester", "broderie or", "flocage ombré"],
+      "viewport": "Un maillot noir géant, blason Stenaweb brodé lime ; on le retourne au scroll pour révéler le numéro et l'offre.",
+      "case": "Les TPE sponsorisent les maillots du club local, donc ça parle tout de suite. Mais l'offre « site vitrine » est moins claire qu'avec le stade.",
+      "risk": "Un concept fort, mais qui demande des visuels 3D de tissu pour ne pas faire cheap."
+    },
+    {
+      "id": "challenger-six-pack",
+      "label": "Tableau de bord de nuit",
+      "verdict": "declined",
+      "lineage": "Les six instruments de vol d'un petit avion la nuit",
+      "thesis": "Six cadrans lumineux qui inspirent confiance dans le noir.",
+      "palette": ["#050606", "#7CFF6B", "#FFB000", "#F2F2F2"],
+      "materials": ["cadrans", "aiguilles phosphorescentes"],
+      "viewport": "Six jauges : délai, prix, perf, SEO, avis, projets.",
+      "case": "Tes clients ne pilotent pas d'avion, et les jauges brouillent l'offre.",
+      "kept": "Les chiffres bougent avec un amorti physique et montrent une tendance.",
+      "risk": "Effet tableau de bord / dashboard SaaS."
+    },
+    {
+      "id": "challenger-one-bit",
+      "label": "Bureau 1-bit",
+      "verdict": "declined",
+      "lineage": "Les premiers bureaux d'ordinateur en noir et blanc tramé",
+      "thesis": "Le site comme un vieux bureau Mac à fenêtres.",
+      "palette": ["#000000", "#FFFFFF", "#C5FF33"],
+      "materials": ["trame de points", "fenêtres 1px"],
+      "viewport": "Des fenêtres qui se chevauchent, chaque projet dans sa fenêtre.",
+      "case": "Rétro-geek, loin des artisans, et ça donne l'image d'un site daté.",
+      "kept": "La discipline des contours d'un pixel et des états pressés inversés.",
+      "risk": "Effet gadget nostalgique."
+    },
+    {
+      "id": "challenger-star-atlas",
+      "label": "Atlas céleste",
+      "verdict": "declined",
+      "lineage": "Les cartes d'étoiles des astronomes",
+      "thesis": "Les clients comme des étoiles sur la carte de la Mayenne.",
+      "palette": ["#0A1230", "#F5F5F0", "#FF4A3D"],
+      "materials": ["papier carte", "points de magnitude"],
+      "viewport": "Une carte nocturne Mayenne/Sarthe, chaque client une étoile.",
+      "case": "Poétique mais abstrait, l'offre se perd.",
+      "kept": "La hiérarchie passe par la taille des points, pas par des encadrés.",
+      "risk": "Trop contemplatif pour vendre."
+    },
+    {
+      "id": "challenger-raku",
+      "label": "Raku enfumé",
+      "verdict": "declined",
+      "lineage": "Céramique raku sortie du four dans la fumée",
+      "thesis": "Un objet unique, façonné à la main.",
+      "palette": ["#111111", "#D9D9D2", "#FF7A2F"],
+      "materials": ["argile carbonisée", "émail craquelé"],
+      "viewport": "Un bol fumant qui révèle le site par étapes de cuisson.",
+      "case": "Le fait-main est juste, mais l'univers n'a aucun rapport avec tes clients.",
+      "kept": "Révéler par étapes claires plutôt que tout montrer d'un coup.",
+      "risk": "Trop artistique."
+    },
+    {
+      "id": "challenger-indoor-sun",
+      "label": "Soleil intérieur",
+      "verdict": "declined",
+      "lineage": "Installation du soleil artificiel dans un hall brumeux",
+      "thesis": "Une grande lumière ambrée au bout d'un hall.",
+      "palette": ["#1A1206", "#FFB347", "#000000"],
+      "materials": ["brume", "plafond miroir"],
+      "viewport": "Un demi-soleil géant reflété au plafond.",
+      "case": "C'est beau, mais ça sort du sombre + néon que tu veux et ça ne parle pas aux TPE.",
+      "kept": "Une seule grande bande horizontale qui structure toute la page.",
+      "risk": "Hors brief couleur."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "L'agence standard, parfaitement exécutée",
+    "thesis": "Le site d'agence dark + néon type Awwwards, sans métaphore.",
+    "palette": ["#0A0A0A", "#C5FF33", "#F5F5F0"],
+    "materials": ["shader WebGL", "typo géante", "grain"],
+    "viewport": "Un shader animé en fond, un titre géant révélé ligne par ligne et un bouton magnétique.",
+    "risk": "Ressemble à beaucoup d'autres agences, par construction."
+  },
+  "steer": true
+}
