@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { WordReveal } from "./fx/WordReveal";
 
 export function Arrow({ className }: { className?: string }) {
   return (
@@ -64,7 +65,7 @@ export function SectionHead({ id, title, intro, className }: { id: string; title
   return (
     <div className={clsx("max-w-2xl", className)}>
       <h2 id={id} className="text-[clamp(1.85rem,3.2vw,2.6rem)] font-semibold leading-[1.12]">
-        {title}
+        <WordReveal parts={[title]} />
       </h2>
       {intro && <p className="mt-4 text-lg text-muted">{intro}</p>}
     </div>

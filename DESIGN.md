@@ -151,14 +151,22 @@ Inputs and chips 8px, buttons 12px, cards 16px, phone frame 34px. No pills.
 
 ## Motion
 
-- **Blur fade:** blocks rise 14px from a 6px blur once, when they enter the viewport (0.7s, expo-out). Never scrubbed.
+Effects are rich but stay at reading size; nothing is scrubbed to the scroll position.
+
+- **Hero background:** two slow warm glows plus an interactive dot grid (canvas): a wave of light drifts on its own, dots near the mouse turn amber and lean away.
+- **Hero showcase:** the three client sites take turns (5s) in a browser and a phone that tilt toward the mouse in 3D, with floating badges and a progress bar per site (clickable).
+- **Word reveal:** the h1 and every section title rise word by word out of a blur (h1 on load, titles on entry).
 - **Fade through:** the hero cycles the audience word (artisans, commerçants…).
-- **Border beam** on the recommended offer, **shine** on primary buttons, **spotlight** on offer cards.
+- **Trades band:** a slow infinite marquee of trades under the hero, 15px, pauses on hover.
+- **Project cards:** tilt toward the mouse with a light on the surface and border; on hover the full home page scrolls inside the frame (auto-scrolls on touch screens).
+- **Service illustrations:** a looping mini-scene per service (colour schemes being tried, code typing, "your business" climbing to the top of a local search, tasks ticked on a live site).
+- **Blur fade:** blocks rise 14px from a 6px blur once, when they enter the viewport.
+- **Border beam** on the recommended offer and the contact form, **shine** on primary buttons, a faint **cursor glow** over the page background.
 - Reduced motion: every entrance resolves instantly, loops stop.
 
 ## Do's and Don'ts
 
 - **Do** keep headings at the sizes above; readability beats spectacle here.
 - **Do** show the client sites before explaining services.
-- **Don't** reintroduce scroll-linked animation, preloaders, custom cursors or neon colours.
+- **Don't** reintroduce scroll-linked animation, preloaders, custom cursors, oversized type or neon colours.
 - **Don't** show reviews until they are real; prices stay hidden (stars) until they are set.

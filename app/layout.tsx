@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist } from "next/font/google";
 import { Nav } from "@/components/sections/Nav";
+import { CursorGlow } from "@/components/fx/CursorGlow";
 import { site } from "@/content/offer";
 import "./globals.css";
 
@@ -51,8 +52,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Aller au contenu
         </a>
+        <CursorGlow />
         <Nav />
-        {children}
+        <div className="relative z-[1]">{children}</div>
       </body>
     </html>
   );

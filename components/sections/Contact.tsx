@@ -56,7 +56,7 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-line bg-surface p-6 md:p-8">
+        <div className="beam relative rounded-2xl border border-line bg-surface p-6 md:p-8">
           {state.status === "ok" ? (
             <div className="flex min-h-[420px] flex-col items-start justify-center" role="status">
               <span className="grid size-12 place-items-center rounded-full bg-accent-soft text-accent">

@@ -1,59 +1,88 @@
 import { BlurFade } from "../fx/BlurFade";
+import { DotField } from "../fx/DotField";
 import { FadeThrough } from "../fx/FadeThrough";
-import { BrowserFrame, PhoneFrame } from "../Frames";
+import { HeroShowcase } from "../fx/HeroShowcase";
+import { WordReveal } from "../fx/WordReveal";
 import { Button, Check } from "../ui";
 
 const trades = ["artisans", "commerçants", "indépendants", "restaurateurs", "professions libérales"];
 const promises = ["Devis gratuit et sans engagement", "Un seul interlocuteur, près de chez vous", "Site adapté au téléphone et à Google"];
+const band = [
+  "Plombiers",
+  "Électriciens",
+  "Boulangeries",
+  "Garages",
+  "Coiffeurs",
+  "Paysagistes",
+  "Restaurants",
+  "Menuisiers",
+  "Esthéticiennes",
+  "Maîtres d'œuvre",
+  "Dépanneurs",
+  "Fleuristes",
+];
 
 export function Hero() {
   return (
-    <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 pb-16 pt-32 md:px-8 md:pb-24 md:pt-40 lg:grid-cols-[1.05fr_1fr] lg:gap-14" aria-labelledby="hero-title">
-      <div>
-        <h1 id="hero-title" className="text-[clamp(2.3rem,4.6vw,3.9rem)] font-semibold leading-[1.06]">
-          Des sites vitrines qui font venir des <span className="text-accent">clients</span>
-        </h1>
-        <BlurFade delay={0.08}>
-          <p className="mt-6 max-w-[34rem] text-lg text-muted md:text-xl md:leading-relaxed">
-            On conçoit et on code des sites sur-mesure, beaux, rapides et faciles à trouver sur Google. En Mayenne et en Sarthe, pour les{" "}
-            <FadeThrough words={trades} className="font-medium text-text" />.
-          </p>
-        </BlurFade>
-        <BlurFade delay={0.16} className="mt-8 flex flex-wrap gap-3">
-          <Button href="/#contact" size="lg">
-            Demander un devis
-          </Button>
-          <Button href="/#realisations" size="lg" tone="secondary">
-            Voir nos réalisations
-          </Button>
-        </BlurFade>
-        <BlurFade delay={0.24}>
-          <ul className="mt-9 space-y-2.5 text-[15px] text-muted">
-            {promises.map((p) => (
-              <li key={p} className="flex items-center gap-2.5">
-                <Check className="text-accent" />
-                {p}
-              </li>
-            ))}
-          </ul>
+    <section className="relative overflow-hidden" aria-labelledby="hero-title">
+      {/* Background: drifting warm glows, an interactive dot field, faded at the edges */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-[10%] -top-[20%] size-[55vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgb(239_180_95/0.16),transparent)] [animation:drift-a_18s_ease-in-out_infinite]" />
+        <div className="absolute -right-[10%] top-[10%] size-[50vw] max-w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(214_120_96/0.11),transparent)] [animation:drift-b_22s_ease-in-out_infinite]" />
+        <DotField className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
+      </div>
+
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pb-16 pt-32 md:px-8 md:pb-20 md:pt-40 lg:grid-cols-[1.05fr_1fr]">
+        <div>
+          <h1 id="hero-title" className="text-[clamp(2.3rem,4.6vw,3.9rem)] font-semibold leading-[1.06]">
+            <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Des sites vitrines qui font venir des", { text: "clients", className: "text-accent" }]} />
+          </h1>
+          <BlurFade delay={0.45}>
+            <p className="mt-6 max-w-[34rem] text-lg text-muted md:text-xl md:leading-relaxed">
+              On conçoit et on code des sites sur-mesure, beaux, rapides et faciles à trouver sur Google. En Mayenne et en Sarthe, pour les{" "}
+              <FadeThrough words={trades} className="font-medium text-text" />.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.55} className="mt-8 flex flex-wrap gap-3">
+            <Button href="/#contact" size="lg">
+              Demander un devis
+            </Button>
+            <Button href="/#realisations" size="lg" tone="secondary">
+              Voir nos réalisations
+            </Button>
+          </BlurFade>
+          <BlurFade delay={0.65}>
+            <ul className="mt-9 space-y-2.5 text-[15px] text-muted">
+              {promises.map((p) => (
+                <li key={p} className="flex items-center gap-2.5">
+                  <Check className="text-accent" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </BlurFade>
+        </div>
+
+        <BlurFade delay={0.3}>
+          <HeroShowcase />
         </BlurFade>
       </div>
 
-      <BlurFade delay={0.15} className="relative pb-10 pr-6 sm:pr-14">
-        <BrowserFrame
-          src="/projects/hk-conseil/desktop.png"
-          alt="Le site de HK Conseil, réalisé par Stenaweb"
-          url="https://guillaumegabourg.github.io/m/hk-conseil-d8a9d364/"
-          sizes="(min-width: 1024px) 45vw, 100vw"
-          priority
-        />
-        <PhoneFrame
-          src="/projects/pc-assist/mobile.png"
-          alt="Le site de PC Assist sur mobile, réalisé par Stenaweb"
-          className="absolute bottom-0 right-0 w-[30%] max-w-[170px]"
-          eager
-        />
-      </BlurFade>
+      {/* Who we build for: a slow band, readable size, fading at both ends */}
+      <div className="relative border-y border-line bg-surface/40 py-4 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
+        <span className="sr-only">Pour tous les métiers : {band.join(", ")}.</span>
+        <ul aria-hidden className="flex w-max [animation:marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
+          {[...band, ...band].map((t, n) => (
+            <li key={n} className="flex items-center gap-6 pr-6 text-[15px] text-muted">
+              {t}
+              <svg viewBox="0 0 10 10" className="size-1.5 text-accent">
+                <circle cx="5" cy="5" r="5" fill="currentColor" />
+              </svg>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
