@@ -26,7 +26,7 @@ export default function Page() {
         <h2>Vos droits</h2>
         <p>
           Vous pouvez accéder à vos données, les rectifier ou demander leur suppression en écrivant à{" "}
-          <a href={`mailto:${site.email}`} className="text-bone underline">
+          <a href={`mailto:${site.email}`} className="text-text underline">
             {site.email}
           </a>
           . Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).

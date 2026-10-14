@@ -7,20 +7,18 @@ related_targets: ["app/projets/[slug]/page.tsx"]
 
 # Surface: home (app/page.tsx) + case studies (app/projets/[slug])
 
-Mode: Persuade. Audience: TPE/PME owners in Mayenne/Sarthe choosing who builds their site vitrine. Action: request a quote (form + phone/mail). Proof: three live sites (HK Conseil, Opti Maintenance, PC Assist). Constraints: placeholder prices and testimonials, clearly replaceable. Quality bar: basement.studio, locomotive.ca, lusion.co, dogstudio.co.
+Mode: Persuade. Audience: artisans and small-business owners in Mayenne/Sarthe, often on a phone, not web-savvy. Action: request a quote. Proof: three live client sites. Constraints: prices not set (stars + "Sur devis"), no reviews until real ones exist.
 
 ## Direction contract
 
-THESIS: The category standard played straight: a dark, cinematic creative-agency site where the page itself is the demo. Refuses the timid version (stock hero + equal service cards + pastel SaaS gradients).
+THESIS: A calm, practical studio site an artisan can read in one pass. Refuses the previous agency canon (giant uppercase type, scroll-scrubbed scenes, preloader, neon).
 
-OWN-WORLD: Near-black #0A0A0A ground, bone #F2F1EA text, one acid lime #C5FF33 that owns whole regions (the CTA band, the pinned project slab, the footer) rather than sprinkled. Archivo variable (width axis 62–125) uppercase display set enormous, Geist for text, Geist Mono only for measured data (dates, durations, coordinates). Thin 1px bone/10% rules, 14px radii, no glass, no gradient text.
+OWN-WORLD: Warm charcoal ground #161619, surfaces #1e1f23/#27292e, off-white text, one amber accent #efb45f. Bricolage Grotesque semibold sentence-case headings, Geist text, 12–16px radii, 1px borders, no pills.
 
-STORY: Visitor sees in one viewport that Stenaweb builds striking custom sites for local businesses, fast and affordable; scrolls into the three real sites shown big; understands the offer and price; asks for a quote.
+STORY: Visitor sees what Stenaweb does and a real client site in the first viewport, browses three projects, understands services and offers, asks for a quote.
 
-FIRST VIEWPORT: Full-bleed WebGL lime/black flowing field reactive to the cursor. Bottom-left, three lines of massive display type "SITES VITRINES / QUI FONT / VENIR DES CLIENTS" revealed line by line under masks. Top: wordmark left, minimal nav + lime "Demander un devis" button right. Bottom-right: one sentence of offer + magnetic primary CTA + local mark "Mayenne · Sarthe".
+FIRST VIEWPORT: Left: h1 "Des sites vitrines qui font venir des clients" (≤3.9rem), one paragraph with a rotating audience word, primary + secondary buttons, three check-marked promises. Right: HK Conseil in a browser frame with PC Assist's phone overlapping. Nav with "Demander un devis".
 
-FORM: Category standard (canon), chosen by the user over the roll; seed key 932b6080.
-
-SIGNATURE: Display type whose width axis breathes with scroll velocity and cursor proximity; projects in a pinned horizontal track with the screenshot scaling from card to full-bleed. Motion grammar: masked line reveals, expo-out, Lenis smoothing, one preloader curtain.
+FORM: User-pinned direction from the 2026-10-15 brief (soft dark, readable, light 21st-style motion); no roll was run.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

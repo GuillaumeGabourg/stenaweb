@@ -1,61 +1,58 @@
+import Link from "next/link";
 import { projects } from "@/content/projects";
 import { site } from "@/content/offer";
-import { TransitionLink } from "../fx/PageTransition";
-import { Arrow } from "../ui";
 
-/** Revealed from underneath the page: the wrapper clips a fixed footer. */
 export function Footer() {
   return (
-    <div className="relative h-[620px] md:h-[560px]" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}>
-      <footer className="fixed bottom-0 flex overflow-hidden h-[620px] w-full flex-col justify-between bg-ink px-5 pb-6 pt-16 md:h-[560px] md:px-8">
-        <div className="grid gap-10 text-[15px] sm:grid-cols-2 md:grid-cols-12">
-          <div className="space-y-3 md:col-span-4">
-            <p className="text-bone-dim">Un projet, une question ?</p>
-            <a href={`mailto:${site.email}`} className="text-2xl font-medium hover:text-lime">
-              {site.email}
-            </a>
-          </div>
-          <nav aria-label="Réalisations" className="md:col-span-3 md:col-start-7">
-            <p className="mb-3 text-bone-dim">Réalisations</p>
-            <ul className="space-y-1.5">
-              {projects.map((p) => (
-                <li key={p.slug}>
-                  <TransitionLink href={`/projets/${p.slug}`} className="hover:text-lime">
-                    {p.name}
-                  </TransitionLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Informations" className="md:col-span-3">
-            <p className="mb-3 text-bone-dim">Informations</p>
-            <ul className="space-y-1.5">
-              <li>
-                <TransitionLink href="/#tarifs" className="hover:text-lime">Tarifs</TransitionLink>
-              </li>
-              <li>
-                <TransitionLink href="/mentions-legales" className="hover:text-lime">Mentions légales</TransitionLink>
-              </li>
-              <li>
-                <TransitionLink href="/confidentialite" className="hover:text-lime">Confidentialité</TransitionLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
+    <footer className="border-t border-line bg-surface/50">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-[15px] sm:grid-cols-2 md:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="display select-none whitespace-nowrap text-[19.2vw] md:text-[20.2vw] leading-[0.78] tracking-[-0.02em] [font-variation-settings:'wdth'_84] text-lime" aria-hidden>
-            Stenaweb
+          <p className="font-display text-xl font-semibold tracking-[-0.02em]">
+            Stena<span className="text-accent">web</span>
           </p>
-          <div className="mt-5 flex flex-wrap justify-between gap-2 border-t border-line pt-4 font-mono text-[11px] uppercase tracking-wide text-bone-dim">
-            <span>© {new Date().getFullYear()} Stenaweb · Sites vitrines sur-mesure</span>
-            <span>{site.area}</span>
-            <TransitionLink href="#top" className="inline-flex items-center gap-1.5 hover:text-lime">
-              Retour en haut <Arrow className="-rotate-90" />
-            </TransitionLink>
-          </div>
+          <p className="mt-3 max-w-[32ch] text-muted">Sites vitrines sur-mesure pour les entreprises de Mayenne et de la Sarthe.</p>
+          <a href={`mailto:${site.email}`} className="mt-4 inline-block font-medium text-accent underline-offset-4 hover:underline">
+            {site.email}
+          </a>
         </div>
-      </footer>
-    </div>
+        <nav aria-label="Réalisations">
+          <p className="mb-3 font-medium">Réalisations</p>
+          <ul className="space-y-2 text-muted">
+            {projects.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/projets/${p.slug}`} className="transition-colors hover:text-text">
+                  {p.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Informations">
+          <p className="mb-3 font-medium">Informations</p>
+          <ul className="space-y-2 text-muted">
+            {[
+              { href: "/#tarifs", label: "Formules" },
+              { href: "/#contact", label: "Contact" },
+              { href: "/mentions-legales", label: "Mentions légales" },
+              { href: "/confidentialite", label: "Confidentialité" },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="transition-colors hover:text-text">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+      <div className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2 px-5 py-5 text-[13px] text-muted md:px-8">
+          <span>© {new Date().getFullYear()} Stenaweb</span>
+          <a href="#top" className="transition-colors hover:text-text">
+            Retour en haut
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }

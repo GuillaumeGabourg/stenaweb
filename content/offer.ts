@@ -1,5 +1,4 @@
-// PROVISOIRE : prix, délais et témoignages fictifs pour la maquette.
-// À remplacer par les vrais chiffres et par des témoignages validés par les clients avant la mise en ligne.
+// PROVISOIRE : les prix ne sont pas encore fixés (affichés en étoiles « Sur devis » sur le site).
 
 export const site = {
   name: "Stenaweb",
@@ -53,51 +52,6 @@ export const pricing = [
   },
 ];
 
-export const care = "Hébergement, nom de domaine et petites modifications : 29 € / mois, sans engagement.";
-
-// FICTIF : note et avis de démonstration, façon fiche Google. À remplacer par les vrais avis
-// de la fiche Google Business de Stenaweb avant la mise en ligne.
-export const rating = { score: "5,0", count: 10, source: "Google" };
-
-export const testimonials = [
-  {
-    quote: "Je n'avais pas de site, aujourd'hui j'envoie le lien à tous mes clients. Les photos avant / après font tout le travail.",
-    who: "Jordan P.",
-    role: "Maître d'œuvre",
-    when: "il y a 2 semaines",
-  },
-  {
-    quote: "Un site qui fait aussi sérieux que les industriels avec qui je travaille. Rapide, clair, et mon numéro est partout.",
-    who: "Malo M.",
-    role: "Technicien de maintenance",
-    when: "il y a 1 mois",
-  },
-  {
-    quote: "Afficher mon tarif dès le départ, c'était leur idée. Les gens appellent en sachant déjà combien ça coûte.",
-    who: "Julien K.",
-    role: "Dépannage informatique",
-    when: "il y a 1 mois",
-  },
-  {
-    quote: "Super accompagnement du début à la fin. On s'est vus deux fois, le site était en ligne trois semaines après.",
-    who: "Camille R.",
-    role: "Fleuriste",
-    when: "il y a 2 mois",
-  },
-  {
-    quote: "Je recevais zéro appel par internet. Depuis le nouveau site et la fiche Google, j'ai des demandes chaque semaine.",
-    who: "Thomas L.",
-    role: "Plombier chauffagiste",
-    when: "il y a 3 mois",
-  },
-  {
-    quote: "Très à l'écoute, de bons conseils et un résultat bien au-dessus de ce que j'imaginais pour ce prix.",
-    who: "Sophie D.",
-    role: "Esthéticienne",
-    when: "il y a 4 mois",
-  },
-];
-
 export const services = [
   {
     title: "Design sur-mesure",
@@ -119,13 +73,6 @@ export const services = [
     text: "On s'occupe du nom de domaine, de l'hébergement et des mises à jour. Vous gardez la main, sans la technique.",
     items: ["Hébergement rapide", "Nom de domaine", "Modifications à la demande"],
   },
-];
-
-export const steps = [
-  { title: "On se parle", when: "Jour 1", text: "Un appel ou un café pour comprendre votre métier, vos clients et ce que le site doit vous apporter. Gratuit et sans engagement." },
-  { title: "La maquette", when: "Semaine 1", text: "Vous voyez votre futur site avant qu'il soit codé. On ajuste ensemble jusqu'à ce qu'il vous ressemble." },
-  { title: "Le développement", when: "Semaine 2", text: "Le site est construit, animé, testé sur téléphone, tablette et ordinateur, et optimisé pour Google." },
-  { title: "La mise en ligne", when: "Semaine 3", text: "Votre site est en ligne sur votre nom de domaine. On vous montre comment le faire vivre." },
 ];
 
 export const faq = [

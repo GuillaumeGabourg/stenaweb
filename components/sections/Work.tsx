@@ -1,110 +1,61 @@
-"use client";
-
-import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
+import Image from "next/image";
+import Link from "next/link";
 import { projects } from "@/content/projects";
-import { BrowserFrame, PhoneFrame } from "../Frames";
-import { TransitionLink } from "../fx/PageTransition";
-import { ArrowUpRight } from "../ui";
+import { asset } from "@/lib/asset";
+import { BlurFade } from "../fx/BlurFade";
+import { Arrow, ArrowUpRight, SectionHead } from "../ui";
 
-/** Desktop: the section pins and the three real sites travel past horizontally. Mobile: a vertical run. */
 export function Work() {
-  const root = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) return;
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        const track = root.current!.querySelector<HTMLElement>(".work-track")!;
-        const distance = () => track.scrollWidth - window.innerWidth;
-        const tween = gsap.to(track, {
-          x: () => -distance(),
-          ease: "none",
-          scrollTrigger: {
-            trigger: root.current,
-            start: "top top",
-            end: () => `+=${distance()}`,
-            pin: true,
-            scrub: 0.8,
-            invalidateOnRefresh: true,
-          },
-        });
-        gsap.utils.toArray<HTMLElement>(".work-shot").forEach((el) => {
-          gsap.fromTo(el, { scale: 0.86, rotate: -2 }, {
-            scale: 1,
-            rotate: 0,
-            ease: "none",
-            scrollTrigger: { trigger: el, containerAnimation: tween, start: "left right", end: "center center", scrub: true },
-          });
-        });
-        gsap.utils.toArray<HTMLElement>(".work-phone").forEach((el) => {
-          gsap.fromTo(el, { yPercent: 30 }, {
-            yPercent: -10,
-            ease: "none",
-            scrollTrigger: { trigger: el, containerAnimation: tween, start: "left right", end: "right left", scrub: true },
-          });
-        });
-        gsap.fromTo(".work-progress", { scaleX: 0 }, {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: { trigger: root.current, start: "top top", end: () => `+=${distance()}`, scrub: true },
-        });
-      });
-      mm.add("(max-width: 1023px)", () => {
-        gsap.utils.toArray<HTMLElement>(".work-shot").forEach((el) => {
-          gsap.from(el, { y: 60, opacity: 0, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 85%" } });
-        });
-      });
-      return () => mm.revert();
-    },
-    { scope: root }
-  );
-
   return (
-    <section ref={root} id="realisations" className="relative overflow-hidden lg:motion-safe:h-[100svh]" aria-labelledby="work-title">
-      <div className="work-track flex flex-col gap-16 px-5 py-12 md:px-8 md:py-24 lg:motion-safe:h-full lg:motion-safe:w-max lg:motion-safe:flex-row lg:motion-safe:items-center lg:motion-safe:gap-[8vw] lg:motion-safe:pb-16 lg:motion-safe:pt-20 lg:motion-safe:pr-[12vw]">
-        <div className="lg:motion-safe:w-[44vw] lg:motion-safe:shrink-0">
-          <h2 id="work-title" className="display text-[clamp(2.8rem,11.5vw,6rem)] lg:text-[6.4vw]">
-            Nos
-            <br />
-            réalisations
-          </h2>
-          <p className="mt-6 max-w-[52ch] text-lg leading-snug text-bone-dim">
-            Trois entreprises de Mayenne et de la Sarthe, trois sites en ligne. Faites défiler, puis ouvrez celui qui vous parle.
-          </p>
-          <p className="mt-8 hidden font-mono text-xs uppercase tracking-wide text-bone-dim lg:block">Faites défiler →</p>
-        </div>
+    <section id="realisations" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24" aria-labelledby="work-title">
+      <SectionHead
+        id="work-title"
+        title="Nos réalisations"
+        intro="Trois entreprises de la région, trois sites en ligne. Cliquez pour voir comment on les a construits."
+      />
 
-        {projects.map((p) => (
-          <article key={p.slug} className="relative lg:motion-safe:w-[min(62vw,calc((100svh-360px)*1.6))] lg:motion-safe:shrink-0 lg:motion-reduce:max-w-5xl">
-            <TransitionLink href={`/projets/${p.slug}`} data-cursor="Voir" className="group block" aria-label={`Étude de cas ${p.name}`}>
-              <div className="relative">
-                <div className="work-shot origin-bottom-left">
-                  <BrowserFrame src={`/projects/${p.slug}/desktop.png`} alt={`Page d'accueil du site ${p.name}`} url={p.url} eager />
-                </div>
-                <PhoneFrame
-                  src={`/projects/${p.slug}/mobile.png`}
-                  alt={`Le site ${p.name} sur mobile`}
-                  eager
-                  className="work-phone absolute -bottom-10 right-4 w-[26%] max-w-[210px] md:-right-6"
+      <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p, i) => (
+          <BlurFade as="li" key={p.slug} delay={i * 0.08}>
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-text/20">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-surface-2">
+                <Image
+                  src={asset(`/projects/${p.slug}/desktop.png`)}
+                  alt={`Page d'accueil du site ${p.name}`}
+                  fill
+                  sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover object-top transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="mt-14 grid gap-4 border-t border-line pt-5 md:grid-cols-12 md:items-start">
-                <h3 className="display text-4xl transition-colors duration-300 group-hover:text-lime md:col-span-7 md:text-[2.6rem] xl:text-5xl">{p.name}</h3>
-                <p className="text-sm leading-relaxed text-bone-dim md:col-span-4">
-                  <span className="block text-bone">{p.sector}</span>
-                  {p.place}
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-xl font-semibold">
+                  <Link href={`/projets/${p.slug}`} className="after:absolute after:inset-0">
+                    {p.name}
+                  </Link>
+                </h3>
+                <p className="mt-1 text-[15px] text-muted">
+                  {p.sector} · {p.place.split(" · ")[0]}
                 </p>
-                <ArrowUpRight className="hidden text-2xl transition-transform duration-500 group-hover:rotate-45 md:col-span-1 md:block md:justify-self-end" />
+                <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted">{p.summary}</p>
+                <div className="pointer-events-none relative z-10 mt-6 flex items-center justify-between gap-4 text-[15px]">
+                  <span className="inline-flex items-center gap-1.5 font-medium text-accent">
+                    Voir le projet <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="pointer-events-auto inline-flex items-center gap-1 text-muted underline-offset-4 hover:text-text hover:underline"
+                  >
+                    Site en ligne <ArrowUpRight />
+                    <span className="sr-only">(nouvel onglet)</span>
+                  </a>
+                </div>
               </div>
-            </TransitionLink>
-          </article>
+            </article>
+          </BlurFade>
         ))}
-      </div>
-      <div className="absolute inset-x-8 bottom-8 hidden h-px bg-line lg:motion-safe:block" aria-hidden>
-        <div className="work-progress h-full origin-left bg-lime" />
-      </div>
+      </ul>
     </section>
   );
 }

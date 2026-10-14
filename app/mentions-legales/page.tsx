@@ -17,7 +17,7 @@ export default function Page() {
           <br />
           SIRET : <mark>numéro SIRET</mark>
           <br />
-          Contact : <a href={`mailto:${site.email}`} className="text-bone underline">{site.email}</a>
+          Contact : <a href={`mailto:${site.email}`} className="text-text underline">{site.email}</a>
         </p>
       </section>
       <section>

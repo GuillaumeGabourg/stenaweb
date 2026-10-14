@@ -1,183 +1,113 @@
-"use client";
-
-import Image from "next/image";
-import { useRef } from "react";
+import Link from "next/link";
 import type { Project } from "@/content/projects";
-import { gsap, useGSAP, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
-import { SplitReveal } from "./fx/SplitReveal";
-import { TransitionLink } from "./fx/PageTransition";
-import { BrowserFrame, PhoneFrame } from "./Frames";
-import { Arrow, ArrowUpRight } from "./ui";
-import { markReady } from "@/lib/ready";
 import { asset } from "@/lib/asset";
+import { BlurFade } from "./fx/BlurFade";
+import { BrowserFrame, PhoneFrame } from "./Frames";
+import { Arrow, ArrowUpRight, Button, Check } from "./ui";
 
 export function CaseStudy({ project: p, next }: { project: Project; next: Project }) {
-  const root = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      markReady();
-      if (prefersReducedMotion()) return;
-      // The cover grows from a framed card to full-bleed as you scroll into it.
-      gsap.fromTo(
-        ".cs-cover",
-        { clipPath: "inset(8% 14% 8% 14% round 16px)" },
-        {
-          clipPath: "inset(0% 0% 0% 0% round 0px)",
-          ease: "none",
-          scrollTrigger: { trigger: ".cs-cover-wrap", start: "top 85%", end: "top top", scrub: true },
-        }
-      );
-      gsap.fromTo(".cs-cover img", { scale: 1.2 }, {
-        scale: 1,
-        ease: "none",
-        scrollTrigger: { trigger: ".cs-cover-wrap", start: "top bottom", end: "bottom top", scrub: true },
-      });
-      // The full site scrolls inside the browser while the section is pinned.
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 768px)", () => {
-        const img = root.current!.querySelector<HTMLElement>(".cs-full-img")!;
-        const view = root.current!.querySelector<HTMLElement>(".cs-full-view")!;
-        gsap.to(img, {
-          y: () => Math.min(0, view.offsetHeight - img.offsetHeight),
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".cs-full",
-            start: "top top",
-            end: "+=1800",
-            pin: true,
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
-      });
-      gsap.utils.toArray<HTMLElement>(".cs-phone").forEach((el, i) => {
-        gsap.from(el, {
-          y: 120 + i * 60,
-          rotate: i % 2 ? 4 : -4,
-          ease: "none",
-          scrollTrigger: { trigger: ".cs-phones", start: "top bottom", end: "center center", scrub: true },
-        });
-      });
-      return () => mm.revert();
-    },
-    { scope: root }
-  );
-
   return (
-    <main
-      ref={root}
-      id="main"
-      className="relative z-10 bg-ink"
-      style={{ ["--accent" as string]: p.accent, ["--accent-ink" as string]: p.accentInk }}
-    >
-      <header className="px-5 pb-16 pt-32 md:px-8 md:pt-44">
-        <SplitReveal as="h1" className="display text-[clamp(3.5rem,14vw,15rem)]">
-          {p.name}
-        </SplitReveal>
-        <div className="mt-10 grid gap-8 border-t border-line pt-6 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <p className="text-2xl leading-snug md:text-3xl">{p.summary}</p>
-            <p className="mt-4 text-bone-dim">
+    <main id="main" style={{ ["--client" as string]: p.accent, ["--client-ink" as string]: p.accentInk }}>
+      <header className="mx-auto max-w-6xl px-5 pb-12 pt-28 md:px-8 md:pt-36">
+        <Link href="/#realisations" className="inline-flex items-center gap-1.5 text-[15px] text-muted transition-colors hover:text-text">
+          <Arrow className="rotate-180" /> Toutes les réalisations
+        </Link>
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <h1 className="text-[clamp(2.3rem,4.6vw,3.6rem)] font-semibold leading-[1.06]">{p.name}</h1>
+            <p className="mt-5 max-w-[46ch] text-lg text-muted md:text-xl md:leading-relaxed">{p.summary}</p>
+            <p className="mt-4 text-[15px] text-muted">
               {p.sector} · {p.place}
             </p>
           </div>
-          <ul className="flex flex-wrap content-start gap-2 md:col-span-4 md:col-start-8">
-            {p.services.map((s) => (
-              <li key={s} className="rounded-full border border-line px-3 py-1.5 text-sm text-bone-dim">
-                {s}
-              </li>
-            ))}
-          </ul>
-          <a
-            href={p.url}
-            target="_blank"
-            rel="noopener"
-            className="group inline-flex items-center gap-2 self-start justify-self-start rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-[var(--accent-ink)] md:col-span-2 md:justify-self-end"
-          >
-            Site en ligne <ArrowUpRight className="transition-transform group-hover:rotate-45" />
-          </a>
+          <div className="space-y-5 lg:justify-self-end">
+            <ul className="flex flex-wrap gap-2">
+              {p.services.map((s) => (
+                <li key={s} className="rounded-lg border border-line bg-surface px-3 py-1.5 text-[14px] text-muted">
+                  {s}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex h-12 items-center gap-2 rounded-xl bg-[var(--client)] px-5 font-medium text-[var(--client-ink)] transition-opacity hover:opacity-90"
+            >
+              Voir le site en ligne <ArrowUpRight />
+              <span className="sr-only">(nouvel onglet)</span>
+            </a>
+          </div>
         </div>
       </header>
 
-      <div className="cs-cover-wrap h-[70svh] md:h-[100svh]">
-        <div className="cs-cover relative h-full overflow-hidden">
-          <Image src={asset(`/projects/${p.slug}/desktop.png`)} alt={`Page d'accueil de ${p.name}`} fill priority sizes="100vw" className="object-cover object-top" />
-        </div>
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <BrowserFrame src={`/projects/${p.slug}/desktop.png`} alt={`Page d'accueil de ${p.name}`} url={p.url} sizes="(min-width: 1152px) 1088px, 100vw" priority />
       </div>
 
-      <section className="grid gap-12 px-5 py-16 md:grid-cols-12 md:px-8 md:py-40">
-        <h2 className="display text-5xl md:col-span-4 md:text-7xl">Le défi</h2>
-        <p className="text-2xl leading-snug md:col-span-7 md:col-start-6 md:text-3xl">{p.challenge}</p>
+      <section className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-2 lg:gap-16" aria-label="Le projet">
+        <BlurFade>
+          <h2 className="text-2xl font-semibold md:text-3xl">Le défi</h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted">{p.challenge}</p>
+        </BlurFade>
+        <BlurFade delay={0.08}>
+          <h2 className="text-2xl font-semibold md:text-3xl">Ce qu&apos;on a fait</h2>
+          <ul className="mt-4 space-y-3">
+            {p.solution.map((s, i) => (
+              <li key={i} className="flex gap-3 text-lg leading-relaxed text-muted">
+                <Check className="mt-1.5 text-accent" />
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+        </BlurFade>
       </section>
 
-      <section className="cs-full flex min-h-[100svh] items-center px-5 md:px-8" aria-label={`Parcourir le site ${p.name}`}>
-        <div className="mx-auto w-full max-w-6xl">
-          <div className="overflow-hidden rounded-[14px] border border-line bg-ink-3">
-            <div className="flex items-center gap-3 border-b border-line px-4 py-2.5">
-              <span className="flex gap-1.5" aria-hidden>
-                <span className="size-2.5 rounded-full bg-bone/20" />
-                <span className="size-2.5 rounded-full bg-bone/20" />
-                <span className="size-2.5 rounded-full bg-bone/20" />
-              </span>
-              <span className="truncate rounded-md bg-ink/60 px-3 py-1 font-mono text-[11px] text-bone-dim">{p.url.replace(/^https?:\/\//, "")}</span>
-            </div>
-            <div className="cs-full-view relative h-[62svh] overflow-hidden md:h-[72svh]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={asset(`/projects/${p.slug}/full.png`)} alt={`Le site ${p.name} en entier`} className="cs-full-img absolute left-0 top-0 w-full" onLoad={() => ScrollTrigger.refresh()} />
+      <section className="border-y border-line bg-surface/50" aria-label={`Le site ${p.name} en entier`}>
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[1fr_260px]">
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Le site en entier</h2>
+            <p className="mt-2 text-muted">Faites défiler dans la fenêtre pour parcourir la page d&apos;accueil.</p>
+            <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface-2">
+              <div className="max-h-[70svh] overflow-y-auto overscroll-contain" tabIndex={0} aria-label={`Capture complète du site ${p.name}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset(`/projects/${p.slug}/full.png`)} alt={`Le site ${p.name} en entier`} className="block w-full" loading="lazy" />
+              </div>
             </div>
           </div>
-          <p className="mt-4 hidden font-mono text-xs uppercase tracking-wide text-bone-dim md:block">Faites défiler pour parcourir le site</p>
+          <div className="mx-auto w-[220px] lg:mt-[92px] lg:w-full">
+            <PhoneFrame src={`/projects/${p.slug}/mobile.png`} alt={`${p.name} sur mobile`} />
+            <p className="mt-3 text-center text-[14px] text-muted">Sur téléphone</p>
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-12 px-5 py-16 md:grid-cols-12 md:px-8 md:py-40">
-        <h2 className="display text-5xl md:col-span-4 md:text-7xl">Ce qu&apos;on a fait</h2>
-        <ol className="space-y-0 border-t border-line md:col-span-7 md:col-start-6">
-          {p.solution.map((s, i) => (
-            <li key={i} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-7 text-xl leading-snug md:text-2xl">
-              <span className="font-mono text-sm text-[var(--accent)] tabular">{String(i + 1).padStart(2, "0")}</span>
-              {s}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="cs-phones flex justify-center gap-4 overflow-hidden px-5 pb-16 md:gap-10 md:pb-40">
-        <PhoneFrame src={`/projects/${p.slug}/mobile.png`} alt={`${p.name} sur mobile`} className="cs-phone w-[46%] max-w-[300px] md:mt-24" />
-        <div className="cs-phone hidden w-full max-w-[640px] self-start md:block">
-          <BrowserFrame src={`/projects/${p.slug}/desktop.png`} alt={`${p.name} sur ordinateur`} url={p.url} sizes="50vw" />
-        </div>
-      </section>
-
-      <section className="mx-5 rounded-[16px] bg-[var(--accent)] px-6 py-16 text-[var(--accent-ink)] md:mx-8 md:px-12 md:py-24">
-        <div className="grid gap-10 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7">
-            <h2 className="display text-5xl md:text-7xl">Le résultat</h2>
-            <p className="mt-6 max-w-xl text-xl leading-snug md:text-2xl">{p.result}</p>
+      <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+        <div className="grid gap-8 rounded-2xl border border-line bg-surface p-7 md:p-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-center">
+          <div>
+            <h2 className="text-2xl font-semibold md:text-3xl">Le résultat</h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted">{p.result}</p>
           </div>
           {p.proof && (
-            <p className="md:col-span-4 md:col-start-9">
-              <span className="display tabular block text-[clamp(5rem,12vw,10rem)] leading-[0.8]">{p.proof.value}</span>
-              <span className="mt-3 block text-base">{p.proof.label}</span>
+            <p className="lg:justify-self-end lg:text-right">
+              <span className="block font-display text-5xl font-semibold text-accent">{p.proof.value}</span>
+              <span className="mt-1 block text-[15px] text-muted">{p.proof.label}</span>
             </p>
           )}
         </div>
+
+        <div className="mt-12 flex flex-col gap-6 border-t border-line pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <Link href={`/projets/${next.slug}`} className="group">
+            <span className="text-[14px] text-muted">Projet suivant</span>
+            <span className="mt-1 flex items-center gap-2 text-2xl font-semibold transition-colors group-hover:text-accent">
+              {next.name} <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </Link>
+          <Button href="/#contact" size="lg">
+            Un projet similaire ? Parlons-en
+          </Button>
+        </div>
       </section>
-
-      <TransitionLink href={`/projets/${next.slug}`} data-cursor="Suivant" className="group block px-5 pb-10 pt-32 md:px-8 md:pt-44">
-        <p className="display flex items-end justify-between gap-6 text-[clamp(3.5rem,13vw,14rem)] transition-colors duration-500 group-hover:text-lime">
-          {next.name}
-          <Arrow className="mb-[0.1em] shrink-0 text-[0.4em] transition-transform duration-500 group-hover:translate-x-4" />
-        </p>
-        <p className="mt-4 border-t border-line pt-4 text-bone-dim">Projet suivant · {next.sector}</p>
-      </TransitionLink>
-
-      <div className="flex justify-center px-5 pb-16 md:px-8">
-        <TransitionLink href="/#contact" className="rounded-full bg-lime px-8 py-5 text-lg font-medium text-ink transition-colors hover:bg-bone">
-          Un projet similaire ? Parlons-en
-        </TransitionLink>
-      </div>
     </main>
   );
 }

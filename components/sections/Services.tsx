@@ -1,84 +1,51 @@
-"use client";
-
-import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
 import { services } from "@/content/offer";
-import { SplitReveal } from "../fx/SplitReveal";
+import { BlurFade } from "../fx/BlurFade";
+import { Check, SectionHead } from "../ui";
 
-/** Sticky panels that stack: each one settles while the next slides over it and the previous recedes. */
+const icons = [
+  // Design: a pen nib
+  <path key="d" d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586M11 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />,
+  // Development: code brackets
+  <path key="c" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />,
+  // Local SEO: map pin
+  <path key="s" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />,
+  // Hosting & follow-up: shield
+  <path key="h" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4" />,
+];
+
 export function Services() {
-  const root = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      if (prefersReducedMotion()) return;
-      const panels = gsap.utils.toArray<HTMLElement>(".svc-panel");
-      panels.forEach((panel, i) => {
-        const next = panels[i + 1];
-        if (!next) return;
-        // Only recede once the next panel actually starts covering this one (panels span 19svh → 81svh).
-        // Explicit start values: tweening from "filter: none" makes GSAP start at brightness(0) (a black flash).
-        gsap.fromTo(
-          panel.querySelector(".svc-inner"),
-          { scale: 1, filter: "brightness(1)" },
-          {
-            scale: 0.92,
-            filter: "brightness(0.5)",
-            ease: "none",
-            scrollTrigger: { trigger: next, start: "top 81%", end: "top 20%", scrub: true },
-          }
-        );
-      });
-    },
-    { scope: root }
-  );
-
   return (
-    <section ref={root} id="services" className="px-5 pb-16 pt-16 md:px-8 md:pb-24 md:pt-40" aria-labelledby="services-title">
-      <div className="mb-14 md:mb-20">
-        <SplitReveal as="h2" id="services-title" className="display text-[clamp(3rem,9vw,8.5rem)]">
-          Ce qu&apos;on fait
-          <br />
-          pour vous
-        </SplitReveal>
-        <p className="mt-6 text-lg leading-snug text-bone-dim md:mt-8 md:text-xl">
-          Tout ce qu&apos;il faut pour exister en ligne, sans avoir à gérer la technique.
-        </p>
-      </div>
+    <section id="services" className="border-y border-line bg-surface/50" aria-labelledby="services-title">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHead
+            id="services-title"
+            title="Ce qu'on fait pour vous"
+            intro="Tout ce qu'il faut pour exister en ligne, sans avoir à gérer la technique. Vous nous parlez de votre métier, on s'occupe du reste."
+          />
+        </div>
 
-      {/* The gap between panels is the time each one stays alone and fully lit while sticky. */}
-      <div className="space-y-6 motion-safe:space-y-[22svh] md:motion-safe:space-y-[38svh]">
-        {services.map((s, i) => (
-          // 62svh panels centred in the viewport; the 18px steps of the stack are centred too.
-          <div
-            key={s.title}
-            className="svc-panel sticky"
-            style={{ top: `calc(19svh + ${i * 18 - ((services.length - 1) * 18) / 2}px)` }}
-          >
-            <div
-              className={`svc-inner grid min-h-[62svh] origin-top content-center items-center gap-8 rounded-[16px] p-6 md:grid-cols-12 md:p-10 ${
-                i === services.length - 1 ? "bg-lime text-ink" : "border border-line bg-ink-2"
-              }`}
-            >
-              <div className="flex flex-col justify-center gap-10 md:col-span-7">
-                <h3 className="display text-[clamp(2rem,8.6vw,7rem)] md:text-[clamp(2.75rem,6.4vw,7rem)]">{s.title}</h3>
-              </div>
-              <div className="flex flex-col justify-center gap-8 md:col-span-5">
-                <p className={`text-xl leading-snug ${i === services.length - 1 ? "text-ink" : "text-bone"}`}>{s.text}</p>
-                <ul className={`divide-y border-y ${i === services.length - 1 ? "divide-ink/15 border-ink/15" : "divide-line border-line"}`}>
-                  {s.items.map((it) => (
-                    <li key={it} className="flex items-center justify-between py-3 text-[15px]">
-                      {it}
-                      <svg viewBox="0 0 20 20" aria-hidden className="size-4">
-                        <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {services.map((s, i) => (
+            <BlurFade as="li" key={s.title} delay={i * 0.06} className="rounded-2xl border border-line bg-bg p-6">
+              <span className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
+                <svg viewBox="0 0 24 24" aria-hidden className="size-5" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+                  {icons[i]}
+                </svg>
+              </span>
+              <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
+              <ul className="mt-4 space-y-1.5 text-[15px]">
+                {s.items.map((it) => (
+                  <li key={it} className="flex items-center gap-2">
+                    <Check className="text-accent" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </BlurFade>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js 15 (App Router) + TypeScript, Tailwind CSS v4, GSAP (ScrollTrigger, SplitText) + Lenis, Motion, 21st.dev/shadcn components where useful. Deploy target: Netlify (or Vercel), domain stenaweb.fr. Chosen by the user from a recommendation.
+Next.js 15 (App Router) + TypeScript, Tailwind CSS v4, Motion for light animations (patterns from 21st.dev). Deploy target: Netlify (or Vercel), domain stenaweb.fr. Chosen by the user from a recommendation.
 
 ## Users
 
@@ -37,8 +37,9 @@ Visitors compare against Wix/Squarespace DIY, freelance platforms, and regional 
 
 - Name: Stenaweb, domain stenaweb.fr. No existing logo — a typographic wordmark is acceptable.
 - Voice: French, direct, warm, jargon-free for non-technical owners.
-- Visual constraint volunteered by the user: dark premium with a neon accent, very animated, "agence Awwwards" feel with strong wow effects.
-- Standing preference (direction round 2026-10-12): the user chose the category standard on purpose — the dark/neon creative-agency site, executed straight, no metaphor. Quality bar: basement.studio, locomotive.ca, lusion.co, dogstudio.co.
+- Visual direction (revised 2026-10-15): the user rejected the dark/neon "agence Awwwards" canon (huge type, scroll-scrubbed animation, preloader, neon green) as unreadable and impractical for artisans. Now: soft dark (warm charcoal) with a calm accent, normal readable type, practical and functional, light one-time animations (21st.dev style), nothing scroll-scrubbed.
+- No reviews section until real reviews exist. Prices are not set yet: shown as small stars + "Sur devis".
+- Home sections: accueil, réalisations, services, formules, FAQ, contact (no "méthode" section).
 
 ## Evidence on Hand
 
@@ -55,7 +56,7 @@ Not yet available: testimonials from the three clients, final prices, real busin
 2. Wow serves trust: effects must never hide the offer, price, or contact path.
 3. Speak to a business owner, not a developer: outcomes (clients, calls, credibility) before tech.
 4. Real proof over claims: lead with the three live sites.
-5. Fast on mobile despite the motion — performance is part of the pitch.
+5. Fast and readable on mobile — performance and clarity are part of the pitch.
 
 ## Accessibility & Inclusion
 

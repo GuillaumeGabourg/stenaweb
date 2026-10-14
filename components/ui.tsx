@@ -1,11 +1,10 @@
 import clsx from "clsx";
+import Link from "next/link";
 import type { ComponentProps } from "react";
-import { Magnetic } from "./fx/Magnetic";
-import { TransitionLink } from "./fx/PageTransition";
 
 export function Arrow({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={clsx("size-[1em]", className)} fill="none" stroke="currentColor" strokeWidth={1.8}>
+    <svg viewBox="0 0 24 24" aria-hidden className={clsx("size-[1.1em]", className)} fill="none" stroke="currentColor" strokeWidth={1.8}>
       <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -13,46 +12,61 @@ export function Arrow({ className }: { className?: string }) {
 
 export function ArrowUpRight({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={clsx("size-[1em]", className)} fill="none" stroke="currentColor" strokeWidth={1.8}>
+    <svg viewBox="0 0 24 24" aria-hidden className={clsx("size-[1.1em]", className)} fill="none" stroke="currentColor" strokeWidth={1.8}>
       <path d="M7 17 17 7M8 7h9v9" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
-type PillProps = ComponentProps<typeof TransitionLink> & { tone?: "lime" | "ghost" | "ink"; size?: "md" | "lg" };
-
-/** Primary pill: label slides up and is replaced by its twin on hover. */
-export function Pill({ tone = "lime", size = "md", className, children, ...rest }: PillProps) {
+export function Check({ className }: { className?: string }) {
   return (
-    <Magnetic>
-      <TransitionLink
-        {...rest}
-        className={clsx(
-          "group relative inline-flex items-center gap-3 overflow-hidden rounded-full font-medium transition-colors duration-500",
-          size === "lg" ? "h-16 px-8 text-lg" : "h-12 px-6 text-[15px]",
-          tone === "lime" && "bg-lime text-ink hover:bg-bone",
-          tone === "ghost" && "border border-bone/25 text-bone hover:border-bone hover:bg-bone hover:text-ink",
-          tone === "ink" && "bg-ink text-bone hover:bg-ink-3",
-          className
-        )}
-      >
-        <span className="relative block overflow-hidden">
-          <span className="block transition-transform duration-500 ease-[var(--ease-out)] group-hover:-translate-y-full">{children}</span>
-          <span aria-hidden className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[var(--ease-out)] group-hover:translate-y-0">
-            {children}
-          </span>
-        </span>
-        <Arrow className="transition-transform duration-500 ease-[var(--ease-out)] group-hover:-rotate-45" />
-      </TransitionLink>
-    </Magnetic>
+    <svg viewBox="0 0 20 20" aria-hidden className={clsx("size-[1.1em] shrink-0", className)} fill="none" stroke="currentColor" strokeWidth={1.9}>
+      <path d="M4 10.5l4 4 8-9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
-export function SectionHead({ title, aside, className }: { title: React.ReactNode; aside?: React.ReactNode; className?: string }) {
+/** Placeholder for a price that is not set yet: small stars in place of the digits. */
+export function HiddenPrice({ count = 3, className }: { count?: number; className?: string }) {
   return (
-    <div className={clsx("grid gap-6 md:grid-cols-12 md:items-end", className)}>
-      <div className="md:col-span-8">{title}</div>
-      {aside && <div className="text-base leading-relaxed text-bone-dim md:col-span-4 md:justify-self-end">{aside}</div>}
+    <span className={clsx("inline-flex items-center gap-1", className)}>
+      <span className="sr-only">Prix bientôt disponible</span>
+      {Array.from({ length: count }, (_, i) => (
+        <svg key={i} viewBox="0 0 20 20" aria-hidden className="size-[0.7em]">
+          <path fill="currentColor" d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z" />
+        </svg>
+      ))}
+    </span>
+  );
+}
+
+type ButtonProps = ComponentProps<typeof Link> & { tone?: "primary" | "secondary"; size?: "md" | "lg" };
+
+export function Button({ tone = "primary", size = "md", className, children, ...rest }: ButtonProps) {
+  return (
+    <Link
+      {...rest}
+      className={clsx(
+        "group inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors duration-300",
+        size === "lg" ? "h-13 px-6 text-base" : "h-11 px-5 text-[15px]",
+        tone === "primary" && "shine bg-accent text-accent-ink hover:bg-[#f5c47c]",
+        tone === "secondary" && "border border-line bg-surface text-text hover:border-text/30 hover:bg-surface-2",
+        className
+      )}
+    >
+      {children}
+      <Arrow className="transition-transform duration-300 group-hover:translate-x-0.5" />
+    </Link>
+  );
+}
+
+export function SectionHead({ id, title, intro, className }: { id: string; title: string; intro?: string; className?: string }) {
+  return (
+    <div className={clsx("max-w-2xl", className)}>
+      <h2 id={id} className="text-[clamp(1.85rem,3.2vw,2.6rem)] font-semibold leading-[1.12]">
+        {title}
+      </h2>
+      {intro && <p className="mt-4 text-lg text-muted">{intro}</p>}
     </div>
   );
 }

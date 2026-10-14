@@ -1,120 +1,142 @@
 @import "tailwindcss";
 
+/* Soft dark: warm charcoal ground, warm off-white text, one amber accent. */
 :root {
-  --ink: #0a0a0a;
-  --ink-2: #121311;
-  --ink-3: #1b1c19;
-  --bone: #f2f1ea;
-  --bone-dim: #a9a89f;
-  --lime: #c5ff33;
-  --lime-deep: #9bd400;
-  --line: rgb(242 241 234 / 0.12);
-  --wdth: 84;
+  --bg: #161619;
+  --surface: #1e1f23;
+  --surface-2: #27292e;
+  --text: #edece8;
+  --muted: #a7a6a1;
+  --line: rgb(237 236 232 / 0.1);
+  --accent: #efb45f;
+  --accent-soft: rgb(239 180 95 / 0.12);
+  --accent-ink: #1d1508;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-ink-3: var(--ink-3);
-  --color-bone: var(--bone);
-  --color-bone-dim: var(--bone-dim);
-  --color-lime: var(--lime);
-  --color-lime-deep: var(--lime-deep);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-archivo);
-  --ease-out-expo: var(--ease-out);
+  --font-display: var(--font-bricolage);
 }
 
 html {
-  background: var(--ink);
+  background: var(--bg);
   color-scheme: dark;
-}
-
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
 body {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
-  background: var(--lime);
-  color: var(--ink);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--lime);
-  outline-offset: 4px;
-  border-radius: 4px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-/* Scrollbar themed from the palette */
+a {
+  text-underline-offset: 0.22em;
+}
+
 * {
   scrollbar-width: thin;
-  scrollbar-color: #2b2c28 var(--ink);
+  scrollbar-color: var(--surface-2) var(--bg);
 }
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--ink);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2c28;
+  background: var(--surface-2);
   border-radius: 10px;
-  border: 2px solid var(--ink);
+  border: 2px solid var(--bg);
 }
 
-/* Display voice: Archivo variable, the width axis breathes with scroll velocity */
-.display {
-  font-family: var(--font-archivo), sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.86;
-  letter-spacing: -0.03em;
-  font-variation-settings: "wdth" var(--wdth);
+/* Border beam: a short amber light travelling around a card's edge. */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
-
-.tabular {
-  font-variant-numeric: tabular-nums;
+.beam::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--beam-angle), transparent 0 72%, var(--accent) 88%, transparent 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam 7s linear infinite;
+  pointer-events: none;
 }
-
-a {
-  text-underline-offset: 0.25em;
-}
-
-/* Masked line reveal scaffolding (SplitText adds the wrappers) */
-.line-mask {
-  overflow: clip;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
-}
-
-/* Custom cursor only for fine pointers */
-@media (hover: hover) and (pointer: fine) {
-  html.has-cursor,
-  html.has-cursor a,
-  html.has-cursor button {
-    cursor: none;
+@keyframes beam {
+  to {
+    --beam-angle: 360deg;
   }
 }
 
+/* Shine: a soft highlight sweeps across a button on hover. */
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s var(--ease-out);
+}
+.shine:hover::after {
+  transform: translateX(120%);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
@@ -122,16 +144,4 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* SplitText masks clip vertically only, so the breathing width never crops a word */
-.line-mask {
-  overflow: visible !important;
-  clip-path: inset(-0.2em -100vw 0 -100vw);
 }

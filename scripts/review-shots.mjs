@@ -34,7 +34,7 @@ async function firstViewport(name, viewport) {
   const page = await browser.newPage();
   await page.setViewport(viewport);
   await page.goto(BASE + "/", { waitUntil: "networkidle2" });
-  await wait(4500); // preloader + entrance
+  await wait(1500); // entrance
   await page.screenshot({ path: `${OUT}/${name}.png` });
   await page.close();
   console.log("ok", name);
