@@ -43,7 +43,7 @@ function Choice({ name, options }: { name: string; options: string[] }) {
 }
 
 const field =
-  "peer w-full rounded-lg border border-line bg-bg px-4 py-3 text-base text-text outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-muted/60 hover:border-text/25 focus:border-accent focus:bg-[color-mix(in_oklab,var(--accent)_4%,var(--bg))] focus:shadow-[0_0_0_4px_rgb(var(--glow)/0.12),0_10px_30px_-12px_rgb(var(--glow)/0.35)]";
+  "peer w-full rounded-lg border border-line bg-bg px-4 py-3 text-base text-text outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-muted/80 hover:border-text/25 focus:border-accent focus:bg-[color-mix(in_oklab,var(--accent)_4%,var(--bg))] focus:shadow-[0_0_0_4px_rgb(var(--glow)/0.12),0_10px_30px_-12px_rgb(var(--glow)/0.35)]";
 const label = "mb-1.5 block text-[14px] font-medium transition-colors duration-300 group-focus-within/f:text-accent";
 
 /** Success: a check draws itself while small sparks burst out. */
@@ -112,6 +112,42 @@ export function Contact() {
   };
   const ready = filled === 3;
 
+  // Inline validation: checked when a field is left, and on submit (errors appear under their field).
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const check = (name: string, value: string) => {
+    const v = value.trim();
+    if (name === "name" && !v) return "Indiquez votre nom pour qu'on sache à qui répondre.";
+    if (name === "email" && !v) return "Indiquez votre e-mail pour recevoir notre réponse.";
+    if (name === "email" && !/^[^@s]+@[^@s]+.[^@s]+$/.test(v)) return "Cette adresse ne semble pas complète, par exemple : jean@exemple.fr";
+    if (name === "message" && !v) return "Dites-nous en deux mots ce que fait votre entreprise.";
+    return "";
+  };
+  const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (!["name", "email", "message"].includes(e.target.name)) return;
+    // Don't scold an empty field the visitor simply tabbed through for the first time.
+    if (!e.target.value.trim() && !errors[e.target.name]) return;
+    setErrors((p) => ({ ...p, [e.target.name]: check(e.target.name, e.target.value) }));
+  };
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const fd = new FormData(e.currentTarget);
+    const next: Record<string, string> = {};
+    for (const n of ["name", "email", "message"]) next[n] = check(n, String(fd.get(n) ?? ""));
+    setErrors(next);
+    const first = ["name", "email", "message"].find((n) => next[n]);
+    if (first) {
+      e.preventDefault();
+      document.getElementById(first)?.focus();
+    }
+  };
+  const errorProps = (n: string) =>
+    errors[n] ? { "aria-invalid": true as const, "aria-describedby": `${n}-error` } : {};
+  const ErrorText = ({ n }: { n: string }) =>
+    errors[n] ? (
+      <motion.p id={`${n}-error`} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="mt-1.5 text-[14px] text-danger">
+        {errors[n]}
+      </motion.p>
+    ) : null;
+
   return (
     <section id="contact" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24" aria-labelledby="contact-title">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
@@ -121,7 +157,7 @@ export function Contact() {
             title="Parlons de votre projet"
             intro="Décrivez votre activité en quelques mots. On vous répond rapidement avec une première idée et un devis gratuit."
           />
-          <ul className="mt-8 space-y-3 text-[15px]">
+          <ul className="mt-8 space-y-3 text-base sm:text-[15px]">
             {["Devis gratuit, sans engagement", "Rendez-vous sur place ou en visio", `Basés en ${site.area}`].map((t, i) => (
               <BlurFade as="li" key={t} delay={0.1 + i * 0.08} className="flex items-center gap-2.5 text-muted">
                 <Check className="text-accent" />
@@ -153,7 +189,7 @@ export function Contact() {
                   <Sent />
                 </motion.div>
               ) : (
-                <motion.form key="form" exit={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }} transition={{ duration: 0.3 }} action={action} onInput={track} className="grid gap-5 sm:grid-cols-2" noValidate>
+                <motion.form key="form" exit={{ opacity: 0, scale: 0.98, filter: "blur(6px)" }} transition={{ duration: 0.3 }} action={action} onInput={track} onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate>
                   <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
                   {[
                     { n: "name", l: "Votre nom", t: "text", ac: "name", req: true, ph: "Jean Dupont" },
@@ -165,7 +201,8 @@ export function Contact() {
                       <label htmlFor={f.n} className={label}>
                         {f.l} {f.req ? <span className="text-accent">*</span> : <span className="font-normal text-muted">(facultatif)</span>}
                       </label>
-                      <input id={f.n} name={f.n} type={f.t} autoComplete={f.ac} placeholder={f.ph} defaultValue={v[f.n]} required={f.req} className={field} />
+                      <input id={f.n} name={f.n} type={f.t} autoComplete={f.ac} placeholder={f.ph} defaultValue={v[f.n]} required={f.req} onBlur={onBlur} {...errorProps(f.n)} className={`${field} ${errors[f.n] ? "border-danger" : ""}`} />
+                      <ErrorText n={f.n} />
                     </div>
                   ))}
                   <fieldset className="sm:col-span-2">
@@ -187,8 +224,11 @@ export function Contact() {
                       required
                       placeholder="Votre métier, votre secteur, ce que vous attendez du site…"
                       defaultValue={v.message}
-                      className={`${field} resize-y`}
+                      onBlur={onBlur}
+                      {...errorProps("message")}
+                      className={`${field} resize-y ${errors.message ? "border-danger" : ""}`}
                     />
+                    <ErrorText n="message" />
                   </div>
 
                   {/* How close the request is to ready */}
@@ -212,7 +252,7 @@ export function Contact() {
                       initial={{ opacity: 0, x: 0 }}
                       animate={{ opacity: 1, x: [0, -6, 6, -4, 4, 0] }}
                       transition={{ duration: 0.45 }}
-                      className="rounded-lg border border-[#e2735f]/40 bg-[#e2735f]/10 px-4 py-3 text-[15px] text-danger sm:col-span-2"
+                      className="rounded-lg border border-[#e2735f]/40 bg-[#e2735f]/10 px-4 py-3 text-base sm:text-[15px] text-danger sm:col-span-2"
                     >
                       {state.message}
                     </motion.p>

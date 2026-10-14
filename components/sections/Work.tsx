@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
 import { asset } from "@/lib/asset";
@@ -21,12 +22,14 @@ export function Work() {
               <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface">
                 {/* On hover the whole home page scrolls past inside the frame */}
                 <div className="relative aspect-[16/11] overflow-hidden border-b border-line bg-surface-2 [container-type:size]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  {/* Resized by next/image (the raw captures weigh 2–3 MB each) */}
+                  <Image
                     src={asset(`/projects/${p.slug}/full.png`)}
                     alt={`Le site ${p.name}`}
-                    loading="lazy"
-                    className="absolute inset-x-0 top-0 w-full transition-transform duration-[900ms] ease-[var(--ease-out)] group-hover:translate-y-[calc(-100%+100cqh)] group-hover:duration-[16000ms] group-hover:ease-in-out motion-reduce:group-hover:translate-y-0 [@media(hover:none)]:[animation:peek_26s_ease-in-out_infinite]"
+                    width={1440}
+                    height={p.fullHeight}
+                    sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+                    className="absolute inset-x-0 top-0 h-auto w-full max-w-none transition-transform duration-[900ms] ease-[var(--ease-out)] group-hover:translate-y-[calc(-100%+100cqh)] group-hover:duration-[16000ms] group-hover:ease-in-out motion-reduce:group-hover:translate-y-0 [@media(hover:none)]:[animation:peek_26s_ease-in-out_infinite]"
                   />
                   <span className="absolute bottom-3 left-3 hidden rounded-full [@media(hover:hover)]:block bg-bg/85 px-3 py-1 text-[12px] text-muted backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-0">
                     Survolez pour défiler
@@ -38,11 +41,11 @@ export function Work() {
                       {p.name}
                     </Link>
                   </h3>
-                  <p className="mt-1 text-[15px] text-muted">
+                  <p className="mt-1 text-base sm:text-[15px] text-muted">
                     {p.sector} · {p.place.split(" · ")[0]}
                   </p>
-                  <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted">{p.summary}</p>
-                  <div className="pointer-events-none relative z-10 mt-6 flex items-center justify-between gap-4 text-[15px]">
+                  <p className="mt-4 flex-1 text-base sm:text-[15px] leading-relaxed text-muted">{p.summary}</p>
+                  <div className="pointer-events-none relative z-10 mt-6 flex items-center justify-between gap-4 text-base sm:text-[15px]">
                     <span className="inline-flex items-center gap-1.5 font-medium text-accent">
                       Voir le projet <Arrow className="transition-transform duration-300 group-hover:translate-x-1" />
                     </span>

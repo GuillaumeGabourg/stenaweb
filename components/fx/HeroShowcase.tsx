@@ -45,7 +45,15 @@ export function HeroShowcase() {
   };
 
   return (
-    <div onPointerMove={onMove} onPointerEnter={() => setPaused(true)} onPointerLeave={onLeave} className="[perspective:1400px]">
+    <div
+      onPointerMove={onMove}
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={onLeave}
+      // Keyboard users: stop rotating while focus is inside (WAI carousel rule)
+      onFocus={() => setPaused(true)}
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget as Node) && setPaused(false)}
+      className="[perspective:1400px]"
+    >
       <motion.div style={{ rotateX: rx, rotateY: ry }} className="relative pb-10 pr-6 [transform-style:preserve-3d] sm:pr-14">
         {/* Browser */}
         <div className="overflow-hidden rounded-xl border border-line bg-surface-2 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.75)]">

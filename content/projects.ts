@@ -13,11 +13,14 @@ export type Project = {
   solution: string[];
   result: string;
   proof?: { value: string; label: string };
+  /** Height in px of public/projects/<slug>/full.png (1440 wide), so the full capture can be resized and reserved. */
+  fullHeight: number;
 };
 
 export const projects: Project[] = [
   {
     slug: "hk-conseil",
+    fullHeight: 7067,
     name: "HK Conseil",
     sector: "Maîtrise d'œuvre & rénovation",
     place: "Villaines-la-Juhel · Mayenne",
@@ -39,6 +42,7 @@ export const projects: Project[] = [
   },
   {
     slug: "opti-maintenance",
+    fullHeight: 4431,
     name: "Opti Maintenance",
     sector: "Maintenance industrielle",
     place: "Mayenne (53)",
@@ -59,6 +63,7 @@ export const projects: Project[] = [
   },
   {
     slug: "pc-assist",
+    fullHeight: 6785,
     name: "PC Assist",
     sector: "Dépannage informatique à domicile",
     place: "Le Mans · Sarthe",

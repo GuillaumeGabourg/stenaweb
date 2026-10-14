@@ -25,8 +25,8 @@ export function Services() {
                   <div className="h-full rounded-2xl border border-line bg-surface p-5 md:p-6">
                     <Visual />
                     <h3 className="mt-6 text-xl font-semibold">{s.title}</h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
-                    <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-[15px]">
+                    <p className="mt-2 text-base sm:text-[15px] leading-relaxed text-muted">{s.text}</p>
+                    <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-base sm:text-[15px]">
                       {s.items.map((it) => (
                         <li key={it} className="flex items-center gap-2">
                           <Check className="text-accent" />

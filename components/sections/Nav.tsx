@@ -1,6 +1,8 @@
 "use client";
 
+import { motion } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "../fx/ThemeToggle";
 import { Button } from "../ui";
@@ -15,6 +17,29 @@ const links = [
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Highlight the section currently under the header (home page only).
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActive(null);
+      return;
+    }
+    const ids = [...links.map((l) => l.href.split("#")[1]), "contact"];
+    const onScroll = () => {
+      const line = 120;
+      let current: string | null = null;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -41,13 +66,29 @@ export function Nav() {
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link href={l.href} className="rounded-lg px-3 py-2 text-[15px] text-muted transition-colors hover:bg-surface hover:text-text">
-                {l.label}
-              </Link>
-            </li>
-          ))}
+          {links.map((l) => {
+            const on = active === l.href.split("#")[1];
+            return (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  aria-current={on ? "location" : undefined}
+                  className={`relative block rounded-lg px-3 py-2 text-[15px] transition-colors ${on ? "text-text" : "text-muted hover:text-text"}`}
+                >
+                  {on && (
+                    <motion.span
+                      layoutId="nav-active"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className="absolute inset-0 rounded-lg bg-surface"
+                    >
+                      <span className="absolute inset-x-3 -bottom-px h-px bg-accent" />
+                    </motion.span>
+                  )}
+                  <span className="relative">{l.label}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">

@@ -361,3 +361,13 @@ a {
   animation: none;
   mix-blend-mode: normal;
 }
+
+/* Tailwind v4 resets buttons to the default cursor: every clickable control shows the hand. */
+button:not(:disabled),
+[role="button"],
+[role="tab"],
+summary,
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  cursor: pointer;
+}

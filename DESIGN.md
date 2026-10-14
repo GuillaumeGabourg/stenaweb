@@ -150,8 +150,8 @@ Inputs and chips 8px, buttons 12px, cards 16px, phone frame 34px. No pills.
 - **Project cards:** screenshot on top (gentle zoom on hover), name, sector, summary, "Voir le projet" and an external "Site en ligne" link. The whole card is clickable.
 - **Offer cards:** a pointer-following soft amber light; the recommended card adds a travelling border light (border beam) and a "Recommandé" badge. Prices not set yet show three small amber stars, then "Sur devis · tarif bientôt disponible".
 - **FAQ:** a single bordered list; chevron rotates, the answer opens with a grid-rows transition.
-- **Form:** labels above fields, optional fields marked "(facultatif)", chips as radio choices, error in a soft red box.
-- **Nav:** wordmark, four links, primary button; transparent at the top, solid with a border once scrolled. On mobile, a simple dropdown list.
+- **Form:** labels above fields, optional fields marked "(facultatif)", chips as radio choices. Required fields validate on blur and on submit, with the message under the field (aria-invalid + aria-describedby) and focus moved to the first invalid field.
+- **Nav:** wordmark, four links, theme switch, primary button; transparent at the top, solid with a border once scrolled. The link of the section under the header is highlighted by a sliding surface pill with an amber underline. On mobile, a simple dropdown list, plus a sticky "Demander un devis gratuit" bar at the bottom once the hero has scrolled away (hidden near the form and footer).
 
 ## Motion
 

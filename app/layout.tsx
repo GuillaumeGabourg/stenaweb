@@ -4,6 +4,7 @@ import { Nav } from "@/components/sections/Nav";
 import { CursorGlow } from "@/components/fx/CursorGlow";
 import { DotField } from "@/components/fx/DotField";
 import { HashScroll } from "@/components/fx/HashScroll";
+import { MobileCta } from "@/components/fx/MobileCta";
 import { site } from "@/content/offer";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <HashScroll />
         <Nav />
         <div className="relative z-[1]">{children}</div>
+        <MobileCta />
       </body>
     </html>
   );

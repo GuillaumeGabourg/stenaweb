@@ -51,7 +51,7 @@ export function Hero() {
             </Button>
           </BlurFade>
           <BlurFade delay={0.65}>
-            <ul className="mt-9 space-y-2.5 text-[15px] text-muted">
+            <ul className="mt-9 space-y-2.5 text-base sm:text-[15px] text-muted">
               {promises.map((p) => (
                 <li key={p} className="flex items-center gap-2.5">
                   <Check className="text-accent" />
@@ -72,7 +72,7 @@ export function Hero() {
         <span className="sr-only">Pour tous les métiers : {band.join(", ")}.</span>
         <ul aria-hidden className="flex w-max [animation:marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
           {[...band, ...band].map((t, n) => (
-            <li key={n} className="flex items-center gap-6 pr-6 text-[15px] text-muted">
+            <li key={n} className="flex items-center gap-6 pr-6 text-base sm:text-[15px] text-muted">
               {t}
               <svg viewBox="0 0 10 10" className="size-1.5 text-accent">
                 <circle cx="5" cy="5" r="5" fill="currentColor" />

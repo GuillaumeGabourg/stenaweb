@@ -76,7 +76,7 @@ export function Faq() {
                       <motion.p
                         animate={isOpen ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -6, filter: "blur(4px)" }}
                         transition={{ duration: reduced ? 0 : 0.5, delay: isOpen && !reduced ? 0.1 : 0, ease }}
-                        className="max-w-[62ch] px-6 pb-6 text-[15px] leading-relaxed text-muted"
+                        className="max-w-[62ch] px-6 pb-6 text-base sm:text-[15px] leading-relaxed text-muted"
                       >
                         {item.a}
                       </motion.p>

@@ -9,14 +9,14 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
   return (
     <main id="main" style={{ ["--client" as string]: p.accent, ["--client-ink" as string]: p.accentInk }}>
       <header className="mx-auto max-w-6xl px-5 pb-12 pt-28 md:px-8 md:pt-36">
-        <Link href="/#realisations" className="inline-flex items-center gap-1.5 text-[15px] text-muted transition-colors hover:text-text">
+        <Link href="/#realisations" className="inline-flex items-center gap-1.5 text-base sm:text-[15px] text-muted transition-colors hover:text-text">
           <Arrow className="rotate-180" /> Toutes les réalisations
         </Link>
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <h1 className="font-display text-[clamp(2.6rem,5.2vw,4.2rem)] leading-[1.02]">{p.name}</h1>
             <p className="mt-5 max-w-[46ch] text-lg text-muted md:text-xl md:leading-relaxed">{p.summary}</p>
-            <p className="mt-4 text-[15px] text-muted">
+            <p className="mt-4 text-base sm:text-[15px] text-muted">
               {p.sector} · {p.place}
             </p>
           </div>
@@ -91,7 +91,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
           {p.proof && (
             <p className="lg:justify-self-end lg:text-right">
               <span className="block font-display text-6xl text-accent">{p.proof.value}</span>
-              <span className="mt-1 block text-[15px] text-muted">{p.proof.label}</span>
+              <span className="mt-1 block text-base sm:text-[15px] text-muted">{p.proof.label}</span>
             </p>
           )}
         </div>

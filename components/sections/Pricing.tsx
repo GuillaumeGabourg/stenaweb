@@ -35,7 +35,7 @@ export function Pricing() {
                     </span>
                   )}
                 </div>
-                <p className="mt-2 min-h-[3.2em] text-[15px] leading-relaxed text-muted">{p.pitch}</p>
+                <p className="mt-2 min-h-[3.2em] text-base sm:text-[15px] leading-relaxed text-muted">{p.pitch}</p>
 
                 <div className="mt-6 border-t border-line pt-6">
                   <p className="flex items-baseline gap-2 font-display text-4xl">
@@ -46,7 +46,7 @@ export function Pricing() {
                   <p className="mt-2 text-[14px] text-muted">Sur devis · tarif bientôt disponible</p>
                 </div>
 
-                <ul className="mt-6 flex-1 space-y-2.5 text-[15px]">
+                <ul className="mt-6 flex-1 space-y-2.5 text-base sm:text-[15px]">
                   {p.features.map((f, n) => (
                     <motion.li
                       key={f}
@@ -80,7 +80,7 @@ export function Pricing() {
       </div>
 
       <BlurFade>
-        <p className="mt-8 rounded-2xl border border-line bg-surface/60 px-6 py-4 text-[15px] text-muted">
+        <p className="mt-8 rounded-2xl border border-line bg-surface/60 px-6 py-4 text-base sm:text-[15px] text-muted">
           <span className="font-medium text-text">Hébergement, nom de domaine et petites modifications :</span>{" "}
           <HiddenPrice count={2} className="text-accent" twinkle /> € par mois, sans engagement.
         </p>

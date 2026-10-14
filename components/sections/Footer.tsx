@@ -5,7 +5,7 @@ import { site } from "@/content/offer";
 export function Footer() {
   return (
     <footer className="border-t border-line bg-surface/50">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-[15px] sm:grid-cols-2 md:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-base sm:text-[15px] sm:grid-cols-2 md:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl leading-none">
             Stena<span className="italic text-accent">web</span>
