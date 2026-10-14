@@ -33,8 +33,8 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pb-16 pt-32 md:px-8 md:pb-20 md:pt-40 lg:grid-cols-[1.05fr_1fr]">
         <div>
-          <h1 id="hero-title" className="text-[clamp(2.3rem,4.6vw,3.9rem)] font-semibold leading-[1.06]">
-            <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Des sites vitrines qui font venir des", { text: "clients", className: "text-accent" }]} />
+          <h1 id="hero-title" className="font-display text-[clamp(2.8rem,5.6vw,4.75rem)] leading-[1.0]">
+            <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Des sites vitrines qui font venir des", { text: "clients", className: "italic text-accent" }]} />
           </h1>
           <BlurFade delay={0.45}>
             <p className="mt-6 max-w-[34rem] text-lg text-muted md:text-xl md:leading-relaxed">

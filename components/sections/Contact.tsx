@@ -78,7 +78,7 @@ function Sent() {
         </motion.span>
       </div>
       <motion.p
-        className="mt-6 font-display text-3xl font-semibold"
+        className="mt-6 font-display text-4xl"
         initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.45, ease }}

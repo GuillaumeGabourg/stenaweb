@@ -38,7 +38,7 @@ export function Pricing() {
                 <p className="mt-2 min-h-[3.2em] text-[15px] leading-relaxed text-muted">{p.pitch}</p>
 
                 <div className="mt-6 border-t border-line pt-6">
-                  <p className="flex items-baseline gap-2 font-display text-4xl font-semibold">
+                  <p className="flex items-baseline gap-2 font-display text-4xl">
                     {p.prefix && <span className="text-base font-normal text-muted">{p.prefix}</span>}
                     <HiddenPrice className="text-accent" twinkle />
                     <span>€</span>

@@ -14,7 +14,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
         </Link>
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <h1 className="text-[clamp(2.3rem,4.6vw,3.6rem)] font-semibold leading-[1.06]">{p.name}</h1>
+            <h1 className="font-display text-[clamp(2.6rem,5.2vw,4.2rem)] leading-[1.02]">{p.name}</h1>
             <p className="mt-5 max-w-[46ch] text-lg text-muted md:text-xl md:leading-relaxed">{p.summary}</p>
             <p className="mt-4 text-[15px] text-muted">
               {p.sector} · {p.place}
@@ -47,11 +47,11 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
 
       <section className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-2 lg:gap-16" aria-label="Le projet">
         <BlurFade>
-          <h2 className="text-2xl font-semibold md:text-3xl">Le défi</h2>
+          <h2 className="font-display text-3xl md:text-4xl">Le défi</h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">{p.challenge}</p>
         </BlurFade>
         <BlurFade delay={0.08}>
-          <h2 className="text-2xl font-semibold md:text-3xl">Ce qu&apos;on a fait</h2>
+          <h2 className="font-display text-3xl md:text-4xl">Ce qu&apos;on a fait</h2>
           <ul className="mt-4 space-y-3">
             {p.solution.map((s, i) => (
               <li key={i} className="flex gap-3 text-lg leading-relaxed text-muted">
@@ -66,7 +66,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
       <section className="border-y border-line bg-surface/50" aria-label={`Le site ${p.name} en entier`}>
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[1fr_260px]">
           <div>
-            <h2 className="text-2xl font-semibold md:text-3xl">Le site en entier</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Le site en entier</h2>
             <p className="mt-2 text-muted">Faites défiler dans la fenêtre pour parcourir la page d&apos;accueil.</p>
             <div className="mt-6 overflow-hidden rounded-xl border border-line bg-surface-2">
               <div className="max-h-[70svh] overflow-y-auto overscroll-contain" tabIndex={0} aria-label={`Capture complète du site ${p.name}`}>
@@ -85,12 +85,12 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
       <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
         <div className="grid gap-8 rounded-2xl border border-line bg-surface p-7 md:p-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-center">
           <div>
-            <h2 className="text-2xl font-semibold md:text-3xl">Le résultat</h2>
+            <h2 className="font-display text-3xl md:text-4xl">Le résultat</h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">{p.result}</p>
           </div>
           {p.proof && (
             <p className="lg:justify-self-end lg:text-right">
-              <span className="block font-display text-5xl font-semibold text-accent">{p.proof.value}</span>
+              <span className="block font-display text-6xl text-accent">{p.proof.value}</span>
               <span className="mt-1 block text-[15px] text-muted">{p.proof.label}</span>
             </p>
           )}

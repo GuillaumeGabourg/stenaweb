@@ -13,19 +13,19 @@ colors:
   accent-ink: "#1d1508"
 typography:
   hero:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Instrument Serif, Georgia, serif"
     fontSize: "clamp(2.3rem, 4.6vw, 3.9rem)"
     fontWeight: 600
     lineHeight: 1.06
     letterSpacing: "-0.02em"
   section:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Instrument Serif, Georgia, serif"
     fontSize: "clamp(1.85rem, 3.2vw, 2.6rem)"
     fontWeight: 600
     lineHeight: 1.12
     letterSpacing: "-0.02em"
   card-title:
-    fontFamily: "Bricolage Grotesque, system-ui, sans-serif"
+    fontFamily: "Instrument Serif, Georgia, serif"
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.3
@@ -109,7 +109,7 @@ This replaces the earlier dark/neon "creative agency" canon (huge condensed uppe
 **Key Characteristics:**
 - Warm charcoal ground, raised surfaces in two steps, warm off-white text.
 - One amber accent for actions, checks, the hidden-price stars and focus.
-- Bricolage Grotesque headings (sentence case, semibold), Geist text.
+- Instrument Serif titles (one weight, italic for the emphasised word and the wordmark), Geist text and card titles.
 - A 1152px centred container; sections alternate between the ground and a faint surface band.
 - Real client screenshots in browser and phone frames are the only imagery.
 
@@ -124,7 +124,7 @@ This replaces the earlier dark/neon "creative agency" canon (huge condensed uppe
 
 ## Light theme
 
-A labelled switch in the nav ("Sombre" / "Clair", moon and sun icons, sliding amber highlight) changes theme; the choice is saved in localStorage and applied before first paint. The new theme spreads from the button in a circle (View Transitions). Light tokens: ground #f5f3ee, surface #ffffff, surface-2 #ebe8e1, text #1d1c1a, muted #5d5b56, accent #9a5a0a (deeper amber so accent text keeps 4.5:1), accent-ink #ffffff. In light mode the idle dot grid is off (dark dots behind text hurt reading): dots only appear around the pointer. Glows and the dot field read their colours from `--glow` / `--dot` RGB triplets, so every effect follows the theme. Never hard-code a dark-only colour in a component.
+A labelled switch in the nav ("Sombre" / "Clair", moon and sun icons, sliding amber highlight) changes theme; the choice is saved in localStorage and applied before first paint. The new theme spreads from the button in a circle (View Transitions). Light tokens: ground #f5f3ee, surface #ffffff, surface-2 #ebe8e1, text #1d1c1a, muted #5d5b56, accent #9a5a0a (deeper amber so accent text keeps 4.5:1), accent-ink #ffffff. In light mode the dot grid is replaced by soft undulating horizontal lines (38px apart, about 7% opacity) that swell into amber rings around the pointer: same motion family, readable on a light ground. Glows and the dot field read their colours from `--glow` / `--dot` RGB triplets, so every effect follows the theme. Never hard-code a dark-only colour in a component.
 
 ## Typography
 

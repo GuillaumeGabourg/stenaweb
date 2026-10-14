@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import { Nav } from "@/components/sections/Nav";
 import { CursorGlow } from "@/components/fx/CursorGlow";
 import { DotField } from "@/components/fx/DotField";
@@ -7,7 +7,7 @@ import { HashScroll } from "@/components/fx/HashScroll";
 import { site } from "@/content/offer";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], display: "swap" });
+const serif = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: ["normal", "italic"], display: "swap" });
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 const description =
@@ -45,7 +45,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" id="top" className={`${bricolage.variable} ${geistSans.variable}`} suppressHydrationWarning>
+    <html lang="fr" id="top" className={`${serif.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <head>
         {/* Apply the saved theme before the first paint (no flash). */}
         <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />

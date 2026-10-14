@@ -7,8 +7,8 @@ export function Footer() {
     <footer className="border-t border-line bg-surface/50">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-[15px] sm:grid-cols-2 md:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-display text-xl font-semibold tracking-[-0.02em]">
-            Stena<span className="text-accent">web</span>
+          <p className="font-display text-2xl leading-none">
+            Stena<span className="italic text-accent">web</span>
           </p>
           <p className="mt-3 max-w-[32ch] text-muted">Sites vitrines sur-mesure pour les entreprises de Mayenne et de la Sarthe.</p>
           <a href={`mailto:${site.email}`} className="mt-4 inline-block font-medium text-accent underline-offset-4 hover:underline">
