@@ -60,7 +60,7 @@ export const services = [
   },
   {
     title: "Développement",
-    text: "Un site codé à la main, léger et rapide, qui s'affiche instantanément sur un téléphone en 4G.",
+    text: "Un site construit sur-mesure avec des outils modernes : léger, rapide, et qui s'affiche instantanément sur un téléphone en 4G.",
     items: ["Code sur-mesure", "Animations soignées", "Performance et accessibilité"],
   },
   {

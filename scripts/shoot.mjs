@@ -30,7 +30,11 @@ for (const [slug, url] of Object.entries(SITES)) {
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
   await primeReveals(page);
   await page.screenshot({ path: `public/projects/${slug}/desktop.png` });
-  await page.screenshot({ path: `public/projects/${slug}/full.png`, fullPage: true });
+  // Full page: grow the viewport to the whole document so every scroll reveal is on screen at once.
+  const h = await page.evaluate(() => document.documentElement.scrollHeight);
+  await page.setViewport({ width: 1440, height: h, deviceScaleFactor: 1 });
+  await wait(2500);
+  await page.screenshot({ path: `public/projects/${slug}/full.png` });
 
   await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });

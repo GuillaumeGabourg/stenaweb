@@ -11,8 +11,8 @@ export function TiltCard({ children, className, max = 5 }: { children: React.Rea
   const ry = useSpring(useTransform(x, [0, 1], [-max, max]), { stiffness: 150, damping: 18 });
   const lx = useTransform(x, (v) => `${v * 100}%`);
   const ly = useTransform(y, (v) => `${v * 100}%`);
-  const light = useMotionTemplate`radial-gradient(320px circle at ${lx} ${ly}, rgb(239 180 95 / 0.06), transparent 70%)`;
-  const ring = useMotionTemplate`radial-gradient(240px circle at ${lx} ${ly}, rgb(239 180 95 / 0.55), transparent 70%)`;
+  const light = useMotionTemplate`radial-gradient(420px circle at ${lx} ${ly}, rgb(237 236 232 / 0.035), transparent 70%)`;
+  const ring = useMotionTemplate`radial-gradient(220px circle at ${lx} ${ly}, rgb(239 180 95 / 0.32), transparent 70%)`;
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
@@ -33,7 +33,7 @@ export function TiltCard({ children, className, max = 5 }: { children: React.Rea
         <motion.span
           aria-hidden
           style={{ background: light }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover/tilt:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-700 ease-out group-hover/tilt:opacity-100"
         />
         <motion.span
           aria-hidden

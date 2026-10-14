@@ -26,7 +26,7 @@ export function Work() {
                     src={asset(`/projects/${p.slug}/full.png`)}
                     alt={`Le site ${p.name}`}
                     loading="lazy"
-                    className="absolute inset-x-0 top-0 w-full transition-transform duration-[900ms] ease-[var(--ease-out)] group-hover:translate-y-[calc(-100%+100cqh)] group-hover:duration-[7000ms] group-hover:ease-in-out motion-reduce:group-hover:translate-y-0 [@media(hover:none)]:[animation:peek_12s_ease-in-out_infinite]"
+                    className="absolute inset-x-0 top-0 w-full transition-transform duration-[900ms] ease-[var(--ease-out)] group-hover:translate-y-[calc(-100%+100cqh)] group-hover:duration-[16000ms] group-hover:ease-in-out motion-reduce:group-hover:translate-y-0 [@media(hover:none)]:[animation:peek_26s_ease-in-out_infinite]"
                   />
                   <span className="absolute bottom-3 left-3 hidden rounded-full [@media(hover:hover)]:block bg-bg/85 px-3 py-1 text-[12px] text-muted backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-0">
                     Survolez pour défiler

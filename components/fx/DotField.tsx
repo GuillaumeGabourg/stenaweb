@@ -45,7 +45,7 @@ export function DotField({ className }: { className?: string }) {
           const push = near * near * 7;
           const px = x + (d > 0 ? (dx / d) * push : 0);
           const py = y + (d > 0 ? (dy / d) * push : 0);
-          const a = 0.1 + wave * 0.12 + near * 0.75;
+          const a = 0.07 + wave * 0.09 + near * 0.75;
           ctx.fillStyle = near > 0.05 ? `rgba(239,180,95,${a})` : `rgba(237,236,232,${a})`;
           ctx.beginPath();
           ctx.arc(px, py, 1 + near * 1.3, 0, Math.PI * 2);

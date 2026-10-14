@@ -9,8 +9,8 @@ import { asset } from "@/lib/asset";
 const DURATION = 5000;
 
 const badges = [
-  { label: "Adapté au mobile", className: "-left-4 top-[18%] sm:-left-8", delay: 0 },
-  { label: "Visible sur Google", className: "-right-2 top-[6%] sm:-right-6", delay: 1.2 },
+  { label: "Visible sur Google", className: "-left-4 top-[18%] sm:-left-8", delay: 0 },
+  { label: "Adapté au mobile", className: "-right-2 top-[6%] sm:-right-6", delay: 1.2 },
   { label: "Livré clé en main", className: "-left-2 bottom-[16%] sm:-left-10", delay: 2.4 },
 ];
 

@@ -28,12 +28,12 @@ export function Check({ className }: { className?: string }) {
 }
 
 /** Placeholder for a price that is not set yet: small stars in place of the digits. */
-export function HiddenPrice({ count = 3, className }: { count?: number; className?: string }) {
+export function HiddenPrice({ count = 3, className, twinkle }: { count?: number; className?: string; twinkle?: boolean }) {
   return (
     <span className={clsx("inline-flex items-center gap-1", className)}>
       <span className="sr-only">Prix bientôt disponible</span>
       {Array.from({ length: count }, (_, i) => (
-        <svg key={i} viewBox="0 0 20 20" aria-hidden className="size-[0.7em]">
+        <svg key={i} viewBox="0 0 20 20" aria-hidden className={clsx("size-[0.7em]", twinkle && "twinkle")} style={twinkle ? { animationDelay: `${i * 0.35}s` } : undefined}>
           <path fill="currentColor" d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z" />
         </svg>
       ))}

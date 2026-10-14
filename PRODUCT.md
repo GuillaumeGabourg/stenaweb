@@ -20,7 +20,7 @@ stenaweb.fr is the commercial showcase of Stenaweb, a studio that designs and bu
 
 ## Positioning
 
-Agency-grade, hand-coded custom design at a price and speed a TPE can afford, from a local contact in Mayenne/Sarthe. Four claims together: local and close (one interlocutor, can meet in person), fast delivery, accessible price, sur-mesure (no template, fast and beautiful code). The site itself is the proof: it must visibly out-class what a Wix template or a generalist agency site delivers.
+Agency-grade custom design at a price and speed a TPE can afford, from a local contact in Mayenne/Sarthe. Four claims together: local and close (one interlocutor, can meet in person), fast delivery, accessible price, sur-mesure (no template, fast and beautiful). Never claim the sites are "codés à la main": they are built with AI-assisted tooling, so copy stays vague about how (sur-mesure, outils modernes). The site itself is the proof: it must visibly out-class what a Wix template or a generalist agency site delivers.
 
 ## Operating Context
 

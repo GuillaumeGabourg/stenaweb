@@ -1,5 +1,4 @@
 import { BlurFade } from "../fx/BlurFade";
-import { DotField } from "../fx/DotField";
 import { FadeThrough } from "../fx/FadeThrough";
 import { HeroShowcase } from "../fx/HeroShowcase";
 import { WordReveal } from "../fx/WordReveal";
@@ -25,11 +24,10 @@ const band = [
 export function Hero() {
   return (
     <section className="relative overflow-hidden" aria-labelledby="hero-title">
-      {/* Background: drifting warm glows, an interactive dot field, faded at the edges */}
+      {/* Background: drifting warm glows (the dot field runs behind the whole site) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -left-[10%] -top-[20%] size-[55vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgb(239_180_95/0.16),transparent)] [animation:drift-a_18s_ease-in-out_infinite]" />
         <div className="absolute -right-[10%] top-[10%] size-[50vw] max-w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(214_120_96/0.11),transparent)] [animation:drift-b_22s_ease-in-out_infinite]" />
-        <DotField className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
       </div>
 
@@ -40,7 +38,7 @@ export function Hero() {
           </h1>
           <BlurFade delay={0.45}>
             <p className="mt-6 max-w-[34rem] text-lg text-muted md:text-xl md:leading-relaxed">
-              On conçoit et on code des sites sur-mesure, beaux, rapides et faciles à trouver sur Google. En Mayenne et en Sarthe, pour les{" "}
+              On conçoit et on réalise des sites sur-mesure, beaux, rapides et faciles à trouver sur Google. En Mayenne et en Sarthe, pour les{" "}
               <FadeThrough words={trades} className="font-medium text-text" />.
             </p>
           </BlurFade>
