@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
@@ -12,7 +13,27 @@ const apply = (t: Theme) => {
   } catch {}
 };
 
-/** Switches between dark and light. The new theme spreads from the button in a circle where the browser supports it. */
+const Moon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinejoin="round">
+    <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+  </svg>
+);
+const Sun = () => (
+  <svg viewBox="0 0 24 24" aria-hidden className="size-4" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+  </svg>
+);
+
+const options: { value: Theme; label: string; Icon: () => React.JSX.Element }[] = [
+  { value: "dark", label: "Sombre", Icon: Moon },
+  { value: "light", label: "Clair", Icon: Sun },
+];
+
+/**
+ * Labelled dark / light switch. The highlight slides to the chosen side, and the new theme
+ * spreads from the clicked button in a circle where the browser supports view transitions.
+ */
 export function ThemeToggle({ className }: { className?: string }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
@@ -20,8 +41,8 @@ export function ThemeToggle({ className }: { className?: string }) {
     setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   }, []);
 
-  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
+  const choose = (next: Theme, e: React.MouseEvent<HTMLButtonElement>) => {
+    if (next === theme) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const doc = document as Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void> } };
     if (!doc.startViewTransition || reduced) {
@@ -45,40 +66,34 @@ export function ThemeToggle({ className }: { className?: string }) {
     });
   };
 
-  const light = theme === "light";
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={light ? "Passer en mode sombre" : "Passer en mode clair"}
-      title={light ? "Mode sombre" : "Mode clair"}
-      className={`relative grid size-11 place-items-center overflow-hidden rounded-xl border border-line bg-surface text-muted transition-colors hover:text-text ${className ?? ""}`}
-    >
-      {/* Sun */}
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden
-        className={`absolute size-5 transition-all duration-500 ease-[var(--ease-out)] ${light ? "rotate-90 scale-50 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-      </svg>
-      {/* Moon */}
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden
-        className={`absolute size-5 transition-all duration-500 ease-[var(--ease-out)] ${light ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-50 opacity-0"}`}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinejoin="round"
-      >
-        <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
-      </svg>
-    </button>
+    <div role="group" aria-label="Thème d'affichage" className={`flex h-11 items-center gap-0.5 rounded-xl border border-line bg-surface p-1 ${className ?? ""}`}>
+      {options.map(({ value, label, Icon }) => {
+        const on = theme === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={on}
+            onClick={(e) => choose(value, e)}
+            className={`relative flex h-full items-center gap-1.5 rounded-lg px-2.5 text-[13px] font-medium transition-colors duration-300 ${
+              on ? "text-accent-ink" : "text-muted hover:text-text"
+            }`}
+          >
+            {on && (
+              <motion.span
+                layoutId="theme-pill"
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                className="absolute inset-0 rounded-lg bg-accent"
+              />
+            )}
+            <span className="relative">
+              <Icon />
+            </span>
+            <span className="relative">{label}</span>
+          </button>
+        );
+      })}
+    </div>
   );
 }

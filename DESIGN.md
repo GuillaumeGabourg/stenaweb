@@ -124,7 +124,7 @@ This replaces the earlier dark/neon "creative agency" canon (huge condensed uppe
 
 ## Light theme
 
-A toggle in the nav (sun/moon) switches to a light theme; the choice is saved in localStorage and applied before first paint. The new theme spreads from the button in a circle (View Transitions). Light tokens: ground #f5f3ee, surface #ffffff, surface-2 #ebe8e1, text #1d1c1a, muted #5d5b56, accent #9a5a0a (deeper amber so accent text keeps 4.5:1), accent-ink #ffffff. Glows and the dot field read their colours from `--glow` / `--dot` RGB triplets, so every effect follows the theme. Never hard-code a dark-only colour in a component.
+A labelled switch in the nav ("Sombre" / "Clair", moon and sun icons, sliding amber highlight) changes theme; the choice is saved in localStorage and applied before first paint. The new theme spreads from the button in a circle (View Transitions). Light tokens: ground #f5f3ee, surface #ffffff, surface-2 #ebe8e1, text #1d1c1a, muted #5d5b56, accent #9a5a0a (deeper amber so accent text keeps 4.5:1), accent-ink #ffffff. In light mode the idle dot grid is off (dark dots behind text hurt reading): dots only appear around the pointer. Glows and the dot field read their colours from `--glow` / `--dot` RGB triplets, so every effect follows the theme. Never hard-code a dark-only colour in a component.
 
 ## Typography
 

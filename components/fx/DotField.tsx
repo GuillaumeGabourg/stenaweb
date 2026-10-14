@@ -22,13 +22,16 @@ export function DotField({ className }: { className?: string }) {
     // Dot and highlight colours come from the theme tokens, re-read when the theme switches.
     let dot = "237,236,232";
     let glow = "239,180,95";
-    let boost = 1;
+    // Light theme: no idle grid at all (dark dots behind text hurt reading); dots only appear around the pointer.
+    let idle = 1;
+    let spot = 0.75;
     const readColors = () => {
       const cs = getComputedStyle(document.documentElement);
       dot = cs.getPropertyValue("--dot").trim().split(/s+/).join(",") || dot;
       glow = cs.getPropertyValue("--glow").trim().split(/s+/).join(",") || glow;
-      // Dark dots on a light ground read stronger: keep them a little fainter.
-      boost = document.documentElement.dataset.theme === "light" ? 0.45 : 1;
+      const light = document.documentElement.dataset.theme === "light";
+      idle = light ? 0 : 1;
+      spot = light ? 0.5 : 0.75;
       if (reduced) draw(0);
     };
     const mo = new MutationObserver(readColors);
@@ -59,8 +62,9 @@ export function DotField({ className }: { className?: string }) {
           const push = near * near * 7;
           const px = x + (d > 0 ? (dx / d) * push : 0);
           const py = y + (d > 0 ? (dy / d) * push : 0);
-          const a = 0.07 + wave * 0.09 + near * 0.75;
-          ctx.fillStyle = near > 0.05 ? `rgba(${glow},${a})` : `rgba(${dot},${a * boost})`;
+          const a = (0.07 + wave * 0.09) * idle + near * spot;
+          if (a < 0.012) continue;
+          ctx.fillStyle = near > 0.05 ? `rgba(${glow},${a})` : `rgba(${dot},${a})`;
           ctx.beginPath();
           ctx.arc(px, py, 1 + near * 1.3, 0, Math.PI * 2);
           ctx.fill();
