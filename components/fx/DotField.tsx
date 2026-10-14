@@ -19,6 +19,20 @@ export function DotField({ className }: { className?: string }) {
       h = 0,
       dpr = 1;
     const pointer = { x: -9999, y: -9999, tx: -9999, ty: -9999 };
+    // Dot and highlight colours come from the theme tokens, re-read when the theme switches.
+    let dot = "237,236,232";
+    let glow = "239,180,95";
+    let boost = 1;
+    const readColors = () => {
+      const cs = getComputedStyle(document.documentElement);
+      dot = cs.getPropertyValue("--dot").trim().split(/s+/).join(",") || dot;
+      glow = cs.getPropertyValue("--glow").trim().split(/s+/).join(",") || glow;
+      // Dark dots on a light ground read stronger: keep them a little fainter.
+      boost = document.documentElement.dataset.theme === "light" ? 0.45 : 1;
+      if (reduced) draw(0);
+    };
+    const mo = new MutationObserver(readColors);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio, 2);
@@ -46,7 +60,7 @@ export function DotField({ className }: { className?: string }) {
           const px = x + (d > 0 ? (dx / d) * push : 0);
           const py = y + (d > 0 ? (dy / d) * push : 0);
           const a = 0.07 + wave * 0.09 + near * 0.75;
-          ctx.fillStyle = near > 0.05 ? `rgba(239,180,95,${a})` : `rgba(237,236,232,${a})`;
+          ctx.fillStyle = near > 0.05 ? `rgba(${glow},${a})` : `rgba(${dot},${a * boost})`;
           ctx.beginPath();
           ctx.arc(px, py, 1 + near * 1.3, 0, Math.PI * 2);
           ctx.fill();
@@ -54,10 +68,15 @@ export function DotField({ className }: { className?: string }) {
       }
     };
 
+    readColors();
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
-    if (reduced) return () => ro.disconnect();
+    if (reduced)
+      return () => {
+        ro.disconnect();
+        mo.disconnect();
+      };
 
     const onMove = (e: PointerEvent) => {
       const b = canvas.getBoundingClientRect();
@@ -92,6 +111,7 @@ export function DotField({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      mo.disconnect();
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
       document.removeEventListener("pointerleave", onLeave);

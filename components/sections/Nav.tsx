@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "../fx/ThemeToggle";
 import { Button } from "../ui";
 
 const links = [
@@ -50,6 +51,7 @@ export function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <span className="hidden sm:block">
             <Button href="/#contact">Demander un devis</Button>
           </span>

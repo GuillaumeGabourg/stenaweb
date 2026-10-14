@@ -24,7 +24,7 @@ export function Pricing() {
             <TiltCard className="rounded-2xl" max={4}>
               <article
                 className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-7 ${
-                  p.featured ? "beam border-accent/30 bg-[linear-gradient(180deg,#26221b,var(--surface)_45%)]" : "border-line bg-surface"
+                  p.featured ? "beam border-accent/30 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--accent)_9%,var(--surface)),var(--surface)_45%)]" : "border-line bg-surface"
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">

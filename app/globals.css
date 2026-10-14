@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Soft dark: warm charcoal ground, warm off-white text, one amber accent. */
+/* Soft dark (default): warm charcoal ground, warm off-white text, one amber accent. */
 :root {
   --bg: #161619;
   --surface: #1e1f23;
@@ -9,9 +9,33 @@
   --muted: #a7a6a1;
   --line: rgb(237 236 232 / 0.1);
   --accent: #efb45f;
+  --accent-hover: #f5c47c;
   --accent-soft: rgb(239 180 95 / 0.12);
   --accent-ink: #1d1508;
+  --danger: #f2a596;
+  /* RGB triplets for glows and the dot field */
+  --glow: 239 180 95;
+  --dot: 237 236 232;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+
+/* Light: warm paper ground, white surfaces, a deeper amber that keeps text contrast. */
+:root[data-theme="light"] {
+  --bg: #f5f3ee;
+  --surface: #ffffff;
+  --surface-2: #ebe8e1;
+  --text: #1d1c1a;
+  --muted: #5d5b56;
+  --line: rgb(29 28 26 / 0.11);
+  --accent: #9a5a0a;
+  --accent-hover: #7f4a07;
+  --accent-soft: rgb(154 90 10 / 0.1);
+  --accent-ink: #ffffff;
+  --danger: #a8341f;
+  --glow: 214 140 40;
+  --dot: 29 28 26;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -23,6 +47,8 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-hover: var(--accent-hover);
+  --color-danger: var(--danger);
   --color-accent-ink: var(--accent-ink);
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-bricolage);
@@ -30,7 +56,6 @@
 
 html {
   background: var(--bg);
-  color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: 73px; /* exactly the fixed header (72px + 1px border): no strip of the previous section shows */
 }
@@ -38,6 +63,7 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -322,4 +348,11 @@ a {
   100% {
     transform: translateX(120%);
   }
+}
+
+/* Theme switch: the new theme is revealed by a circle (animated from ThemeToggle); no cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }

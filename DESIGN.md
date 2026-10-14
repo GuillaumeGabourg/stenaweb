@@ -122,6 +122,10 @@ This replaces the earlier dark/neon "creative agency" canon (huge condensed uppe
 
 **Client colour rule.** Case studies expose `--client` (the client's brand colour) for one element: the "Voir le site en ligne" button.
 
+## Light theme
+
+A toggle in the nav (sun/moon) switches to a light theme; the choice is saved in localStorage and applied before first paint. The new theme spreads from the button in a circle (View Transitions). Light tokens: ground #f5f3ee, surface #ffffff, surface-2 #ebe8e1, text #1d1c1a, muted #5d5b56, accent #9a5a0a (deeper amber so accent text keeps 4.5:1), accent-ink #ffffff. Glows and the dot field read their colours from `--glow` / `--dot` RGB triplets, so every effect follows the theme. Never hard-code a dark-only colour in a component.
+
 ## Typography
 
 - **Hero** up to 3.9rem, **Section** up to 2.6rem, **Card title** 1.25rem, all Bricolage Grotesque 600, tracking -0.02em, balanced.

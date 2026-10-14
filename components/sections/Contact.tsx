@@ -43,7 +43,7 @@ function Choice({ name, options }: { name: string; options: string[] }) {
 }
 
 const field =
-  "peer w-full rounded-lg border border-line bg-bg px-4 py-3 text-base text-text outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-muted/60 hover:border-text/25 focus:border-accent focus:bg-[#1b1a18] focus:shadow-[0_0_0_4px_rgb(239_180_95/0.12),0_10px_30px_-12px_rgb(239_180_95/0.35)]";
+  "peer w-full rounded-lg border border-line bg-bg px-4 py-3 text-base text-text outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-muted/60 hover:border-text/25 focus:border-accent focus:bg-[color-mix(in_oklab,var(--accent)_4%,var(--bg))] focus:shadow-[0_0_0_4px_rgb(var(--glow)/0.12),0_10px_30px_-12px_rgb(var(--glow)/0.35)]";
 const label = "mb-1.5 block text-[14px] font-medium transition-colors duration-300 group-focus-within/f:text-accent";
 
 /** Success: a check draws itself while small sparks burst out. */
@@ -212,7 +212,7 @@ export function Contact() {
                       initial={{ opacity: 0, x: 0 }}
                       animate={{ opacity: 1, x: [0, -6, 6, -4, 4, 0] }}
                       transition={{ duration: 0.45 }}
-                      className="rounded-lg border border-[#e2735f]/40 bg-[#e2735f]/10 px-4 py-3 text-[15px] text-[#f2a596] sm:col-span-2"
+                      className="rounded-lg border border-[#e2735f]/40 bg-[#e2735f]/10 px-4 py-3 text-[15px] text-danger sm:col-span-2"
                     >
                       {state.message}
                     </motion.p>
@@ -222,8 +222,8 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={pending}
-                      className={`shine group inline-flex h-12 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-accent px-6 font-medium text-accent-ink transition-[background-color,box-shadow] duration-500 hover:bg-[#f5c47c] disabled:opacity-70 ${
-                        ready ? "shadow-[0_0_0_4px_rgb(239_180_95/0.18),0_12px_32px_-10px_rgb(239_180_95/0.6)]" : ""
+                      className={`shine group inline-flex h-12 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-accent px-6 font-medium text-accent-ink transition-[background-color,box-shadow] duration-500 hover:bg-accent-hover disabled:opacity-70 ${
+                        ready ? "shadow-[0_0_0_4px_rgb(var(--glow)/0.18),0_12px_32px_-10px_rgb(var(--glow)/0.6)]" : ""
                       }`}
                     >
                       {pending ? (

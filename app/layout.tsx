@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export const viewport: Viewport = { themeColor: "#161619", colorScheme: "dark" };
+export const viewport: Viewport = { themeColor: "#161619", colorScheme: "dark light" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -45,7 +45,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" id="top" className={`${bricolage.variable} ${geistSans.variable}`}>
+    <html lang="fr" id="top" className={`${bricolage.variable} ${geistSans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Apply the saved theme before the first paint (no flash). */}
+        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <a

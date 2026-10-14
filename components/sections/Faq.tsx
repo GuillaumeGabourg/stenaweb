@@ -40,7 +40,7 @@ export function Faq() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: reduced ? 0 : 0.8, ease }}
-                        className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(239_180_95/0.1),transparent)]"
+                        className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(var(--glow)/0.1),transparent)]"
                       />
                     )}
                   </AnimatePresence>

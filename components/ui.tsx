@@ -50,7 +50,7 @@ export function Button({ tone = "primary", size = "md", className, children, ...
       className={clsx(
         "group inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors duration-300",
         size === "lg" ? "h-13 px-6 text-base" : "h-11 px-5 text-[15px]",
-        tone === "primary" && "shine bg-accent text-accent-ink hover:bg-[#f5c47c]",
+        tone === "primary" && "shine bg-accent text-accent-ink hover:bg-accent-hover",
         tone === "secondary" && "border border-line bg-surface text-text hover:border-text/30 hover:bg-surface-2",
         className
       )}

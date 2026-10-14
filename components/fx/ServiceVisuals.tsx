@@ -97,7 +97,7 @@ export function SeoVisual() {
             <span className="h-1.5 w-24 rounded-full bg-text/20" />
           </div>
         ))}
-        <div className="absolute inset-x-0 top-[72px] z-10 flex h-8 items-center gap-2 rounded-lg border border-accent/50 bg-[#2a2419] px-3 shadow-[0_8px_20px_-8px_rgba(239,180,95,0.4)] [animation:climb_7s_ease-in-out_infinite]">
+        <div className="absolute inset-x-0 top-[72px] z-10 flex h-8 items-center gap-2 rounded-lg border border-accent/50 bg-[color-mix(in_oklab,var(--accent)_12%,var(--surface))] px-3 shadow-[0_8px_20px_-8px_rgb(var(--glow)/0.4)] [animation:climb_7s_ease-in-out_infinite]">
           <span className="size-3 rounded-sm bg-accent" />
           <span className="text-[12px] font-medium text-text">Votre entreprise</span>
           <span className="ml-auto flex gap-0.5 text-accent">

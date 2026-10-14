@@ -26,7 +26,7 @@ export function Hero() {
     <section className="relative overflow-hidden" aria-labelledby="hero-title">
       {/* Background: drifting warm glows (the dot field runs behind the whole site) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-[10%] -top-[20%] size-[55vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgb(239_180_95/0.16),transparent)] [animation:drift-a_18s_ease-in-out_infinite]" />
+        <div className="absolute -left-[10%] -top-[20%] size-[55vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgb(var(--glow)/0.16),transparent)] [animation:drift-a_18s_ease-in-out_infinite]" />
         <div className="absolute -right-[10%] top-[10%] size-[50vw] max-w-[700px] rounded-full bg-[radial-gradient(closest-side,rgb(214_120_96/0.11),transparent)] [animation:drift-b_22s_ease-in-out_infinite]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
       </div>

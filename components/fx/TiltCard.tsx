@@ -2,34 +2,42 @@
 
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 
-/** A card that leans toward the pointer, with a soft light following it across the surface and border. */
+/**
+ * A card that leans toward the pointer, with a faint light following it on the surface and border.
+ * On leave the tilt eases back to flat while the light just fades where it is (it never slides back to the centre).
+ */
 export function TiltCard({ children, className, max = 5 }: { children: React.ReactNode; className?: string; max?: number }) {
   const reduced = useReducedMotion();
-  const x = useMotionValue(0.5);
-  const y = useMotionValue(0.5);
-  const rx = useSpring(useTransform(y, [0, 1], [max, -max]), { stiffness: 150, damping: 18 });
-  const ry = useSpring(useTransform(x, [0, 1], [-max, max]), { stiffness: 150, damping: 18 });
-  const lx = useTransform(x, (v) => `${v * 100}%`);
-  const ly = useTransform(y, (v) => `${v * 100}%`);
-  const light = useMotionTemplate`radial-gradient(420px circle at ${lx} ${ly}, rgb(237 236 232 / 0.035), transparent 70%)`;
-  const ring = useMotionTemplate`radial-gradient(220px circle at ${lx} ${ly}, rgb(239 180 95 / 0.32), transparent 70%)`;
+  // Tilt target: springs back to flat on leave
+  const tx = useMotionValue(0.5);
+  const ty = useMotionValue(0.5);
+  const rx = useSpring(useTransform(ty, [0, 1], [max, -max]), { stiffness: 120, damping: 20 });
+  const ry = useSpring(useTransform(tx, [0, 1], [-max, max]), { stiffness: 120, damping: 20 });
+  // Light position: only updated while the pointer is inside
+  const lx = useMotionValue(50);
+  const ly = useMotionValue(50);
+  const light = useMotionTemplate`radial-gradient(420px circle at ${lx}% ${ly}%, rgb(var(--glow) / 0.05), transparent 70%)`;
+  const ring = useMotionTemplate`radial-gradient(240px circle at ${lx}% ${ly}%, rgb(var(--glow) / 0.22), transparent 70%)`;
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType !== "mouse") return;
     const b = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - b.left) / b.width);
-    y.set((e.clientY - b.top) / b.height);
+    const x = (e.clientX - b.left) / b.width;
+    const y = (e.clientY - b.top) / b.height;
+    tx.set(x);
+    ty.set(y);
+    lx.set(x * 100);
+    ly.set(y * 100);
   };
   const onLeave = () => {
-    x.set(0.5);
-    y.set(0.5);
+    tx.set(0.5);
+    ty.set(0.5);
   };
 
   return (
     <div className="h-full [perspective:1100px]" onPointerMove={onMove} onPointerLeave={onLeave}>
       <motion.div style={reduced ? undefined : { rotateX: rx, rotateY: ry }} className={`group/tilt relative h-full ${className ?? ""}`}>
         {children}
-        {/* Light on the surface and on the 1px border, visible while hovered */}
         <motion.span
           aria-hidden
           style={{ background: light }}
@@ -38,7 +46,7 @@ export function TiltCard({ children, className, max = 5 }: { children: React.Rea
         <motion.span
           aria-hidden
           style={{ background: ring }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] p-px opacity-0 transition-opacity duration-500 [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] group-hover/tilt:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-[inherit] p-px opacity-0 transition-opacity duration-700 ease-out [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] group-hover/tilt:opacity-100"
         />
       </motion.div>
     </div>
