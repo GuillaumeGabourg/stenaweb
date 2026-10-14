@@ -26,7 +26,8 @@ export function Nav() {
       setActive(null);
       return;
     }
-    const ids = [...links.map((l) => l.href.split("#")[1]), "contact"];
+    // Sections without a nav link (steps, zone, contact) clear the highlight when they reach the header.
+    const ids = ["realisations", "services", "etapes", "zone", "tarifs", "faq", "contact"];
     const onScroll = () => {
       const line = 120;
       let current: string | null = null;

@@ -39,6 +39,10 @@ export default function Page() {
           L&apos;ensemble du contenu de ce site (textes, design, code) est la propriété de Stenaweb. Les captures des sites
           réalisés sont présentées avec l&apos;accord des clients concernés et restent la propriété de leurs titulaires.
         </p>
+        <p className="mt-4">
+          Carte de la zone d&apos;intervention : contours des départements issus du projet france-geojson (Grégoire David),
+          d&apos;après les données publiques de l&apos;IGN, sous Licence Ouverte Etalab.
+        </p>
       </section>
     </LegalPage>
   );
