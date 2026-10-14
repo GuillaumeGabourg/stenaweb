@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Geist } from "next/font/google";
 import { Nav } from "@/components/sections/Nav";
 import { CursorGlow } from "@/components/fx/CursorGlow";
 import { DotField } from "@/components/fx/DotField";
+import { HashScroll } from "@/components/fx/HashScroll";
 import { site } from "@/content/offer";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <DotField className="pointer-events-none fixed inset-0 z-0 size-full" />
         <CursorGlow />
+        <HashScroll />
         <Nav />
         <div className="relative z-[1]">{children}</div>
       </body>

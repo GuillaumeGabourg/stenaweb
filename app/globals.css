@@ -32,7 +32,7 @@ html {
   background: var(--bg);
   color-scheme: dark;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 73px; /* exactly the fixed header (72px + 1px border): no strip of the previous section shows */
 }
 
 body {
