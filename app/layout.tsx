@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Tersel Web",
-    title: "Tersel Web · Des sites qui font venir des clients",
+    title: "Tersel Web · Votre métier mérite un beau site",
     description,
   },
   alternates: { canonical: "/" },
@@ -36,6 +36,7 @@ const jsonLd = {
   name: "Tersel Web",
   url: site.url,
   email: site.email,
+  telephone: site.phoneIntl,
   description,
   areaServed: [
     ...["Sarthe", "Mayenne", "Orne", "Eure-et-Loir", "Loir-et-Cher", "Indre-et-Loire", "Maine-et-Loire"].map((name) => ({

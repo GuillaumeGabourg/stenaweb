@@ -20,7 +20,7 @@ tersel.fr is the commercial showcase of Tersel Web, a studio that designs and bu
 
 ## Positioning
 
-Agency-grade custom design at a price and speed a TPE can afford, from a local contact in Mayenne/Sarthe. Four claims together: local and close (one interlocutor, can meet in person), fast delivery, accessible price, sur-mesure (no template, fast and beautiful). Never claim the sites are "codés à la main": they are built with AI-assisted tooling, so copy stays vague about how (sur-mesure, outils modernes). The site itself is the proof: it must visibly out-class what a Wix template or a generalist agency site delivers.
+Agency-grade custom design at a price and speed a TPE can afford, from a local contact in Mayenne/Sarthe. Four claims together: one interlocutor, everything done remotely (phone, visio, e-mail, WhatsApp; can visit in Sarthe and nearby if needed), fast delivery, accessible price, sur-mesure (no template, fast and beautiful). Never claim the sites are "codés à la main": they are built with AI-assisted tooling, so copy stays vague about how (sur-mesure, outils modernes). The site itself is the proof: it must visibly out-class what a Wix template or a generalist agency site delivers.
 
 ## Operating Context
 
@@ -67,3 +67,6 @@ Respect `prefers-reduced-motion` with full non-animated fallbacks; keep text leg
 
 - Say "des sites" / "sites internet", never "sites vitrines".
 - Based in Sarthe, sites already done in Mayenne, never imply we only work there: neighbouring departments and remote work stay open.
+- Remote-first: phone, visio, e-mail, WhatsApp. No "café" or in-person meetings as the default; a visit is only "si besoin".
+- Hero headline: "Votre métier mérite un beau site" (the user rejected "Des sites qui font venir des clients").
+- Phone, WhatsApp, Google, Facebook, Instagram live in content/offer.ts (phone is a fictitious Arcep fiction-range number until the real one is given).

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { projects } from "@/content/projects";
-import { site } from "@/content/offer";
+import { site, telHref } from "@/content/offer";
+import { SocialLinks } from "../ContactLinks";
 
 export function Footer() {
   return (
@@ -10,10 +11,14 @@ export function Footer() {
           <p className="font-display text-2xl leading-none">
             Tersel <span className="italic text-accent">web</span>
           </p>
-          <p className="mt-3 max-w-xs text-muted">Des sites sur-mesure pour les entreprises de la Sarthe et des départements voisins.</p>
-          <a href={`mailto:${site.email}`} className="mt-4 inline-block font-medium text-accent underline-offset-4 hover:underline">
+          <p className="mt-3 text-muted">Des sites sur-mesure pour les entreprises, basés en Sarthe, réalisés à distance partout en France.</p>
+          <a href={telHref} className="mt-4 block w-fit font-medium tabular-nums text-text underline-offset-4 hover:underline">
+            {site.phone}
+          </a>
+          <a href={`mailto:${site.email}`} className="mt-1 block w-fit font-medium text-accent underline-offset-4 hover:underline">
             {site.email}
           </a>
+          <SocialLinks className="mt-5" />
         </div>
         <nav aria-label="Réalisations">
           <p className="mb-3 font-medium">Réalisations</p>

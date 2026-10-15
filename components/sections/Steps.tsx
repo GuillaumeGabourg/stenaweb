@@ -7,7 +7,7 @@ import { Button, SectionHead } from "../ui";
 const steps = [
   {
     title: "On s'appelle",
-    text: "Un appel ou un café pour comprendre votre métier, vos clients et ce que le site doit vous apporter. Gratuit et sans engagement.",
+    text: "Un appel ou une visio pour comprendre votre métier, vos clients et ce que le site doit vous apporter. Gratuit et sans engagement.",
   },
   {
     title: "Vous validez la maquette",

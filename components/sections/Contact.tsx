@@ -5,6 +5,7 @@ import { useActionState, useState } from "react";
 import { sendContact, type ContactState } from "@/app/actions";
 import { site } from "@/content/offer";
 import { BlurFade } from "../fx/BlurFade";
+import { CallButtons, SocialLinks } from "../ContactLinks";
 import { Arrow, Check, SectionHead } from "../ui";
 
 const projectTypes = ["Nouveau site", "Refonte", "Une page", "Je ne sais pas encore"];
@@ -118,7 +119,7 @@ export function Contact() {
     const v = value.trim();
     if (name === "name" && !v) return "Indiquez votre nom pour qu'on sache à qui répondre.";
     if (name === "email" && !v) return "Indiquez votre e-mail pour recevoir notre réponse.";
-    if (name === "email" && !/^[^@s]+@[^@s]+.[^@s]+$/.test(v)) return "Cette adresse ne semble pas complète, par exemple : jean@exemple.fr";
+    if (name === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return "Cette adresse ne semble pas complète, par exemple : jean@exemple.fr";
     if (name === "message" && !v) return "Dites-nous en deux mots ce que fait votre entreprise.";
     return "";
   };
@@ -155,20 +156,23 @@ export function Contact() {
           <SectionHead
             id="contact-title"
             title="Parlons de votre projet"
-            intro="Décrivez votre activité en quelques mots. On vous répond rapidement avec une première idée et un devis gratuit."
+            intro="Appelez-nous, écrivez-nous sur WhatsApp ou décrivez votre activité dans le formulaire. On vous répond rapidement avec une première idée et un devis gratuit."
           />
           <ul className="mt-8 space-y-3 text-base sm:text-[15px]">
-            {["Devis gratuit, sans engagement", "Rendez-vous sur place ou en visio", `Basés en ${site.area}, on se déplace aux alentours`].map((t, i) => (
+            {["Devis gratuit, sans engagement", "Tout se fait à distance : téléphone, visio ou e-mail", `Basés en ${site.area}, on peut passer vous voir si besoin`].map((t, i) => (
               <BlurFade as="li" key={t} delay={0.1 + i * 0.08} className="flex items-center gap-2.5 text-muted">
                 <Check className="text-accent" />
                 {t}
               </BlurFade>
             ))}
           </ul>
+          <BlurFade delay={0.3}>
+            <CallButtons className="mt-8" />
+          </BlurFade>
           <BlurFade delay={0.35}>
             <a
               href={`mailto:${site.email}`}
-              className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-line bg-surface p-5 transition-colors duration-300 hover:border-accent/40"
+              className="group mt-3 flex items-center justify-between gap-4 rounded-2xl border border-line bg-surface p-5 transition-colors duration-300 hover:border-accent/40"
             >
               <span>
                 <span className="block text-[14px] text-muted">Vous préférez écrire directement ?</span>
@@ -178,6 +182,10 @@ export function Contact() {
                 <Arrow />
               </span>
             </a>
+          </BlurFade>
+          <BlurFade delay={0.4} className="mt-8">
+            <p className="text-[14px] text-muted">Retrouvez-nous aussi sur</p>
+            <SocialLinks className="mt-3" />
           </BlurFade>
         </div>
 

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "../fx/ThemeToggle";
+import { site, telHref } from "@/content/offer";
+import { CallButtons, PhoneIcon } from "../ContactLinks";
 import { Button } from "../ui";
 
 const links = [
@@ -94,6 +96,15 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <a
+            href={telHref}
+            aria-label={`Appeler le ${site.phone}`}
+            title={site.phone}
+            className="hidden h-11 items-center gap-2 rounded-xl border border-line bg-surface px-3 text-[15px] text-text transition-colors duration-300 hover:border-accent/50 hover:text-accent sm:inline-flex"
+          >
+            <PhoneIcon className="size-[18px] text-accent" />
+            <span className="hidden tabular-nums xl:inline">{site.phone}</span>
+          </a>
           <span className="hidden sm:block">
             <Button href="/#contact">Demander un devis</Button>
           </span>
@@ -130,6 +141,7 @@ export function Nav() {
         <Button href="/#contact" size="lg" className="mt-6 w-full" onClick={() => setOpen(false)}>
           Demander un devis
         </Button>
+        <CallButtons quiet className="mt-3" />
       </div>
     </header>
   );

@@ -5,7 +5,21 @@ export const site = {
   url: "https://tersel.fr",
   email: "contact@tersel.fr",
   area: "Sarthe",
+  // Numéro fictif (plage réservée à la fiction par l'Arcep) : à remplacer par le vrai numéro.
+  phone: "06 39 98 00 00",
+  phoneIntl: "+33639980000",
+  whatsappText: "Bonjour, je souhaiterais des infos pour un site internet pour mon entreprise.",
 };
+
+/** Liens à remplacer quand les pages existeront ; retirer une ligne pour masquer le bouton partout. */
+export const socials = [
+  { id: "google", label: "Google", href: "https://www.google.com/search?q=Tersel+Web" },
+  { id: "facebook", label: "Facebook", href: "https://www.facebook.com/" },
+  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/" },
+] as const;
+
+export const telHref = `tel:${site.phoneIntl}`;
+export const whatsappHref = `https://wa.me/${site.phoneIntl.replace("+", "")}?text=${encodeURIComponent(site.whatsappText)}`;
 
 export type Offer = {
   name: string;
@@ -90,6 +104,6 @@ export const faq = [
   { q: "Je n'y connais rien en informatique, c'est un problème ?", a: "Pas du tout, c'est même pour ça qu'on existe. On s'occupe de tout : domaine, hébergement, textes, référencement. Vous validez, on exécute." },
   { q: "Est-ce que je pourrai modifier mon site ensuite ?", a: "Oui. Avec la formule Autonome, vous modifiez vous-même vos textes, photos et horaires depuis un espace simple. Avec la formule Essentiel, vous nous envoyez un message et on s'en occupe, c'est compris dans l'abonnement." },
   { q: "Pourquoi pas Wix ou un modèle gratuit ?", a: "Un modèle ressemble à des milliers d'autres sites, il est souvent lent sur mobile et mal référencé. Un site sur-mesure vous démarque, se charge vite et parle à vos clients." },
-  { q: "Vous travaillez uniquement en Sarthe ?", a: "Non. On est basés en Sarthe, on a déjà réalisé des sites en Mayenne, et on se déplace volontiers dans les départements voisins (Orne, Eure-et-Loir, Loir-et-Cher, Indre-et-Loire, Maine-et-Loire…). Et à distance, on travaille partout en France." },
+  { q: "Vous travaillez uniquement en Sarthe ?", a: "Non. On est basés en Sarthe et on a déjà réalisé des sites en Mayenne, mais tout se fait à distance : par téléphone, en visio ou par e-mail. On travaille donc partout en France, et on peut passer vous voir en Sarthe et dans les départements voisins si besoin." },
   { q: "Comment se passe le paiement ?", a: "Un acompte au lancement, le solde à la mise en ligne. Le devis est gratuit et détaillé, sans surprise." },
 ];

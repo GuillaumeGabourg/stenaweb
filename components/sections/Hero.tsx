@@ -5,7 +5,7 @@ import { WordReveal } from "../fx/WordReveal";
 import { Button, Check } from "../ui";
 
 const trades = ["artisans", "commerçants", "indépendants", "restaurateurs", "professions libérales"];
-const promises = ["Devis gratuit et sans engagement", "Un seul interlocuteur, près de chez vous", "Site adapté au téléphone et à Google"];
+const promises = ["Devis gratuit et sans engagement", "Tout à distance : téléphone, visio ou e-mail", "Site adapté au téléphone et à Google"];
 const band = [
   "Plombiers",
   "Électriciens",
@@ -34,11 +34,11 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pb-16 pt-32 md:px-8 md:pb-20 md:pt-40 lg:grid-cols-[1.05fr_1fr]">
         <div>
           <h1 id="hero-title" className="font-display text-[clamp(2.8rem,5.6vw,4.75rem)] leading-[1.0]">
-            <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Des sites qui font venir des", { text: "clients", className: "italic text-accent" }]} />
+            <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Votre métier mérite un", { text: "beau site", className: "italic text-accent" }]} />
           </h1>
           <BlurFade delay={0.45}>
             <p className="mt-6 text-lg text-muted md:text-xl md:leading-relaxed">
-              On conçoit et on réalise des sites sur-mesure, beaux, rapides et faciles à trouver sur Google. Basés en Sarthe, pour les{" "}
+              On conçoit des sites sur-mesure, rapides et faciles à trouver sur Google, et on s&apos;occupe de tout. Basés en Sarthe, pour les{" "}
               <FadeThrough words={trades} className="font-medium text-text" />.
             </p>
           </BlurFade>

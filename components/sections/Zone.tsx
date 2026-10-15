@@ -30,7 +30,7 @@ export function Zone() {
           <SectionHead
             id="zone-title"
             title="Près de chez vous"
-            intro="On est basés en Sarthe et on a déjà réalisé des sites en Mayenne. On se déplace volontiers dans les départements voisins pour vous rencontrer, chez vous ou autour d'un café, et on travaille aussi à distance partout en France."
+            intro="On est basés en Sarthe et on a déjà réalisé des sites en Mayenne. Tout se fait à distance, par téléphone, visio ou e-mail, donc partout en France. Et si besoin, on peut passer vous voir en Sarthe et dans les départements voisins."
           />
           <ul className="mt-8 space-y-3">
             {Object.entries(clients).map(([town, name], i) => (

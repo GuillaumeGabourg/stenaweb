@@ -3,10 +3,12 @@
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { site, telHref, whatsappHref } from "@/content/offer";
+import { PhoneIcon, WhatsAppIcon } from "../ContactLinks";
 import { Button } from "../ui";
 
 /**
- * Phones only: once the hero's buttons have scrolled away, a quote button stays within thumb reach
+ * Phones only: once the hero's buttons have scrolled away, call, WhatsApp and quote buttons stay within thumb reach
  * at the bottom of the screen. It hides again when the contact form is on screen.
  */
 export function MobileCta() {
@@ -36,9 +38,17 @@ export function MobileCta() {
           transition={{ type: "spring", stiffness: 380, damping: 34 }}
           className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 px-5 pb-[calc(12px+env(safe-area-inset-bottom))] pt-3 sm:hidden"
         >
-          <Button href="/#contact" size="lg" className="w-full">
-            Demander un devis gratuit
-          </Button>
+          <div className="flex gap-2">
+            <a href={telHref} aria-label={`Appeler le ${site.phone}`} className="grid size-13 shrink-0 place-items-center rounded-xl border border-line bg-surface text-accent">
+              <PhoneIcon />
+            </a>
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Nous écrire sur WhatsApp" className="grid size-13 shrink-0 place-items-center rounded-xl border border-line bg-surface text-[#25d366]">
+              <WhatsAppIcon />
+            </a>
+            <Button href="/#contact" size="lg" className="min-w-0 flex-1">
+              Devis gratuit
+            </Button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
