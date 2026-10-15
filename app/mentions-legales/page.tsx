@@ -11,7 +11,7 @@ export default function Page() {
       <section>
         <h2>Éditeur du site</h2>
         <p>
-          Stenaweb, <mark>forme juridique (ex. entreprise individuelle)</mark>, représentée par <mark>prénom nom</mark>.
+          Tersel Web, <mark>forme juridique (ex. entreprise individuelle)</mark>, représentée par <mark>prénom nom</mark>.
           <br />
           Adresse : <mark>adresse postale</mark>
           <br />
@@ -36,7 +36,7 @@ export default function Page() {
       <section>
         <h2>Propriété intellectuelle</h2>
         <p>
-          L&apos;ensemble du contenu de ce site (textes, design, code) est la propriété de Stenaweb. Les captures des sites
+          L&apos;ensemble du contenu de ce site (textes, design, code) est la propriété de Tersel Web. Les captures des sites
           réalisés sont présentées avec l&apos;accord des clients concernés et restent la propriété de leurs titulaires.
         </p>
         <p className="mt-4">

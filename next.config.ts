@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// GITHUB_PAGES=1 builds a static export served under /stenaweb (no server: plain images, demo contact form).
+// GITHUB_PAGES=1 builds a static export served under /tersel-web (no server: plain images, demo contact form).
 const pages = process.env.GITHUB_PAGES === "1";
-const basePath = pages ? "/stenaweb" : "";
+const basePath = pages ? "/tersel-web" : "";
 
 const nextConfig: NextConfig = pages
   ? {

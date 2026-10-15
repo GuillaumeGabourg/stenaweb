@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 text-base sm:text-[15px] sm:grid-cols-2 md:px-8 lg:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-display text-2xl leading-none">
-            Stena<span className="italic text-accent">web</span>
+            Tersel <span className="italic text-accent">web</span>
           </p>
           <p className="mt-3 max-w-[32ch] text-muted">Sites vitrines sur-mesure pour les entreprises de Mayenne et de la Sarthe.</p>
           <a href={`mailto:${site.email}`} className="mt-4 inline-block font-medium text-accent underline-offset-4 hover:underline">
@@ -47,7 +47,7 @@ export function Footer() {
       </div>
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2 px-5 py-5 text-[13px] text-muted md:px-8">
-          <span>© {new Date().getFullYear()} Stenaweb</span>
+          <span>© {new Date().getFullYear()} Tersel Web</span>
           <a href="#top" className="transition-colors hover:text-text">
             Retour en haut
           </a>

@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js 15 (App Router) + TypeScript, Tailwind CSS v4, Motion for light animations (patterns from 21st.dev). Deploy target: Netlify (or Vercel), domain stenaweb.fr. Chosen by the user from a recommendation.
+Next.js 15 (App Router) + TypeScript, Tailwind CSS v4, Motion for light animations (patterns from 21st.dev). Deploy target: Netlify (or Vercel), domain tersel.fr. Chosen by the user from a recommendation.
 
 ## Users
 
@@ -16,7 +16,7 @@ Owners of very small and small businesses (TPE/PME) of any trade, mostly in Maye
 
 ## Product Purpose
 
-stenaweb.fr is the commercial showcase of Stenaweb, a studio that designs and builds custom "sites vitrines" (showcase websites). Success = a visitor understands what they would get, sees real work, finds the price reassuring, and sends a quote request (demande de devis) or calls.
+tersel.fr is the commercial showcase of Tersel Web, a studio that designs and builds custom "sites vitrines" (showcase websites). Success = a visitor understands what they would get, sees real work, finds the price reassuring, and sends a quote request (demande de devis) or calls.
 
 ## Positioning
 
@@ -31,11 +31,11 @@ Visitors compare against Wix/Squarespace DIY, freelance platforms, and regional 
 - Home page (long one-page) + one case study page per project (`/projets/[slug]`) + legal pages (mentions légales, confidentialité — required in France).
 - Quote request form (contact).
 - Pricing shown as packaged offers. **Current prices are placeholders** (user-approved fictional values) to be replaced.
-- Brand speaks as the studio "Stenaweb" (nous), not as a named individual.
+- Brand speaks as the studio "Tersel Web" (nous), not as a named individual.
 
 ## Brand Commitments
 
-- Name: Stenaweb, domain stenaweb.fr. No existing logo — a typographic wordmark is acceptable.
+- Name: Tersel Web, domain tersel.fr. No existing logo — a typographic wordmark is acceptable.
 - Voice: French, direct, warm, jargon-free for non-technical owners.
 - Visual direction (revised 2026-10-15): the user rejected the dark/neon "agence Awwwards" canon (huge type, scroll-scrubbed animation, preloader, neon green) as unreadable and impractical for artisans. Now: soft dark (warm charcoal) with a calm accent, normal readable type, practical and functional, light one-time animations (21st.dev style), nothing scroll-scrubbed.
 - No reviews section until real reviews exist. Prices are not set yet: shown as small stars + "Sur devis".

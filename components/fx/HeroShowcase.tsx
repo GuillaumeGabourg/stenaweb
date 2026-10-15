@@ -81,7 +81,7 @@ export function HeroShowcase() {
               <Image
                 key={q.slug}
                 src={asset(`/projects/${q.slug}/desktop.png`)}
-                alt={n === i ? `Le site ${q.name}, réalisé par Stenaweb` : ""}
+                alt={n === i ? `Le site ${q.name}, réalisé par Tersel Web` : ""}
                 fill
                 priority={n === 0}
                 sizes="(min-width: 1024px) 45vw, 100vw"

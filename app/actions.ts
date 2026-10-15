@@ -38,7 +38,7 @@ export async function sendContact(_: ContactState, form: FormData): Promise<Cont
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: process.env.CONTACT_FROM ?? "Stenaweb <onboarding@resend.dev>",
+      from: process.env.CONTACT_FROM ?? "Tersel Web <onboarding@resend.dev>",
       to: [to],
       reply_to: fields.email,
       subject: `Demande de devis : ${fields.name}${fields.company ? ` (${fields.company})` : ""}`,

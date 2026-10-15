@@ -24,24 +24,23 @@ const items = [
   },
 ];
 
-/** Four commitments, as a compact band of small tilting tiles. */
+/** Four commitments as small tilting tiles, content centred: icon, title, one line. */
 export function Guarantees() {
   return (
     <section aria-label="Nos engagements" className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-24">
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {items.map((it, i) => (
-          <BlurFade as="li" key={it.title} delay={i * 0.07}>
+          <BlurFade as="li" key={it.title} delay={i * 0.07} className="h-full">
             <TiltCard className="rounded-2xl" max={6}>
-              <div className="flex h-full items-start gap-4 rounded-2xl border border-line bg-surface p-5">
-                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
-                  <svg viewBox="0 0 24 24" aria-hidden className="size-5" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+              <div className="group/g flex h-full flex-col items-center rounded-2xl border border-line bg-surface px-3 py-6 text-center sm:px-6 sm:py-8">
+                <span className="relative grid size-14 place-items-center rounded-full bg-accent-soft text-accent ring-1 ring-accent/25 transition-transform duration-500 ease-[var(--ease-out)] group-hover/g:-translate-y-1">
+                  <span aria-hidden className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgb(var(--glow)/0.25),transparent)] opacity-0 blur-md transition-opacity duration-500 group-hover/g:opacity-100" />
+                  <svg viewBox="0 0 24 24" aria-hidden className="relative size-6" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
                     {it.icon}
                   </svg>
                 </span>
-                <span>
-                  <span className="block font-semibold">{it.title}</span>
-                  <span className="mt-1 block text-base leading-snug text-muted sm:text-[15px]">{it.text}</span>
-                </span>
+                <span className="mt-4 block text-base font-semibold sm:mt-5 sm:text-lg">{it.title}</span>
+                <span className="mt-2 block max-w-[24ch] text-[15px] leading-snug text-muted">{it.text}</span>
               </div>
             </TiltCard>
           </BlurFade>

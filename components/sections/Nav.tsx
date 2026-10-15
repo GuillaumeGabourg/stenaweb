@@ -62,8 +62,8 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-5 md:px-8" aria-label="Navigation principale">
-        <Link href="/" className="font-display text-2xl leading-none" aria-label="Stenaweb, accueil" onClick={() => setOpen(false)}>
-          Stena<span className="italic text-accent">web</span>
+        <Link href="/" className="font-display text-2xl leading-none" aria-label="Tersel Web, accueil" onClick={() => setOpen(false)}>
+          Tersel <span className="italic text-accent">web</span>
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">

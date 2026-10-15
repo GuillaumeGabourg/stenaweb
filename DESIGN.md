@@ -1,5 +1,5 @@
 ---
-name: Stenaweb
+name: Tersel Web
 description: Calm, readable dark site for a studio selling custom showcase websites to small businesses in Mayenne and Sarthe.
 colors:
   bg: "#161619"
@@ -96,7 +96,7 @@ components:
     padding: "12px 16px"
 ---
 
-# Design System: Stenaweb
+# Design System: Tersel Web
 
 ## Overview
 

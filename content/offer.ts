@@ -1,9 +1,9 @@
 // PROVISOIRE : les prix ne sont pas encore fixés (affichés en étoiles « Sur devis » sur le site).
 
 export const site = {
-  name: "Stenaweb",
-  url: "https://stenaweb.fr",
-  email: "contact@stenaweb.fr",
+  name: "Tersel Web",
+  url: "https://tersel.fr",
+  email: "contact@tersel.fr",
   area: "Mayenne · Sarthe",
 };
 

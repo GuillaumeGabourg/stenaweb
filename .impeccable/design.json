@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-15T00:00:00Z",
-  "title": "Design System: Stenaweb",
+  "title": "Design System: Tersel Web",
   "extensions": {
     "colorMeta": {
       "bg": { "role": "neutral", "displayName": "Ground", "canonical": "#161619" },

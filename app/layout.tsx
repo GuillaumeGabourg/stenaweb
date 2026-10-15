@@ -12,17 +12,17 @@ const serif = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 const description =
-  "Stenaweb conçoit des sites vitrines sur-mesure pour les artisans, commerçants et indépendants de Mayenne et de la Sarthe. Design, développement et référencement local.";
+  "Tersel Web conçoit des sites vitrines sur-mesure pour les artisans, commerçants et indépendants de Mayenne et de la Sarthe. Design, développement et référencement local.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "Stenaweb · Création de sites vitrines en Mayenne et Sarthe", template: "%s · Stenaweb" },
+  title: { default: "Tersel Web · Création de sites vitrines en Mayenne et Sarthe", template: "%s · Tersel Web" },
   description,
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "Stenaweb",
-    title: "Stenaweb · Des sites vitrines qui font venir des clients",
+    siteName: "Tersel Web",
+    title: "Tersel Web · Des sites vitrines qui font venir des clients",
     description,
   },
   alternates: { canonical: "/" },
@@ -33,7 +33,7 @@ export const viewport: Viewport = { themeColor: "#161619", colorScheme: "dark li
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Stenaweb",
+  name: "Tersel Web",
   url: site.url,
   email: site.email,
   description,
