@@ -27,7 +27,7 @@ const items = [
 /** Four commitments as small tilting tiles, content centred: icon, title, one line. */
 export function Guarantees() {
   return (
-    <section aria-label="Nos engagements" className="mx-auto max-w-6xl px-5 pt-16 md:px-8 md:pt-24">
+    <section aria-label="Nos engagements" className="mx-auto max-w-6xl px-5 pt-10 md:px-8 md:pt-14">
       <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {items.map((it, i) => (
           <BlurFade as="li" key={it.title} delay={i * 0.07} className="h-full">

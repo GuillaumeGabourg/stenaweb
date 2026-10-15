@@ -9,14 +9,14 @@ const visuals = [DesignVisual, DevVisual, SeoVisual, CareVisual];
 export function Services() {
   return (
     <section id="services" className="border-y border-line bg-surface/50" aria-labelledby="services-title">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
         <SectionHead
           id="services-title"
           title="Ce qu'on fait pour vous"
           intro="Tout ce qu'il faut pour exister en ligne, sans avoir à gérer la technique. Vous nous parlez de votre métier, on s'occupe du reste."
         />
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-2">
+        <ul className="mt-8 grid gap-5 md:grid-cols-2">
           {services.map((s, i) => {
             const Visual = visuals[i];
             return (

@@ -11,14 +11,14 @@ export function Pricing() {
   const reduced = useReducedMotion();
 
   return (
-    <section id="tarifs" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24" aria-labelledby="pricing-title">
+    <section id="tarifs" className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14" aria-labelledby="pricing-title">
       <SectionHead
         id="pricing-title"
         title="Nos formules"
         intro="Des prix clairs, avec une offre de lancement. Chaque projet commence par un devis gratuit : le prix est fixé avant de commencer."
       />
 
-      <div className="mt-12 grid items-stretch gap-5 lg:grid-cols-3">
+      <div className="mt-8 grid items-stretch gap-5 lg:grid-cols-3">
         {pricing.map((p, i) => (
           <BlurFade key={p.name} delay={i * 0.12} className="h-full">
             <TiltCard className="rounded-2xl" max={4}>

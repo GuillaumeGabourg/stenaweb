@@ -161,7 +161,7 @@ export function Contact() {
     ) : null;
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24" aria-labelledby="contact-title">
+    <section id="contact" className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14" aria-labelledby="contact-title">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div>
           <SectionHead

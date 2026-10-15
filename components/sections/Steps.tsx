@@ -25,10 +25,10 @@ export function Steps() {
   const ease = [0.16, 1, 0.3, 1] as const;
 
   return (
-    <section id="etapes" className="mx-auto max-w-6xl px-5 pb-16 pt-14 md:px-8 md:pb-24 md:pt-20" aria-labelledby="steps-title">
+    <section id="etapes" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-8 md:pb-14 md:pt-14" aria-labelledby="steps-title">
       <SectionHead id="steps-title" title="Comment ça se passe" intro="Trois étapes, un seul interlocuteur du début à la fin. Vous n'avez rien de technique à gérer." />
 
-      <ol className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+      <ol className="relative mt-8 grid gap-10 md:grid-cols-3 md:gap-8">
         {/* The connecting line (desktop: horizontal through the numbers; mobile: vertical) */}
         <span aria-hidden className="absolute left-[23px] top-6 bottom-6 w-px bg-line md:inset-x-[calc(16.66%)] md:top-[23px] md:bottom-auto md:h-px md:w-auto" />
         <motion.span
@@ -78,7 +78,7 @@ export function Steps() {
         ))}
       </ol>
 
-      <BlurFade className="mt-12 flex justify-center">
+      <BlurFade className="mt-8 flex justify-center">
         <Button href="/#contact" size="lg">
           Commencer par un appel gratuit
         </Button>

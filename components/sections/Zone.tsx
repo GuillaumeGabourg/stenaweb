@@ -25,7 +25,7 @@ export function Zone() {
 
   return (
     <section id="zone" className="border-y border-line bg-surface/50" aria-labelledby="zone-title">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div>
           <SectionHead
             id="zone-title"

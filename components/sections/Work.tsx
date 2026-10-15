@@ -8,14 +8,14 @@ import { Arrow, ArrowUpRight, SectionHead } from "../ui";
 
 export function Work() {
   return (
-    <section id="realisations" className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24" aria-labelledby="work-title">
+    <section id="realisations" className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14" aria-labelledby="work-title">
       <SectionHead
         id="work-title"
         title="Nos réalisations"
         intro="Trois entreprises de la région, trois sites en ligne. Cliquez sur un projet pour voir comment on l'a construit."
       />
 
-      <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <BlurFade as="li" key={p.slug} delay={i * 0.1}>
             <TiltCard className="rounded-2xl">

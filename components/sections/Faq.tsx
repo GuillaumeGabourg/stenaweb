@@ -13,7 +13,7 @@ export function Faq() {
 
   return (
     <section id="faq" className="border-y border-line bg-surface/50" aria-labelledby="faq-title">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHead id="faq-title" title="Vos questions" intro="Une autre question ? Écrivez-nous, on répond à tout." />
           <a href={`mailto:${site.email}`} className="mt-4 inline-block font-medium text-accent underline-offset-4 hover:underline">

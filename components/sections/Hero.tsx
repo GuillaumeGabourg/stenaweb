@@ -31,7 +31,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pb-16 pt-32 md:px-8 md:pb-20 md:pt-40 lg:grid-cols-[1.05fr_1fr]">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-5 pb-10 pt-28 md:px-8 md:pb-14 md:pt-32 lg:grid-cols-[1.05fr_1fr]">
         <div>
           <h1 id="hero-title" className="font-display text-[clamp(2.8rem,5.6vw,4.75rem)] leading-[1.0]">
             <WordReveal trigger="load" delay={0.1} stagger={0.07} parts={["Votre métier mérite un", { text: "beau site", className: "italic text-accent" }]} />
