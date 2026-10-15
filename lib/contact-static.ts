@@ -5,7 +5,7 @@ export type ContactState = { status: "idle" | "ok" | "error"; message?: string; 
 
 export async function sendContact(_: ContactState, form: FormData): Promise<ContactState> {
   const fields = Object.fromEntries(
-    ["name", "company", "email", "phone", "project", "budget", "message"].map((k) => [k, String(form.get(k) ?? "").trim()])
+    ["name", "company", "email", "phone", "project", "formule", "message"].map((k) => [k, String(form.get(k) ?? "").trim()])
   );
   if (!fields.name || !fields.email || !fields.message) {
     return { status: "error", message: "Il manque votre nom, votre e-mail ou votre message.", fields };

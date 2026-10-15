@@ -10,7 +10,7 @@ const required = ["name", "email", "message"] as const;
  */
 export async function sendContact(_: ContactState, form: FormData): Promise<ContactState> {
   const fields = Object.fromEntries(
-    ["name", "company", "email", "phone", "project", "budget", "message", "website"].map((k) => [k, String(form.get(k) ?? "").trim()])
+    ["name", "company", "email", "phone", "project", "formule", "message", "website"].map((k) => [k, String(form.get(k) ?? "").trim()])
   );
 
   if (fields.website) return { status: "ok" }; // honeypot

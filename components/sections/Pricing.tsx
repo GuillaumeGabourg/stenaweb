@@ -98,7 +98,12 @@ export function Pricing() {
                   ))}
                 </ul>
 
-                <Button href="/#contact" tone={p.featured ? "primary" : "secondary"} className="relative mt-8 w-full">
+                <Button
+                  href="/#contact"
+                  onClick={() => window.dispatchEvent(new CustomEvent("choose:formule", { detail: p.name }))}
+                  tone={p.featured ? "primary" : "secondary"}
+                  className="relative mt-8 w-full"
+                >
                   Demander un devis
                 </Button>
               </article>

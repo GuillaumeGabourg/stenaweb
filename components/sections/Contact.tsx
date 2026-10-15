@@ -1,20 +1,31 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { sendContact, type ContactState } from "@/app/actions";
-import { site } from "@/content/offer";
+import { pricing, site } from "@/content/offer";
 import { BlurFade } from "../fx/BlurFade";
 import { CallButtons, SocialLinks } from "../ContactLinks";
 import { Arrow, Check, SectionHead } from "../ui";
 
 const projectTypes = ["Nouveau site", "Refonte", "Une page", "Je ne sais pas encore"];
-const budgets = ["Moins de 1 000 €", "1 000 à 2 000 €", "Plus de 2 000 €", "Je ne sais pas"];
+const formulas = [...pricing.map((p) => p.name), "Je ne sais pas encore"];
 const ease = [0.16, 1, 0.3, 1] as const;
 
-/** Radio chips; the amber highlight slides from the old choice to the new one. */
-function Choice({ name, options }: { name: string; options: string[] }) {
-  const [value, setValue] = useState(options[0]);
+/**
+ * Radio chips; the amber highlight slides from the old choice to the new one.
+ * Other parts of the page can preselect a chip with a `choose:<name>` event (the offer buttons do).
+ */
+function Choice({ name, options, initial = options[0] }: { name: string; options: string[]; initial?: string }) {
+  const [value, setValue] = useState(initial);
+  useEffect(() => {
+    const onChoose = (e: Event) => {
+      const v = (e as CustomEvent<string>).detail;
+      if (options.includes(v)) setValue(v);
+    };
+    window.addEventListener(`choose:${name}`, onChoose);
+    return () => window.removeEventListener(`choose:${name}`, onChoose);
+  }, [name, options]);
   return (
     <div className="flex flex-wrap gap-2">
       {options.map((o) => {
@@ -218,8 +229,8 @@ export function Contact() {
                     <Choice name="project" options={projectTypes} />
                   </fieldset>
                   <fieldset className="sm:col-span-2">
-                    <legend className={label}>Budget envisagé</legend>
-                    <Choice name="budget" options={budgets} />
+                    <legend className={label}>Formule qui vous intéresse</legend>
+                    <Choice name="formule" options={formulas} initial="Je ne sais pas encore" />
                   </fieldset>
                   <div className="group/f sm:col-span-2">
                     <label htmlFor="message" className={label}>
