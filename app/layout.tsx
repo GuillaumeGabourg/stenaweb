@@ -12,17 +12,17 @@ const serif = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 
 const description =
-  "Tersel Web conçoit des sites vitrines sur-mesure pour les artisans, commerçants et indépendants de Mayenne et de la Sarthe. Design, développement et référencement local.";
+  "Tersel Web conçoit des sites internet sur-mesure pour les artisans, commerçants et indépendants. Basés en Sarthe, on travaille aussi en Mayenne et dans les départements voisins. Design, développement et référencement local.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "Tersel Web · Création de sites vitrines en Mayenne et Sarthe", template: "%s · Tersel Web" },
+  title: { default: "Tersel Web · Création de sites internet en Sarthe et alentours", template: "%s · Tersel Web" },
   description,
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "Tersel Web",
-    title: "Tersel Web · Des sites vitrines qui font venir des clients",
+    title: "Tersel Web · Des sites qui font venir des clients",
     description,
   },
   alternates: { canonical: "/" },
@@ -38,10 +38,12 @@ const jsonLd = {
   email: site.email,
   description,
   areaServed: [
-    { "@type": "AdministrativeArea", name: "Mayenne" },
-    { "@type": "AdministrativeArea", name: "Sarthe" },
+    ...["Sarthe", "Mayenne", "Orne", "Eure-et-Loir", "Loir-et-Cher", "Indre-et-Loire", "Maine-et-Loire"].map((name) => ({
+      "@type": "AdministrativeArea",
+      name,
+    })),
   ],
-  knowsAbout: ["Création de site vitrine", "Webdesign", "Référencement local"],
+  knowsAbout: ["Création de site internet", "Webdesign", "Référencement local"],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

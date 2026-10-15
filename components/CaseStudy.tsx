@@ -15,7 +15,7 @@ export function CaseStudy({ project: p, next }: { project: Project; next: Projec
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <h1 className="font-display text-[clamp(2.6rem,5.2vw,4.2rem)] leading-[1.02]">{p.name}</h1>
-            <p className="mt-5 max-w-[46ch] text-lg text-muted md:text-xl md:leading-relaxed">{p.summary}</p>
+            <p className="mt-5 text-lg text-muted md:text-xl md:leading-relaxed">{p.summary}</p>
             <p className="mt-4 text-base sm:text-[15px] text-muted">
               {p.sector} · {p.place}
             </p>

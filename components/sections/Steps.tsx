@@ -72,7 +72,7 @@ export function Steps() {
             </motion.span>
             <BlurFade delay={0.25 + i * 0.5}>
               <h3 className="text-xl font-semibold md:mt-2">{s.title}</h3>
-              <p className="mt-2 max-w-[34ch] text-base leading-relaxed text-muted sm:text-[15px] md:mx-auto">{s.text}</p>
+              <p className="mt-2 text-base leading-relaxed text-muted sm:text-[15px]">{s.text}</p>
             </BlurFade>
           </li>
         ))}

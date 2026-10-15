@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { pricing } from "@/content/offer";
 import { BlurFade } from "../fx/BlurFade";
 import { TiltCard } from "../fx/TiltCard";
-import { Button, Check, HiddenPrice, SectionHead } from "../ui";
+import { Button, Check, SectionHead } from "../ui";
 
 /** Three offers that tilt toward the pointer; stars twinkle, features tick in, the recommended one carries a border light. */
 export function Pricing() {
@@ -15,7 +15,7 @@ export function Pricing() {
       <SectionHead
         id="pricing-title"
         title="Nos formules"
-        intro="Chaque projet reçoit un devis gratuit et détaillé, avec un prix fixé avant de commencer. Pas de mauvaise surprise."
+        intro="Des prix clairs, avec une offre de lancement. Chaque projet commence par un devis gratuit : le prix est fixé avant de commencer."
       />
 
       <div className="mt-12 grid items-stretch gap-5 lg:grid-cols-3">
@@ -37,13 +37,41 @@ export function Pricing() {
                 </div>
                 <p className="mt-2 min-h-[3.2em] text-base sm:text-[15px] leading-relaxed text-muted">{p.pitch}</p>
 
-                <div className="mt-6 border-t border-line pt-6">
-                  <p className="flex items-baseline gap-2 font-display text-4xl">
-                    {p.prefix && <span className="text-base font-normal text-muted">{p.prefix}</span>}
-                    <HiddenPrice className="text-accent" twinkle />
-                    <span>€</span>
-                  </p>
-                  <p className="mt-2 text-[14px] text-muted">Sur devis · tarif bientôt disponible</p>
+                <div className="mt-6 min-h-[118px] border-t border-line pt-6">
+                  {p.price ? (
+                    <>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                        {/* Regular price, struck through once the card is seen */}
+                        <span className="relative font-display text-2xl text-muted">
+                          <span className="sr-only">Prix normal :</span>
+                          {p.price.regular} €
+                          <motion.span
+                            aria-hidden
+                            className="absolute left-[-4%] top-1/2 h-0.5 w-[108%] origin-left -rotate-6 rounded-full bg-accent"
+                            initial={{ scaleX: 0 }}
+                            whileInView={{ scaleX: 1 }}
+                            viewport={{ once: true, margin: "0px 0px -60px 0px" }}
+                            transition={reduced ? { duration: 0 } : { duration: 0.5, delay: 0.5 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                          />
+                        </span>
+                        <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[13px] font-medium text-accent">Offre de lancement</span>
+                      </div>
+                      <motion.p
+                        className="mt-1 flex items-baseline gap-1.5"
+                        initial={{ opacity: 0, y: 10, scale: 0.92 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true, margin: "0px 0px -60px 0px" }}
+                        transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 18, delay: 0.85 + i * 0.12 }}
+                      >
+                        <span className="sr-only">Prix de lancement :</span>
+                        <span className="font-display text-5xl text-text">{p.price.launch}</span>
+                        <span className="font-display text-3xl text-text">€</span>
+                      </motion.p>
+                    </>
+                  ) : (
+                    <p className="flex h-[88px] items-end font-display text-5xl">Sur devis</p>
+                  )}
+                  <p className="mt-2 text-[14px] text-muted">{p.priceNote}</p>
                 </div>
 
                 <ul className="mt-6 flex-1 space-y-2.5 text-base sm:text-[15px]">
@@ -79,12 +107,6 @@ export function Pricing() {
         ))}
       </div>
 
-      <BlurFade>
-        <p className="mt-8 rounded-2xl border border-line bg-surface/60 px-6 py-4 text-base sm:text-[15px] text-muted">
-          <span className="font-medium text-text">Hébergement, nom de domaine et petites modifications :</span>{" "}
-          <HiddenPrice count={2} className="text-accent" twinkle /> € par mois, sans engagement.
-        </p>
-      </BlurFade>
     </section>
   );
 }

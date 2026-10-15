@@ -86,7 +86,7 @@ function Sent() {
         Bien reçu, merci !
       </motion.p>
       <motion.p
-        className="mt-3 max-w-[48ch] text-muted"
+        className="mt-3 text-muted"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.6, ease }}
@@ -158,7 +158,7 @@ export function Contact() {
             intro="Décrivez votre activité en quelques mots. On vous répond rapidement avec une première idée et un devis gratuit."
           />
           <ul className="mt-8 space-y-3 text-base sm:text-[15px]">
-            {["Devis gratuit, sans engagement", "Rendez-vous sur place ou en visio", `Basés en ${site.area}`].map((t, i) => (
+            {["Devis gratuit, sans engagement", "Rendez-vous sur place ou en visio", `Basés en ${site.area}, on se déplace aux alentours`].map((t, i) => (
               <BlurFade as="li" key={t} delay={0.1 + i * 0.08} className="flex items-center gap-2.5 text-muted">
                 <Check className="text-accent" />
                 {t}

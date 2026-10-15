@@ -63,7 +63,7 @@ export function Button({ tone = "primary", size = "md", className, children, ...
 
 export function SectionHead({ id, title, intro, className }: { id: string; title: string; intro?: string; className?: string }) {
   return (
-    <div className={clsx("max-w-2xl", className)}>
+    <div className={className}>
       <h2 id={id} className="font-display text-[clamp(2.2rem,4vw,3.25rem)] leading-[1.05]">
         <WordReveal parts={[title]} />
       </h2>

@@ -1,51 +1,61 @@
-// PROVISOIRE : les prix ne sont pas encore fixés (affichés en étoiles « Sur devis » sur le site).
+// Prix de lancement validés le 2026-10-15. Le montant de l'abonnement mensuel (formule Essentiel) reste à fixer.
 
 export const site = {
   name: "Tersel Web",
   url: "https://tersel.fr",
   email: "contact@tersel.fr",
-  area: "Mayenne · Sarthe",
+  area: "Sarthe",
 };
 
-export const pricing = [
+export type Offer = {
+  name: string;
+  pitch: string;
+  /** Regular price and launch price in euros; null = on quote. */
+  price: { regular: number; launch: number } | null;
+  /** Small line under the price. */
+  priceNote: string;
+  features: string[];
+  featured: boolean;
+};
+
+export const pricing: Offer[] = [
   {
     name: "Essentiel",
-    price: "690",
-    prefix: "",
-    pitch: "Une page qui présente votre activité et fait sonner le téléphone.",
+    pitch: "Votre site clé en main : on s'occupe de tout, vous n'avez rien à gérer.",
+    price: { regular: 500, launch: 350 },
+    priceNote: "puis un petit abonnement mensuel",
     features: [
-      "Site une page, jusqu'à 6 sections",
-      "Design sur-mesure, adapté au mobile",
+      "Site sur-mesure, adapté au téléphone",
       "Formulaire de contact et appel en un clic",
-      "Référencement de base",
-      "En ligne en 10 jours environ",
+      "Référencement local de base",
+      "Vos modifications faites par nous, sur simple message",
+      "Hébergement et suivi compris dans l'abonnement",
     ],
     featured: false,
   },
   {
-    name: "Vitrine Pro",
-    price: "1 290",
-    prefix: "",
-    pitch: "Le site complet pour être trouvé sur Google et convaincre.",
+    name: "Autonome",
+    pitch: "Votre site, que vous modifiez vous-même quand vous voulez.",
+    price: { regular: 700, launch: 500 },
+    priceNote: "hébergement 1 an et nom de domaine inclus",
     features: [
-      "Jusqu'à 5 pages",
-      "Animations sur-mesure",
-      "SEO local et fiche Google Business",
-      "Galerie de réalisations ou avant / après",
-      "3 mois de retouches inclus",
+      "Espace simple pour modifier textes, photos et horaires",
+      "Prise en main expliquée ensemble",
+      "Hébergement inclus pendant 1 an",
+      "Nom de domaine inclus (s'il est disponible)",
+      "Site sur-mesure, adapté au téléphone",
     ],
     featured: true,
   },
   {
     name: "Sur-mesure",
-    price: "2 490",
-    prefix: "dès",
-    pitch: "Pour les projets ambitieux : plus de pages, plus d'effets, plus de fonctions.",
+    pitch: "Pour les projets plus ambitieux : fonctions et design taillés pour vous.",
+    price: null,
+    priceNote: "devis gratuit selon votre projet",
     features: [
-      "Pages illimitées",
-      "Effets avancés (3D, WebGL)",
-      "Rendez-vous en ligne, catalogue, multilingue",
-      "Accompagnement textes et photos",
+      "Prise de rendez-vous, catalogue, multilingue…",
+      "Design et animations avancés",
+      "Accompagnement pour vos textes et photos",
       "Suivi prioritaire",
     ],
     featured: false,
@@ -65,7 +75,7 @@ export const services = [
   },
   {
     title: "Référencement local",
-    text: "Être trouvé quand quelqu'un cherche votre métier près de chez lui, en Mayenne, en Sarthe et autour.",
+    text: "Être trouvé quand quelqu'un cherche votre métier près de chez lui, en Sarthe, en Mayenne et dans tous les départements voisins.",
     items: ["SEO local", "Fiche Google Business", "Textes optimisés"],
   },
   {
@@ -76,10 +86,10 @@ export const services = [
 ];
 
 export const faq = [
-  { q: "Combien de temps pour avoir mon site ?", a: "Comptez deux à trois semaines entre notre premier échange et la mise en ligne d'un site vitrine. Le plus long, c'est souvent de réunir vos photos et vos textes : on vous aide pour ça." },
+  { q: "Combien de temps pour avoir mon site ?", a: "Comptez deux à trois semaines entre notre premier échange et la mise en ligne de votre site. Le plus long, c'est souvent de réunir vos photos et vos textes : on vous aide pour ça." },
   { q: "Je n'y connais rien en informatique, c'est un problème ?", a: "Pas du tout, c'est même pour ça qu'on existe. On s'occupe de tout : domaine, hébergement, textes, référencement. Vous validez, on exécute." },
-  { q: "Est-ce que je pourrai modifier mon site ensuite ?", a: "Oui. Les petites modifications sont incluses dans le suivi mensuel, ou faites à la demande. Vous envoyez un message, c'est en ligne." },
+  { q: "Est-ce que je pourrai modifier mon site ensuite ?", a: "Oui. Avec la formule Autonome, vous modifiez vous-même vos textes, photos et horaires depuis un espace simple. Avec la formule Essentiel, vous nous envoyez un message et on s'en occupe, c'est compris dans l'abonnement." },
   { q: "Pourquoi pas Wix ou un modèle gratuit ?", a: "Un modèle ressemble à des milliers d'autres sites, il est souvent lent sur mobile et mal référencé. Un site sur-mesure vous démarque, se charge vite et parle à vos clients." },
-  { q: "Vous travaillez uniquement en Mayenne et en Sarthe ?", a: "C'est notre terrain, et on aime se rencontrer en vrai. Mais on travaille aussi à distance, partout en France." },
+  { q: "Vous travaillez uniquement en Sarthe ?", a: "Non. On est basés en Sarthe, on a déjà réalisé des sites en Mayenne, et on se déplace volontiers dans les départements voisins (Orne, Eure-et-Loir, Loir-et-Cher, Indre-et-Loire, Maine-et-Loire…). Et à distance, on travaille partout en France." },
   { q: "Comment se passe le paiement ?", a: "Un acompte au lancement, le solde à la mise en ligne. Le devis est gratuit et détaillé, sans surprise." },
 ];

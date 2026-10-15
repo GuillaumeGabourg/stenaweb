@@ -12,7 +12,7 @@ Next.js 15 (App Router) + TypeScript, Tailwind CSS v4, Motion for light animatio
 
 ## Users
 
-Owners of very small and small businesses (TPE/PME) of any trade, mostly in Mayenne (53) and Sarthe (72): artisans, independents, service providers, local shops. They are usually not web-savvy, have no site or an outdated one, and are evaluating who to trust with their first real website. They often arrive from a recommendation, a Google search, or a link shared by the owner.
+Owners of very small and small businesses (TPE/PME) of any trade, based in Sarthe (72), with sites already delivered in Mayenne (53), open to the neighbouring departments and to remote clients: artisans, independents, service providers, local shops. They are usually not web-savvy, have no site or an outdated one, and are evaluating who to trust with their first real website. They often arrive from a recommendation, a Google search, or a link shared by the owner.
 
 ## Product Purpose
 
@@ -30,7 +30,7 @@ Visitors compare against Wix/Squarespace DIY, freelance platforms, and regional 
 
 - Home page (long one-page) + one case study page per project (`/projets/[slug]`) + legal pages (mentions légales, confidentialité — required in France).
 - Quote request form (contact).
-- Pricing shown as packaged offers. **Current prices are placeholders** (user-approved fictional values) to be replaced.
+- Pricing (2026-10-15): Essentiel (non-administrable site + monthly subscription) 500 € → launch 350 €; Autonome (client-administrable, 1 year hosting + domain if available included) 700 € → launch 500 €; Sur-mesure on quote. Monthly subscription amount still to be set.
 - Brand speaks as the studio "Tersel Web" (nous), not as a named individual.
 
 ## Brand Commitments
@@ -61,3 +61,9 @@ Not yet available: testimonials from the three clients, final prices, real busin
 ## Accessibility & Inclusion
 
 Respect `prefers-reduced-motion` with full non-animated fallbacks; keep text legible over animated backgrounds; WCAG AA contrast.
+
+
+## Copy rules
+
+- Say "des sites" / "sites internet", never "sites vitrines".
+- Based in Sarthe, sites already done in Mayenne, never imply we only work there: neighbouring departments and remote work stay open.

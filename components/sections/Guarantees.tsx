@@ -40,7 +40,7 @@ export function Guarantees() {
                   </svg>
                 </span>
                 <span className="mt-4 block text-base font-semibold sm:mt-5 sm:text-lg">{it.title}</span>
-                <span className="mt-2 block max-w-[24ch] text-[15px] leading-snug text-muted">{it.text}</span>
+                <span className="mt-2 block text-[15px] leading-snug text-muted">{it.text}</span>
               </div>
             </TiltCard>
           </BlurFade>

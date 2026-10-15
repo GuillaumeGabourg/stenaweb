@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
-import { cities, departments, mapView } from "@/content/map";
+import { cities, departments, mapView, neighbours } from "@/content/map";
 import { BlurFade } from "../fx/BlurFade";
 import { Check, SectionHead } from "../ui";
 
@@ -13,7 +13,10 @@ const clients: Record<string, string> = {
   "Le Mans": "PC Assist",
 };
 
-/** Mayenne and Sarthe drawn from their real outlines; the borders trace themselves, towns light up one by one. */
+/**
+ * Sarthe and Mayenne drawn from their real outlines, the neighbouring departments faint around them
+ * (we go there too); the borders trace themselves, towns light up one by one.
+ */
 export function Zone() {
   const reduced = useReducedMotion();
   const [hover, setHover] = useState<string | null>(null);
@@ -27,7 +30,7 @@ export function Zone() {
           <SectionHead
             id="zone-title"
             title="Près de chez vous"
-            intro="On est basés entre la Mayenne et la Sarthe : on peut se rencontrer sur place, chez vous ou autour d'un café. Et on travaille aussi à distance, partout en France."
+            intro="On est basés en Sarthe et on a déjà réalisé des sites en Mayenne. On se déplace volontiers dans les départements voisins pour vous rencontrer, chez vous ou autour d'un café, et on travaille aussi à distance partout en France."
           />
           <ul className="mt-8 space-y-3">
             {Object.entries(clients).map(([town, name], i) => (
@@ -53,7 +56,27 @@ export function Zone() {
         </div>
 
         <BlurFade delay={0.1}>
-          <svg viewBox={`0 0 ${mapView.width} ${mapView.height}`} className="h-auto w-full overflow-visible" role="img" aria-label="Carte de la Mayenne et de la Sarthe, avec les villes où nos clients sont installés">
+          <svg viewBox={`0 0 ${mapView.width} ${mapView.height}`} className="h-auto w-full overflow-hidden rounded-2xl" role="img" aria-label="Carte de la Sarthe, de la Mayenne et des départements voisins, avec les villes où nos clients sont installés">
+            {/* Neighbouring departments: faint dashed outlines, the door stays open */}
+            {neighbours.map((n, i) => (
+              <motion.g
+                key={n.code}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={once}
+                transition={{ duration: reduced ? 0 : 1.2, delay: reduced ? 0 : 1.6 + i * 0.08 }}
+              >
+                <path d={n.d} fill="none" stroke="var(--muted)" strokeOpacity={0.35} strokeWidth={1} strokeDasharray="3 5" strokeLinejoin="round" />
+                <text
+                  x={n.label[0]}
+                  y={n.label[1]}
+                  textAnchor={n.label[0] > mapView.width - 80 ? "end" : n.label[0] < 80 ? "start" : "middle"}
+                  className="fill-[var(--muted)] text-[13px] opacity-70"
+                >
+                  {n.name}
+                </text>
+              </motion.g>
+            ))}
             {departments.map((d, i) => (
               <g key={d.code}>
                 <motion.path
@@ -79,10 +102,10 @@ export function Zone() {
               </g>
             ))}
             {/* Department names */}
-            <text x={58} y={268} className="fill-[var(--muted)] font-display text-[22px] italic">
+            <text x={196} y={203} textAnchor="middle" className="fill-[var(--muted)] font-display text-[22px] italic">
               Mayenne
             </text>
-            <text x={505} y={330} textAnchor="middle" className="fill-[var(--muted)] font-display text-[22px] italic">
+            <text x={471} y={312} textAnchor="middle" className="fill-[var(--muted)] font-display text-[22px] italic">
               Sarthe
             </text>
 
