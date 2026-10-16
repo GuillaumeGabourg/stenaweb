@@ -383,3 +383,212 @@ label:has(input[type="checkbox"]) {
     opacity: 0;
   }
 }
+
+/* ───────────── Background field (BgField): CSS only, compositor-friendly ───────────── */
+.bgf {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+.bgf-pat {
+  position: absolute;
+  inset: 0;
+  /* dark theme: a dot every 26px */
+  -webkit-mask: radial-gradient(circle at 13px 13px, #000 1.1px, transparent 1.7px) 0 0 / 26px 26px;
+  mask: radial-gradient(circle at 13px 13px, #000 1.1px, transparent 1.7px) 0 0 / 26px 26px;
+}
+.bgf-base {
+  background: rgb(var(--dot) / 0.11);
+}
+.bgf-bright {
+  background: rgb(var(--dot) / 0.26);
+}
+.bgf-amber {
+  background: rgb(var(--glow) / 0.8);
+  -webkit-mask-image: radial-gradient(circle at 13px 13px, #000 1.6px, transparent 2.3px);
+  mask-image: radial-gradient(circle at 13px 13px, #000 1.6px, transparent 2.3px);
+}
+/* light theme: wavy lines every 38px that flow slowly sideways */
+:root[data-theme="light"] .bgf-pat {
+  right: -240px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='38'%3E%3Cpath d='M0 19 Q30 12 60 19 T120 19 T180 19 T240 19' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 0 0 / 240px 38px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='38'%3E%3Cpath d='M0 19 Q30 12 60 19 T120 19 T180 19 T240 19' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E") 0 0 / 240px 38px;
+  animation: bgf-flow 26s linear infinite;
+}
+:root[data-theme="light"] .bgf-base {
+  background: rgb(var(--dot) / 0.09);
+}
+:root[data-theme="light"] .bgf-bright {
+  background: rgb(var(--dot) / 0.16);
+}
+:root[data-theme="light"] .bgf-amber {
+  background: rgb(var(--glow) / 0.55);
+}
+@keyframes bgf-flow {
+  to {
+    transform: translate3d(-240px, 0, 0);
+  }
+}
+
+/* A window: a soft disc showing a brighter copy of the pattern, kept aligned by a counter-move inside. */
+.bgf-win {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-mask: radial-gradient(closest-side, #000 20%, transparent);
+  mask: radial-gradient(closest-side, #000 20%, transparent);
+  will-change: transform;
+}
+.bgf-counter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  will-change: transform;
+}
+/* The drifting light: wanders across the screen in 40s */
+.bgf-wave {
+  width: 900px;
+  height: 900px;
+  animation: bgf-wander 40s ease-in-out infinite;
+}
+.bgf-wave > .bgf-counter {
+  animation: bgf-wander-back 40s ease-in-out infinite;
+}
+@keyframes bgf-wander {
+  0%, 100% { transform: translate3d(calc(70vw - 450px), calc(20vh - 450px), 0); }
+  33% { transform: translate3d(calc(25vw - 450px), calc(65vh - 450px), 0); }
+  66% { transform: translate3d(calc(80vw - 450px), calc(85vh - 450px), 0); }
+}
+@keyframes bgf-wander-back {
+  0%, 100% { transform: translate3d(calc(450px - 70vw), calc(450px - 20vh), 0); }
+  33% { transform: translate3d(calc(450px - 25vw), calc(450px - 65vh), 0); }
+  66% { transform: translate3d(calc(450px - 80vw), calc(450px - 85vh), 0); }
+}
+/* Around the mouse: amber pattern + a wide faint glow (moved by BgField, eased by these transitions) */
+.bgf-spot {
+  width: 340px;
+  height: 340px;
+  opacity: 0;
+  transition: transform 0.35s var(--ease-out), opacity 0.5s ease;
+}
+.bgf-follow {
+  transition: transform 0.35s var(--ease-out);
+}
+.bgf-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(var(--glow) / 0.07), transparent);
+  opacity: 0;
+  transition: transform 0.9s var(--ease-out), opacity 0.7s ease;
+  will-change: transform;
+}
+.bgf-on .bgf-spot,
+.bgf-on .bgf-glow {
+  opacity: 1;
+}
+
+/* ───────────── Reveal on scroll (BlurFade / WordReveal): opacity + transform only ───────────── */
+.js .reveal {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.7s var(--ease-out) var(--d, 0s),
+    transform 0.7s var(--ease-out) var(--d, 0s);
+}
+.js .reveal.word {
+  transform: translate3d(0, 0.35em, 0);
+  transition-duration: 0.8s;
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ───────────── Light mode for slow computers (set by RevealObserver) ───────────── */
+.lite .bgf-wave,
+.lite .bgf-spot,
+.lite .bgf-glow {
+  display: none;
+}
+.lite .bgf-pat,
+.lite .beam::before,
+.lite .float,
+.lite .twinkle,
+.lite .shine-loop::after,
+.lite [class*="animation:drift"],
+.lite [class*="animation:hue"] {
+  animation: none !important;
+}
+.lite .backdrop-blur-sm,
+.lite .backdrop-blur {
+  backdrop-filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgf-wave,
+  .bgf-spot,
+  .bgf-glow {
+    display: none;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Above the fold (hero, page headers marked data-load): play on load in CSS, without waiting for the script. */
+.js [data-load] .reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  animation: reveal-in 0.7s var(--ease-out) var(--d, 0s) both;
+}
+.js [data-load] .reveal.word {
+  animation: word-in 0.8s var(--ease-out) var(--d, 0s) both;
+}
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+}
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.35em, 0);
+  }
+}
+
+/* ───────────── TiltCard ───────────── */
+.tilt {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.5s var(--ease-out);
+}
+.tilt-light {
+  background: radial-gradient(420px circle at var(--lx, 50%) var(--ly, 50%), rgb(var(--glow) / 0.05), transparent 70%);
+}
+.tilt-ring {
+  background: radial-gradient(240px circle at var(--lx, 50%) var(--ly, 50%), rgb(var(--glow) / 0.22), transparent 70%);
+}
+.lite .tilt {
+  transform: none;
+}
+.lite .tilt-light,
+.lite .tilt-ring {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt {
+    transform: none;
+  }
+}

@@ -1,30 +1,20 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
-
-/** Content rises in softly from a light blur the first time it enters the viewport. */
+/**
+ * Content fades and rises in the first time it enters the viewport.
+ * Pure CSS (`.reveal` in globals.css); the shared observer in RevealObserver adds `.in`.
+ */
 export function BlurFade({
   children,
   delay = 0,
   className,
-  as = "div",
+  as: Tag = "div",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
   as?: "div" | "li" | "article";
 }) {
-  const reduced = useReducedMotion();
-  const Tag = motion[as];
-  // Same markup on server and client; reduced motion only collapses the timing.
   return (
-    <Tag
-      className={className}
-      initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "0px 0px -60px 0px" }}
-      transition={reduced ? { duration: 0 } : { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <Tag className={`reveal ${className ?? ""}`} style={delay ? ({ "--d": `${delay}s` } as React.CSSProperties) : undefined}>
       {children}
     </Tag>
   );

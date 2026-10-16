@@ -23,7 +23,7 @@ const band = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden" aria-labelledby="hero-title">
+    <section data-load className="relative overflow-hidden" aria-labelledby="hero-title">
       {/* Background: drifting warm glows (the dot field runs behind the whole site) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -left-[10%] -top-[20%] size-[55vw] max-w-[760px] rounded-full bg-[radial-gradient(closest-side,rgb(var(--glow)/0.16),transparent)] [animation:drift-a_18s_ease-in-out_infinite]" />

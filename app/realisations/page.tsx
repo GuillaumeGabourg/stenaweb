@@ -39,7 +39,7 @@ export default function RealisationsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main id="main">
-        <header className="mx-auto max-w-6xl px-5 pb-6 pt-28 md:px-8 md:pt-32">
+        <header data-load className="mx-auto max-w-6xl px-5 pb-6 pt-28 md:px-8 md:pt-32">
           <BlurFade>
             <h1 className="font-display text-[clamp(2.6rem,5.2vw,4.2rem)] leading-[1.02]">Nos réalisations</h1>
             <p className="mt-5 text-lg text-muted md:text-xl md:leading-relaxed">

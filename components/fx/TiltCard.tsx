@@ -1,54 +1,50 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
 
 /**
- * A card that leans toward the pointer, with a faint light following it on the surface and border.
- * On leave the tilt eases back to flat while the light just fades where it is (it never slides back to the centre).
+ * A card that leans toward the mouse, with a faint light following it on the surface and border.
+ * No animation loop: pointer moves set four CSS variables (at most once per frame) and CSS transitions
+ * ease the tilt. On leave the tilt returns to flat while the light fades where it is.
+ * Off on touch screens, with reduced motion and in the light mode for slow computers (`html.lite`).
  */
 export function TiltCard({ children, className, max = 5 }: { children: React.ReactNode; className?: string; max?: number }) {
-  const reduced = useReducedMotion();
-  // Tilt target: springs back to flat on leave
-  const tx = useMotionValue(0.5);
-  const ty = useMotionValue(0.5);
-  const rx = useSpring(useTransform(ty, [0, 1], [max, -max]), { stiffness: 120, damping: 20 });
-  const ry = useSpring(useTransform(tx, [0, 1], [-max, max]), { stiffness: 120, damping: 20 });
-  // Light position: only updated while the pointer is inside
-  const lx = useMotionValue(50);
-  const ly = useMotionValue(50);
-  const light = useMotionTemplate`radial-gradient(420px circle at ${lx}% ${ly}%, rgb(var(--glow) / 0.05), transparent 70%)`;
-  const ring = useMotionTemplate`radial-gradient(240px circle at ${lx}% ${ly}%, rgb(var(--glow) / 0.22), transparent 70%)`;
+  const ref = useRef<HTMLDivElement>(null);
+  const raf = useRef(0);
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== "mouse") return;
-    const b = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - b.left) / b.width;
-    const y = (e.clientY - b.top) / b.height;
-    tx.set(x);
-    ty.set(y);
-    lx.set(x * 100);
-    ly.set(y * 100);
+    if (e.pointerType !== "mouse" || raf.current) return;
+    const { clientX, clientY } = e;
+    raf.current = requestAnimationFrame(() => {
+      raf.current = 0;
+      const el = ref.current;
+      if (!el) return;
+      const b = el.getBoundingClientRect();
+      const x = (clientX - b.left) / b.width;
+      const y = (clientY - b.top) / b.height;
+      el.style.setProperty("--rx", `${(0.5 - y) * 2 * max}deg`);
+      el.style.setProperty("--ry", `${(x - 0.5) * 2 * max}deg`);
+      el.style.setProperty("--lx", `${x * 100}%`);
+      el.style.setProperty("--ly", `${y * 100}%`);
+    });
   };
   const onLeave = () => {
-    tx.set(0.5);
-    ty.set(0.5);
+    cancelAnimationFrame(raf.current);
+    raf.current = 0;
+    ref.current?.style.setProperty("--rx", "0deg");
+    ref.current?.style.setProperty("--ry", "0deg");
   };
 
   return (
     <div className="h-full [perspective:1100px]" onPointerMove={onMove} onPointerLeave={onLeave}>
-      <motion.div style={reduced ? undefined : { rotateX: rx, rotateY: ry }} className={`group/tilt relative h-full ${className ?? ""}`}>
+      <div ref={ref} className={`tilt group/tilt relative h-full ${className ?? ""}`}>
         {children}
-        <motion.span
+        <span aria-hidden className="tilt-light pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-700 ease-out group-hover/tilt:opacity-100" />
+        <span
           aria-hidden
-          style={{ background: light }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-700 ease-out group-hover/tilt:opacity-100"
+          className="tilt-ring pointer-events-none absolute inset-0 rounded-[inherit] p-px opacity-0 transition-opacity duration-700 ease-out [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] group-hover/tilt:opacity-100"
         />
-        <motion.span
-          aria-hidden
-          style={{ background: ring }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] p-px opacity-0 transition-opacity duration-700 ease-out [mask-composite:exclude] [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] group-hover/tilt:opacity-100"
-        />
-      </motion.div>
+      </div>
     </div>
   );
 }

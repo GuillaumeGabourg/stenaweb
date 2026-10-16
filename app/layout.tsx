@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Instrument_Serif } from "next/font/google";
 import { Nav } from "@/components/sections/Nav";
-import { CursorGlow } from "@/components/fx/CursorGlow";
-import { DotField } from "@/components/fx/DotField";
+import { BgField } from "@/components/fx/BgField";
+import { RevealObserver } from "@/components/fx/RevealObserver";
 import { HashScroll } from "@/components/fx/HashScroll";
 import { MobileCta } from "@/components/fx/MobileCta";
 import { site } from "@/content/offer";
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="fr" id="top" className={`${serif.variable} ${geistSans.variable}`} suppressHydrationWarning>
       <head>
         {/* Apply the saved theme before the first paint (no flash). */}
-        <script dangerouslySetInnerHTML={{ __html: "try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "var d=document.documentElement;d.classList.add('js');try{if(localStorage.getItem('theme')==='light')d.dataset.theme='light';if(sessionStorage.getItem('lite'))d.classList.add('lite')}catch(e){}" }} />
       </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -62,8 +62,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Aller au contenu
         </a>
-        <DotField className="pointer-events-none fixed inset-0 z-0 size-full" />
-        <CursorGlow />
+        <BgField />
+        <RevealObserver />
         <HashScroll />
         <Nav />
         <div className="relative z-[1]">{children}</div>
