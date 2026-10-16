@@ -30,7 +30,7 @@ Visitors compare against Wix/Squarespace DIY, freelance platforms, and regional 
 
 - Home page (long one-page) + one case study page per project (`/projets/[slug]`) + legal pages (mentions légales, confidentialité — required in France).
 - Quote request form (contact).
-- Pricing (2026-10-15): Essentiel (non-administrable site + monthly subscription) 500 € → launch 350 €; Autonome (client-administrable, 1 year hosting + domain if available included) 700 € → launch 500 €; Sur-mesure on quote. Monthly subscription amount still to be set.
+- Pricing (2026-10-16): all prices end in ,99 (user wants charm pricing). Essentiel (non-administrable, done-for-you) 499,99 € → launch 349,99 € + 29,99 €/mois (hosting, follow-up, edits); Autonome (client-administrable, 1 year hosting + domain if available) 699,99 € → launch 499,99 €; Sur-mesure on quote. Always show the monthly amount up front, never "petit abonnement".
 - Brand speaks as the studio "Tersel Web" (nous), not as a named individual.
 
 ## Brand Commitments

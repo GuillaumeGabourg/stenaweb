@@ -1,4 +1,4 @@
-// Prix de lancement validés le 2026-10-15. Le montant de l'abonnement mensuel (formule Essentiel) reste à fixer.
+// Prix validés le 2026-10-16 : tous en ,99 (prix psychologiques), abonnement Essentiel 29,99 €/mois.
 
 export const site = {
   name: "Tersel Web",
@@ -26,6 +26,8 @@ export type Offer = {
   pitch: string;
   /** Regular price and launch price in euros; null = on quote. */
   price: { regular: number; launch: number } | null;
+  /** Monthly subscription in euros, shown right under the price. */
+  monthly?: number;
   /** Small line under the price. */
   priceNote: string;
   features: string[];
@@ -36,21 +38,22 @@ export const pricing: Offer[] = [
   {
     name: "Essentiel",
     pitch: "Votre site clé en main : on s'occupe de tout, vous n'avez rien à gérer.",
-    price: { regular: 500, launch: 350 },
-    priceNote: "puis un petit abonnement mensuel",
+    price: { regular: 499.99, launch: 349.99 },
+    monthly: 29.99,
+    priceNote: "hébergement, suivi et modifications compris",
     features: [
       "Site sur-mesure, adapté au téléphone",
       "Formulaire de contact et appel en un clic",
       "Référencement local de base",
       "Vos modifications faites par nous, sur simple message",
-      "Hébergement et suivi compris dans l'abonnement",
+      "Hébergement et suivi inclus, sans frais cachés",
     ],
     featured: false,
   },
   {
     name: "Autonome",
     pitch: "Votre site, que vous modifiez vous-même quand vous voulez.",
-    price: { regular: 700, launch: 500 },
+    price: { regular: 699.99, launch: 499.99 },
     priceNote: "hébergement 1 an et nom de domaine inclus",
     features: [
       "Espace simple pour modifier textes, photos et horaires",
@@ -102,7 +105,7 @@ export const services = [
 export const faq = [
   { q: "Combien de temps pour avoir mon site ?", a: "Comptez deux à trois semaines entre notre premier échange et la mise en ligne de votre site. Le plus long, c'est souvent de réunir vos photos et vos textes : on vous aide pour ça." },
   { q: "Je n'y connais rien en informatique, c'est un problème ?", a: "Pas du tout, c'est même pour ça qu'on existe. On s'occupe de tout : domaine, hébergement, textes, référencement. Vous validez, on exécute." },
-  { q: "Est-ce que je pourrai modifier mon site ensuite ?", a: "Oui. Avec la formule Autonome, vous modifiez vous-même vos textes, photos et horaires depuis un espace simple. Avec la formule Essentiel, vous nous envoyez un message et on s'en occupe, c'est compris dans l'abonnement." },
+  { q: "Est-ce que je pourrai modifier mon site ensuite ?", a: "Oui. Avec la formule Autonome, vous modifiez vous-même vos textes, photos et horaires depuis un espace simple. Avec la formule Essentiel, vous nous envoyez un message et on s'en occupe, c'est compris dans l'abonnement à 29,99 € par mois." },
   { q: "Pourquoi pas Wix ou un modèle gratuit ?", a: "Un modèle ressemble à des milliers d'autres sites, il est souvent lent sur mobile et mal référencé. Un site sur-mesure vous démarque, se charge vite et parle à vos clients." },
   { q: "Vous travaillez uniquement en Sarthe ?", a: "Non. On est basés en Sarthe et on a déjà réalisé des sites en Mayenne, mais tout se fait à distance : par téléphone, en visio ou par e-mail. On travaille donc partout en France, et on peut passer vous voir en Sarthe et dans les départements voisins si besoin." },
   { q: "Comment se passe le paiement ?", a: "Un acompte au lancement, le solde à la mise en ligne. Le devis est gratuit et détaillé, sans surprise." },

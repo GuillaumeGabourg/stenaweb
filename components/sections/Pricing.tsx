@@ -7,6 +7,9 @@ import { TiltCard } from "../fx/TiltCard";
 import { Button, Check, SectionHead } from "../ui";
 
 /** Three offers that tilt toward the pointer; stars twinkle, features tick in, the recommended one carries a border light. */
+/** French price format: 349,99 */
+const euros = (n: number) => n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 export function Pricing() {
   const reduced = useReducedMotion();
 
@@ -44,7 +47,7 @@ export function Pricing() {
                         {/* Regular price, struck through once the card is seen */}
                         <span className="relative font-display text-2xl text-muted">
                           <span className="sr-only">Prix normal :</span>
-                          {p.price.regular} €
+                          {euros(p.price.regular)} €
                           <motion.span
                             aria-hidden
                             className="absolute left-[-4%] top-1/2 h-0.5 w-[108%] origin-left -rotate-6 rounded-full bg-accent"
@@ -64,14 +67,22 @@ export function Pricing() {
                         transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 18, delay: 0.85 + i * 0.12 }}
                       >
                         <span className="sr-only">Prix de lancement :</span>
-                        <span className="font-display text-5xl text-text">{p.price.launch}</span>
+                        <span className="font-display text-5xl text-text">
+                          {Math.floor(p.price.launch)}
+                          <span className="text-3xl">,{euros(p.price.launch).split(",")[1]}</span>
+                        </span>
                         <span className="font-display text-3xl text-text">€</span>
                       </motion.p>
                     </>
                   ) : (
                     <p className="flex h-[88px] items-end font-display text-5xl">Sur devis</p>
                   )}
-                  <p className="mt-2 text-[14px] text-muted">{p.priceNote}</p>
+                  {p.monthly && (
+                    <p className="mt-2 text-base font-medium text-text">
+                      + {euros(p.monthly)} € <span className="font-normal text-muted">par mois</span>
+                    </p>
+                  )}
+                  <p className={`${p.monthly ? "mt-0.5" : "mt-2"} text-[14px] text-muted`}>{p.priceNote}</p>
                 </div>
 
                 <ul className="mt-6 flex-1 space-y-2.5 text-base sm:text-[15px]">
