@@ -18,7 +18,6 @@ export default function Home() {
         <Work />
         <MiniCta text="Un site comme ça pour votre entreprise ?" className="pb-10 md:pb-14" />
         <Services />
-        <MiniCta text="On s'occupe de tout, vous gardez la main." button="En parler avec nous" className="pt-10 md:pt-14" />
         <Steps />
         <Zone />
         <Guarantees />

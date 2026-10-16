@@ -10,7 +10,7 @@ import { CallButtons, PhoneIcon } from "../ContactLinks";
 import { Button } from "../ui";
 
 const links = [
-  { href: "/#realisations", label: "Réalisations" },
+  { href: "/realisations", label: "Réalisations" },
   { href: "/#services", label: "Services" },
   { href: "/#tarifs", label: "Tarifs" },
   { href: "/#faq", label: "Questions" },
@@ -70,7 +70,7 @@ export function Nav() {
 
         <ul className="hidden items-center gap-1 lg:flex">
           {links.map((l) => {
-            const on = active === l.href.split("#")[1];
+            const on = l.href.includes("#") ? active === l.href.split("#")[1] : pathname.startsWith(l.href) || (l.href === "/realisations" && pathname.startsWith("/projets"));
             return (
               <li key={l.href}>
                 <Link

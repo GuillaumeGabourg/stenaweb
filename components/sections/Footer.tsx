@@ -21,7 +21,7 @@ export function Footer() {
           <SocialLinks className="mt-5" />
         </div>
         <nav aria-label="Réalisations">
-          <p className="mb-3 font-medium">Réalisations</p>
+          <Link href="/realisations" className="mb-3 block font-medium hover:text-accent">Réalisations</Link>
           <ul className="space-y-2 text-muted">
             {projects.map((p) => (
               <li key={p.slug}>

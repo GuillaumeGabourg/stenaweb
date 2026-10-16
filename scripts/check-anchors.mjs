@@ -13,7 +13,7 @@ for (const vp of [{ width: 1440, height: 900 }, { width: 390, height: 844, isMob
   await p.setViewport(vp);
   await p.goto(BASE + "/", { waitUntil: "networkidle2" });
   await wait(1200);
-  for (const id of ["realisations", "services", "tarifs", "faq", "contact"]) {
+  for (const id of ["services", "tarifs", "faq", "contact"]) {
     if (vp.width < 1024) {
       await p.click('button[aria-controls="menu"]');
       await wait(300);

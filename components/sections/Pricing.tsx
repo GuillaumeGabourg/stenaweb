@@ -17,7 +17,7 @@ export function Pricing() {
     <section id="tarifs" className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14" aria-labelledby="pricing-title">
       <SectionHead
         id="pricing-title"
-        title="Nos formules"
+        title="Choisissez votre formule"
         intro="Des prix clairs, avec une offre de lancement. Chaque projet commence par un devis gratuit : le prix est fixé avant de commencer."
       />
 

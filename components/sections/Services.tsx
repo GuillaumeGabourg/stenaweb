@@ -12,7 +12,7 @@ export function Services() {
       <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-14">
         <SectionHead
           id="services-title"
-          title="Ce qu'on fait pour vous"
+          title="Ce que l'on peut faire pour vous"
           intro="Tout ce qu'il faut pour exister en ligne, sans avoir à gérer la technique. Vous nous parlez de votre métier, on s'occupe du reste."
         />
 

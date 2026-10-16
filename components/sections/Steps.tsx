@@ -26,7 +26,7 @@ export function Steps() {
 
   return (
     <section id="etapes" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-8 md:pb-14 md:pt-14" aria-labelledby="steps-title">
-      <SectionHead id="steps-title" title="Comment ça se passe" intro="Trois étapes, un seul interlocuteur du début à la fin. Vous n'avez rien de technique à gérer." />
+      <SectionHead id="steps-title" title="Comment se passe votre projet" intro="Trois étapes, un seul interlocuteur du début à la fin. Vous n'avez rien de technique à gérer." />
 
       <ol className="relative mt-8 grid gap-10 md:grid-cols-3 md:gap-8">
         {/* The connecting line (desktop: horizontal through the numbers; mobile: vertical) */}

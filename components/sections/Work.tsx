@@ -4,7 +4,7 @@ import { projects } from "@/content/projects";
 import { asset } from "@/lib/asset";
 import { BlurFade } from "../fx/BlurFade";
 import { TiltCard } from "../fx/TiltCard";
-import { Arrow, ArrowUpRight, SectionHead } from "../ui";
+import { Arrow, ArrowUpRight, Button, SectionHead } from "../ui";
 
 export function Work() {
   return (
@@ -65,6 +65,11 @@ export function Work() {
           </BlurFade>
         ))}
       </ul>
+      <BlurFade className="mt-8 flex justify-center">
+        <Button href="/realisations" tone="secondary">
+          Voir toutes nos réalisations en détail
+        </Button>
+      </BlurFade>
     </section>
   );
 }
